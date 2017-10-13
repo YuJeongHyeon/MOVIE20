@@ -6,17 +6,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.sql.DataSource;
+
+import com.kosta.movie20.model.common.DataSourceManager;
 import com.kosta.movie20.model.vo.MemberVO;
 
 public class MemberDAO {
 	private static MemberDAO instance=new MemberDAO();
+	private DataSource dataSource;
 	//외부에서 생성못하게 private 처리 
 	private MemberDAO(){
-		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-		} catch (ClassNotFoundException e) {			
-			e.printStackTrace();
-		}
+		dataSource=DataSourceManager.getInstance().getDataSource();
 	}
 	//외부에 현 객체레퍼런스를 공유 
 	public static MemberDAO getInstance(){
@@ -35,7 +35,7 @@ public class MemberDAO {
 			con.close();
 	}
 	public Connection getConnection() throws SQLException{
-		return DriverManager.getConnection("jdbc:oracle:thin:@127.0.0.1:1521:xe","scott","tiger");
+		return dataSource.getConnection();
 	}
 	
 	public MemberVO login(MemberVO mvo) throws SQLException {
