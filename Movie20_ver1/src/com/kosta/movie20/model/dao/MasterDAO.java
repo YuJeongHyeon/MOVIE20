@@ -1,25 +1,34 @@
 package com.kosta.movie20.model.dao;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.sql.DataSource;
+
+import com.kosta.movie20.model.common.DataSourceManager;
 import com.kosta.movie20.model.vo.MovieVO;
 import com.kosta.movie20.model.vo.NoticeVO;
-import com.sun.corba.se.pept.transport.Connection;
+
 
 public class MasterDAO {
 	private static MasterDAO masterDAO = new MasterDAO();
-
+	private DataSource dataSource;
+	
 	private MasterDAO() {
-
+		dataSource = DataSourceManager.getInstance().getDataSource();
 	}// con
 
 	public static MasterDAO getInstance() {
 		return masterDAO;
 	}// getInstance
-
+	
+	public Connection getConnection() throws SQLException{
+		return dataSource.getConnection();
+	}//getConnection
+	
 	public void closeAll(PreparedStatement pstmt, Connection con) throws SQLException {
 		if (pstmt != null)
 			pstmt.close();
