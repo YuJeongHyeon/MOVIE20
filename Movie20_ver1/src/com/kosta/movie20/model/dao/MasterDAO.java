@@ -42,7 +42,7 @@ public class MasterDAO {
 		closeAll(pstmt, con);
 	}// closeAll
 
-	public ArrayList<NoticeVO> noticeList() {
+	public ArrayList<NoticeVO> noticeList() throws SQLException {
 		ArrayList<NoticeVO> list = new ArrayList<NoticeVO>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -51,13 +51,13 @@ public class MasterDAO {
 		try {
 
 		} finally {
-
+			closeAll(rs, pstmt, con);
 		}
 
 		return list;
 	}// noticeList
 
-	public void movieRegister(MovieVO mvo) {
+	public void movieRegister(MovieVO mvo) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -65,11 +65,11 @@ public class MasterDAO {
 		try {
 
 		} finally {
-
+			closeAll(rs, pstmt, con);
 		}
 	}// movieRegister
 
-	public void movieDelete(String mNo) {
+	public void movieDelete(String mNo) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -77,11 +77,11 @@ public class MasterDAO {
 		try {
 
 		} finally {
-
+			closeAll(rs, pstmt, con);
 		}
 	}// movieDelete
 
-	public void movieUpdate(String mNo) {
+	public void movieUpdate(String mNo) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -89,11 +89,11 @@ public class MasterDAO {
 		try {
 
 		} finally {
-
+			closeAll(rs, pstmt, con);
 		}
 	}// movieUpdate
 
-	public void noticeWrite(NoticeVO nvo) {
+	public void noticeWrite(NoticeVO nvo) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -101,11 +101,11 @@ public class MasterDAO {
 		try {
 
 		} finally {
-
+			closeAll(rs, pstmt, con);
 		}
 	}// noticeWrite
 
-	public void noticeDelete(String nNo) {
+	public void noticeDelete(String nNo) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -113,11 +113,11 @@ public class MasterDAO {
 		try {
 
 		} finally {
-
+			closeAll(rs, pstmt, con);
 		}
 	}// noticeDelete
 
-	public void noticeUpdate(String nNo) {
+	public void noticeUpdate(String nNo) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -125,7 +125,7 @@ public class MasterDAO {
 		try {
 
 		} finally {
-
+			closeAll(rs, pstmt, con);
 		}
 	}// noticeUpdate
 }
