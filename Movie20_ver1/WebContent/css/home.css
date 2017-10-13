@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+
+    
+    #myScrollspy{
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 1000px;
+    }
+    #RightScrollspy{
+  	  padding-top: 20px;
+    }
+    
+    .main{
+		height: 1500px;
+	}
+	
+	.left{
+		text-align: center;
+	}
+	
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* 스크롤 고정하기위해 꼭 필요함 */
+     .affix {
+     
+      top: 0px;
+ 	 }
+ 	#RightScrollspy{
+ 
+ 	}
+ 	#myScrollspy{
+ 		width: inherit;
+ 	}
+
+
+
+ 
