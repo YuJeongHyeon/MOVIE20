@@ -24,7 +24,7 @@ CREATE TABLE semi_review
 	content            CLOB NOT NULL ,
 	regdate               DATE  NOT NULL ,
 	title                 VARCHAR2(100)  NOT NULL ,
-	hits                  NUMBER  NOT NULL ,
+	hits                  NUMBER  DEFAULT 0 ,
 	mNo                   NUMBER   NOT NULL ,
 	CONSTRAINT semi_review_m_no_fk FOREIGN KEY(mNo) REFERENCES semi_movie(mNo),
 	id                    VARCHAR2(100)  NOT NULL,
@@ -48,7 +48,7 @@ CREATE TABLE semi_movie
 	summary               CLOB  NOT NULL ,
 	runtime               VARCHAR2(100)  NOT NULL ,
 	viewingcheck          VARCHAR2(100)  NOT NULL ,
-	hits                  NUMBER NOT NULL ,
+	hits                  NUMBER  DEFAULT 0 ,
 	grade                 NUMBER  NOT NULL ,
 	picture 			VARCHAR2(100) NOT NULL ,
 	id                    VARCHAR2(100)  NOT NULL,
@@ -66,7 +66,7 @@ CREATE TABLE semi_notice
 	title                 VARCHAR2(100)  NOT NULL ,
 	content             CLOB  NOT NULL ,
 	regdate               DATE  NOT NULL ,
-	hits                  NUMBER  NOT NULL ,
+	hits                  NUMBER   DEFAULT 0 ,
 	id                    VARCHAR2(100)  NOT NULL,
 	CONSTRAINT semi_notice_id_fk FOREIGN KEY(id) REFERENCES semi_member(id)
 );
