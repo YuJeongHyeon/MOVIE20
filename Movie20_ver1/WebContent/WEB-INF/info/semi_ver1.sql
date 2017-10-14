@@ -41,7 +41,7 @@ CREATE TABLE semi_movie
 (
 	mNo                  NUMBER  PRIMARY KEY ,
 	title                 VARCHAR2(100)  NOT NULL ,
-	playdate              DATE  NOT NULL ,
+	playdate              VARCHAR2(100)  NOT NULL ,
 	character             VARCHAR2(100)  NOT NULL ,
 	director              VARCHAR2(100)  NOT NULL ,
 	genre                 VARCHAR2(100)  NOT NULL ,
