@@ -20,9 +20,10 @@
 	}
 	
 	.left{
+		
 		text-align: center;
 	}
-	
+
     footer {
       background-color: #555;
       color: white;
@@ -39,8 +40,24 @@
  	}
  	#myScrollspy{
  		width: inherit;
+ 		 background-color:#0059b3;
+ 		text-align: center;
  	}
-
-
-
+ 	#myScrollspy a{
+ 	 color: white;
+ 	 	
+ 	}
+	#myScrollspy a:hover{
+		background-color: #0059b3; 
+	}
+	
+	.dropdown-menu{
+		 background-color: #0059b3;
+	}
+	.dropdown-menu a:hover{
+			background-color: #0059b3; 
+	}
+	#gerneA{
+		background-color: #0059b3; 
+	}
  
