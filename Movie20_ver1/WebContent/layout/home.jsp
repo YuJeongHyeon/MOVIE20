@@ -11,9 +11,12 @@
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/home.css">
-
   
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/home.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/searchMovie.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/Yeonghun.css">  
+  
+ 
 </head>
 
 <body>
@@ -21,12 +24,12 @@
 
 <!--  left -->		
 	
-	  <div class="col-sm-2 left" data-spy="scroll" data-target="#myScrollspy" >
+	  <div class="col-sm-1 col-sm-offset-1 left" data-spy="scroll" data-target="#myScrollspy" >
 		<jsp:include page="left.jsp"></jsp:include>
 	  </div>
 	    
 <!--  header -->	
-		<div class="col-sm-8">
+		<div class="col-sm-8 header" >
 			
 			<div class="container-fluid">
 		 		<div class="collapse navbar-collapse" id="myNavbar">
@@ -38,8 +41,8 @@
 					
 <!--  main -->							
 		 <div class="main"> 
-		 dd
-					<%--  <c:import url="${requestScope.url}"></c:import> --%> 
+		 
+					  <c:import url="${requestScope.url}"></c:import>  
 		 </div>
 			    
 <!--  footer -->				    

@@ -2,15 +2,15 @@ package com.kosta.movie20.model.vo;
 
 import java.util.ArrayList;
 
-import com.kosta.movie20.model.common.PagingBean;
+import com.kosta.movie20.model.common.PagingBeanSearch;
 
-public class ListVO {
+public class SeachListVO {
 	private ArrayList<MovieVO> list = new ArrayList<MovieVO>();
-	private PagingBean pb;
-	public ListVO() {
+	private PagingBeanSearch pb;
+	public SeachListVO() {
 		super();
 	}
-	public ListVO(ArrayList<MovieVO> list, PagingBean pb) {
+	public SeachListVO(ArrayList<MovieVO> list, PagingBeanSearch pb) {
 		super();
 		this.list = list;
 		this.pb = pb;
@@ -25,10 +25,10 @@ public class ListVO {
 	public void setList(ArrayList<MovieVO> list) {
 		this.list = list;
 	}
-	public PagingBean getPb() {
+	public PagingBeanSearch getPb() {
 		return pb;
 	}
-	public void setPb(PagingBean pb) {
+	public void setPb(PagingBeanSearch pb) {
 		this.pb = pb;
 	}
 

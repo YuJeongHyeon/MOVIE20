@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+
+	.mainImg{
+		width: 161px;
+		height: 184px;
+	}
+	#mainTable{
+	 	margin: auto; 
+		/* align-content: center; */
+		
+	}
+	#mainTable td{
+		padding: 5px;
+	}
