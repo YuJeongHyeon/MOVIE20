@@ -219,13 +219,30 @@ public class MovieDAO {
 		}
 		return count;
 	}
-	public ArrayList<MovieVO> hitDaHit() throws SQLException{
+	public ArrayList<MovieVO> hitDaHit(MoviePagingBean moviePagingBean) throws SQLException{
 		ArrayList<MovieVO> mList = new ArrayList<MovieVO>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		
 		try {
+			con = dataSource.getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append("SELECT hits, picture ");
+			sql.append("FROM (select row_number() over(order by mNo desc) as rnum,hits,picture from semi_movie ) semi_movie ");
+			sql.append("WHERE rnum between ? and ? ");
+			sql.append("ORDER BY hits desc");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setInt(1, moviePagingBean.getStartRowNumber());
+			pstmt.setInt(2, moviePagingBean.getEndRowNumber());
+			rs = pstmt.executeQuery();
 			
+			while(rs.next()){
+				MovieVO mvo = new MovieVO();
+				mvo.setHits(rs.getInt(1));
+				mvo.setPicture(rs.getString(2));
+				mList.add(mvo);
+			}
 			
 		}finally {
 			closeAll(rs, pstmt, con);
@@ -233,6 +250,7 @@ public class MovieDAO {
 		
 		return mList;
 	}
+	
 	public ArrayList<MovieVO> addClickList(String mNo) throws SQLException{
 		ArrayList<MovieVO> mList = new ArrayList<MovieVO>();
 		Connection con = null;

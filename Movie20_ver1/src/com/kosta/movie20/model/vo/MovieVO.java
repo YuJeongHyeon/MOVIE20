@@ -20,6 +20,13 @@ public class MovieVO {
 	public MovieVO() {
 		super();
 	}
+	
+	public MovieVO(String title, String picture) {
+		super();
+		this.title = title;
+		this.picture = picture;
+	}
+
 	public ArrayList<ReviewVO> getRlist() {
 		return rlist;
 	}
