@@ -46,14 +46,17 @@ public class MemberDAO {
 		try {	
 			con = dataSource.getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("select name from semi_member where id=? and password=?");
+			sql.append("select id, name, authority from semi_member where id=? and password=?");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, mvo.getId());
 			pstmt.setString(2, mvo.getPassword());
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()){
-				vo = new MemberVO(rs.getString(1));
+				vo = new MemberVO();
+				vo.setId(rs.getString("id"));
+				vo.setName(rs.getString("name"));
+				vo.setAuthority(rs.getString("authority"));
 			}
 			
 		}finally{

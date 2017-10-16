@@ -8,8 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.kosta.movie20.controller.common.Controller;
 import com.kosta.movie20.model.common.MoviePagingBean;
 import com.kosta.movie20.model.dao.MovieDAO;
-import com.kosta.movie20.model.vo.MainListVO;
+import com.kosta.movie20.model.vo.ListVO;
 import com.kosta.movie20.model.vo.MovieVO;
+
 
 public class MainMovieListController implements Controller {
 
@@ -23,13 +24,8 @@ public class MainMovieListController implements Controller {
 		}else{
 			mpb = new MoviePagingBean(tpc,Integer.parseInt(pno));
 		}
-		/*int nowPage = 1;
-		if(request.getParameter("pageNo")!=null) {
-			nowPage = Integer.parseInt(request.getParameter("pageNo"));
-		}
-		MoviePagingBean mpb = new MoviePagingBean(tpc,nowPage);*/
 		ArrayList<MovieVO> list =  MovieDAO.getInstance().movieList(mpb);
-		MainListVO<MovieVO> lvo = new MainListVO<MovieVO>(list,mpb);
+		ListVO<MovieVO> lvo = new ListVO<MovieVO>(list,mpb);
 		request.setAttribute("lvo", lvo);
 		request.setAttribute("url", "/movie/mainMovieList.jsp");
 		return "/layout/home.jsp";

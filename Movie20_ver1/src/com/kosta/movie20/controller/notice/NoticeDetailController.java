@@ -6,18 +6,22 @@ import javax.servlet.http.HttpSession;
 
 import com.kosta.movie20.controller.common.Controller;
 import com.kosta.movie20.model.dao.MasterDAO;
+import com.kosta.movie20.model.vo.NoticeVO;
 
-public class NoticeWriteFormController implements Controller {
+public class NoticeDetailController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session=request.getSession(false);
+		String nNo = request.getParameter("nNo");
+		NoticeVO nvo = MasterDAO.getInstance().noticeDetail(nNo);
 		if(session==null||session.getAttribute("membervo")==null) {
-			request.setAttribute("url", "../notice/noticeList.jsp");
+			request.setAttribute("nvo", nvo);
 		}else {
-			request.setAttribute("url", "../notice/noticeWrite.jsp");
+			MasterDAO.getInstance().updateHit(nNo);
+			request.setAttribute("nvo", nvo);
 		}
-		
+		request.setAttribute("url", "../notice/noticeDetailList.jsp");
 		return "/layout/home.jsp";
 	}
 

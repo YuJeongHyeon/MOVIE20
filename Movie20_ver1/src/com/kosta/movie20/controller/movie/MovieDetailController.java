@@ -17,7 +17,6 @@ public class MovieDetailController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String movieNo = request.getParameter("movieNo");
-		System.out.println(movieNo);
 		if(request.getSession(false)!=null) {
 			MovieDAO.getInstance().movieHitsup(movieNo);
 		}

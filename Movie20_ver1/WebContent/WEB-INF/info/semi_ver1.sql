@@ -169,3 +169,18 @@ values(semi_movie_seq.nextval, '다크나이트', '2008.08.06', '크리스찬 베일, 히스 
  ORDER BY hits DESC
 
 select rNo,content,regdate,title,hits,mNo,id from semi_review where mNo=2 and rNo between 1 and 1
+
+
+
+insert into SEMI_NOTICE(nNo,title,content,regdate,id)
+values(SEMI_NOTICE_seq.nextval,'123','123',sysdate,'a');
+
+
+select nNo,regdate,id
+from SEMI_NOTICE where nNo=SEMI_NOTICE_seq.currval ;
+
+
+insert into SEMI_NOTICE(nNo,title,content,regdate,id)
+values(SEMI_NOTICE_seq.nextval,'123','123',sysdate,'a'); 
+
+select nNo,regdate,id from SEMI_NOTICE where nNo=SEMI_NOTICE_seq.currval
