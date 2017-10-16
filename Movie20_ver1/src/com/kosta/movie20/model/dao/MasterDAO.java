@@ -10,6 +10,7 @@ import javax.sql.DataSource;
 
 import com.kosta.movie20.model.common.DataSourceManager;
 import com.kosta.movie20.model.common.PagingBean;
+import com.kosta.movie20.model.vo.MemberVO;
 import com.kosta.movie20.model.vo.MovieVO;
 import com.kosta.movie20.model.vo.NoticeVO;
 
@@ -230,4 +231,81 @@ public class MasterDAO {
 			closeAll(rs, pstmt, con);
 		}
 	}// noticeUpdate
+	
+	public void updateMemberAuthorityById(String id ,String authority) throws SQLException {
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = dataSource.getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append("update semi_member set authority =? WHERE id=? ");
+			
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, authority);
+			pstmt.setString(2, id);
+			
+			pstmt.executeUpdate();
+	
+			
+		} finally {
+			closeAll( pstmt, con);
+		}
+	}//reviseMemberAuthorityByName
+	
+	public MemberVO findMemberById(String id) throws SQLException {
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		MemberVO mvo = null;
+		ResultSet rs = null;
+		
+		try {
+			con = dataSource.getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append("SELECT id, name, nick, address, to_char(birth,'YYYY.MM.DD') as birth, tel, favoriteGenre, authority ");
+			sql.append("FROM semi_member ");
+			sql.append("WHERE id=? ");
+			
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, id);
+
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				mvo = new MemberVO();
+				mvo.setId(rs.getString("id"));
+				mvo.setName(rs.getString("name"));
+				mvo.setNick(rs.getString("nick"));
+				mvo.setAddress(rs.getString("address"));
+				mvo.setBirthday(rs.getString("birth"));
+				mvo.setTel(rs.getString("tel"));
+				mvo.setFavoriteGenre(rs.getString("favoriteGenre"));
+				mvo.setAuthority(rs.getString("authority"));
+			}
+			
+		} finally {
+			closeAll( rs, pstmt, con);
+		}
+		return mvo;
+	}//findMemberById
+	
+	public void deleteMemberById(String id) throws SQLException {
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = dataSource.getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append("delete semi_member WHERE id=? ");
+
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, id);
+
+			pstmt.executeUpdate();
+
+		} finally {
+			closeAll( pstmt, con);
+		}
+	}//deleteMemberById
 }

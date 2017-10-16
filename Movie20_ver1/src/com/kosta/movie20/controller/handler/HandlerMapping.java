@@ -1,8 +1,12 @@
 package com.kosta.movie20.controller.handler;
 
 import com.kosta.movie20.controller.common.Controller;
+import com.kosta.movie20.controller.member.DeleteMemberController;
 import com.kosta.movie20.controller.member.LoginController;
 import com.kosta.movie20.controller.member.LogoutController;
+import com.kosta.movie20.controller.member.MemberSearchController;
+import com.kosta.movie20.controller.member.MemberSearchFormController;
+import com.kosta.movie20.controller.member.UpdateAuthorityController;
 import com.kosta.movie20.controller.movie.HitDaHitController;
 import com.kosta.movie20.controller.movie.MainMovieListController;
 import com.kosta.movie20.controller.movie.MovieDetailController;
@@ -49,16 +53,24 @@ public class HandlerMapping {
 			controller = new ReviewDeleteController();
 		}else if(command.equals("logout")) {
 			controller = new LogoutController();
-		}else if(command.endsWith("cmdNoticeList")) {
+		}else if(command.equals("cmdNoticeList")) {
 			controller = new NoticeListController();
-		}else if(command.endsWith("cmdNoticeDetail")) {
+		}else if(command.equals("cmdNoticeDetail")) {
 			controller = new NoticeDetailController();
-		}else if(command.endsWith("cmdUpdateFormNotice")) {
+		}else if(command.equals("cmdUpdateFormNotice")) {
 			controller = new NoticeUpdateFormController();
-		}else if(command.endsWith("cmdWriteFormNotice")) {
+		}else if(command.equals("cmdWriteFormNotice")) {
 			controller = new NoticeWriteFormController();
-		}else if(command.endsWith("cmdNoticeWrite")) {
+		}else if(command.equals("cmdNoticeWrite")) {
 			controller = new NoticeWriteRegisterController();
+		}else if(command.equals("cmdMemberSearchForm")) {
+			controller = new MemberSearchFormController();
+		}else if(command.equals("cmdMemberSearch")) {
+			controller = new MemberSearchController();
+		}else if(command.equals("cmdDeleteMember")) {
+			controller = new DeleteMemberController();
+		}else if(command.equals("cmdUpdateAuthority")) {
+			controller = new UpdateAuthorityController();
 		}
 		
 		
