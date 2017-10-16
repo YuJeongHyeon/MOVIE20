@@ -2,6 +2,7 @@ package com.kosta.movie20.controller.handler;
 
 import com.kosta.movie20.controller.common.Controller;
 import com.kosta.movie20.controller.member.LoginController;
+import com.kosta.movie20.controller.member.LogoutController;
 import com.kosta.movie20.controller.movie.HitDaHitController;
 import com.kosta.movie20.controller.movie.MainMovieListController;
 import com.kosta.movie20.controller.movie.MovieDetailController;
@@ -41,6 +42,8 @@ public class HandlerMapping {
 			controller = new ReviewUpdateController();
 		}else if(command.equals("deleteReview")) {
 			controller = new ReviewDeleteController();
+		}else if(command.equals("logout")) {
+			controller = new LogoutController();
 		}
 		
 		return controller;

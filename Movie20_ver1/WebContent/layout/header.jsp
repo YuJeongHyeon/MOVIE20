@@ -16,7 +16,7 @@
 		</c:when>	
 		<c:otherwise>
 			${mvo.name}님 로그인 &nbsp;
-			<a href="">로그아웃</a>
+			<a href="DispatcherServlet?command=logout">로그아웃</a>
 		</c:otherwise>
 	</c:choose>
 

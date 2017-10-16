@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>믿고 고르는 영화</title>
+  <title>로그인</title>
   <!-- Bootstrap core CSS-->
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom fonts for this template-->
@@ -33,7 +33,7 @@
             <input type="password" class="form-control" id="password" placeholder="패스워드" name="password">
           </div>
           <input type="submit" value="로그인" class="btn btn-primary btn-block">
-          <a class="btn btn-primary btn-block" href="">회원가입</a>
+          <a class="btn btn-primary btn-block" href="memberRegister.jsp">회원가입</a>
         </form>
       </div>
       

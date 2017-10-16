@@ -1,5 +1,7 @@
 package com.kosta.movie20.controller.member;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -22,6 +24,7 @@ public class LoginController implements Controller {
 		if(vo != null){
 			HttpSession session = request.getSession();
 			session.setAttribute("mvo", vo);
+			//session.setAttribute("noList", new ArrayList<Integer>());
 			return "redirect:index.jsp";
 		}else{
 			return "redirect:member/loginFail.jsp";
