@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+
+/* searchImg css */
+
+	.searchImg{
+		width: 100px;
+		height: 100px;
+	}
+	.searchWord{
+		color: red;
+	}
+	.searchForm .search{
+		width: 250px;
+	}
+	.searchImgTh{
+		width: 110px;
+	}
+	.searchTable th{
+		text-align: left;		
+  		padding: 10px;
+  		padding-left: 40px;
+	}
+	.pagingDiv{
+		text-align: center;
+	}

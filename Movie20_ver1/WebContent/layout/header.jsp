@@ -7,27 +7,28 @@
 
 	function searchMovie(){
 		
-		alert("111");
+		//alert("111");
 	}
 
 </script>
-
-
-	<form class="navbar-form navbar-left" action="DispatcherServlet" onclick="searchMovie()"
+    
+	
+	<ul class="nav navbar-nav navbar-left">
+		<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+	</ul>
+	
+	
+	<form class="navbar-form navbar-right" action="DispatcherServlet" onclick="searchMovie()"
 	name="searchForm">
-	<input type="hidden" value="cmdSearchMovie" name="command">
-      <div class="form-group">
-        <input type="text" class="form-control" placeholder="영화 검색"
+	<input type="hidden" value="cmdMovieSearch" name="command">
+      <div class="form-group searchForm">
+        <input type="text" class="form-control search" placeholder="영화 검색"  autocomplete="name"
         name="searchWord" required="required">
       </div>
       <button type="submit" class="btn btn-default">검색</button>
     </form>
-    
-    
-	<ul class="nav navbar-nav navbar-right">
-		<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-	</ul>
 	
+    
 	
 <br>
 	 <hr>
