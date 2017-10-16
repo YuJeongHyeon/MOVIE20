@@ -6,8 +6,8 @@
 	<c:when test="${sessionScope.mvo.authority}==관리자">
 		<div  id="myScrollspy" data-spy="affix" >
 		      <ul class="nav nav-pills nav-stacked" >
-		        <li><a href="DispatcherServlet?command=cmdMainList">영화 홈</a></li>
-		        <li><a href="#section2">공지 사항</a></li>
+		        <li><a href="${pageContext.request.contextPath}/DispatcherServlet?command=cmdMainList">영화 홈</a></li>
+		        <li><a href="${pageContext.request.contextPath}/DispatcherServlet?command=cmdNoticeList">공지 사항</a></li>
 		        <li><a href="DispatcherServlet?command=hitdahit">히트다 히트!</a></li>
 		        <li class="dropdown">
 		          <a class="dropdown-toggle" id="gerneA" data-toggle="dropdown" href="#"> 장르별 <span class="caret"></span></a>
