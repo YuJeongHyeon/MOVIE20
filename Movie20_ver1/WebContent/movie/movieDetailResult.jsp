@@ -46,7 +46,7 @@
 		</tbody>					
 	</table>
 	<c:if test="${sessionScope.membervo.id!=null}">
-<form method="post" action="DispatcherServlet?id=${sessionScope.membervo.id}&title=rtitle&content=rcontent&movieno=${movievo.mno }">
+<form method="post" action="DispatcherServlet?id=${sessionScope.membervo.id}&title=rtitle&content=rcontent&movieno=${movievo.mNo }">
 		<input type="hidden" name="command" value="reviewWrite">
 <table  class="table table-hover">
 <tbody>
@@ -100,7 +100,7 @@
 		 <c:choose>
 		
 		 <c:when test="${requestScope.listVO.pb.isPreviousPageGroup()}">
-		  	<li><a href="DispatcherServlet?command=list&listpage=${requestScope.listVO.pb.getStartPageOfPageGroup()-1}">Previous</a></li> 
+		  	<li><a href="DispatcherServlet?command=MovieDetail&movieNo=${movievo.mNo}&pageNo=${requestScope.listVO.pb.getStartPageOfPageGroup()-1}">Previous</a></li> 
 		  </c:when>
 		  	</c:choose>
 		  	<c:forEach begin='${requestScope.listVO.pb.getStartPageOfPageGroup()}' end='${requestScope.listVO.pb.getEndPageOfPageGroup()}' var='num'>
@@ -109,13 +109,13 @@
 	   			<li><a>${num}</a></li>
 	   		</c:when>
 	   		<c:otherwise>
-	   		<li><a href="DispatcherServlet?command=list&listpage=${num}">${num}</a></li>
+	   		<li><a href="DispatcherServlet?command=MovieDetail&movieNo=${movievo.mNo}&pageNo=${num}">${num}</a></li>
 			</c:otherwise>
 			</c:choose>
 			</c:forEach>
     	<c:choose>
 	    	<c:when test="${requestScope.listVO.pb.isNextPageGroup()}">  
-	    		<li><a href="DispatcherServlet?command=MovieDetail&movieNo=${movievo.mno}&listpage=${requestScope.listVO.pb.getEndPageOfPageGroup()+1}">Next</a></li>
+	    		<li><a href="DispatcherServlet?command=MovieDetail&movieNo=${movievo.mNo}&pageNo=${requestScope.listVO.pb.getEndPageOfPageGroup()+1}">Next</a></li>
 	    	</c:when> 
 	    	</c:choose>
 	 	 </ul>

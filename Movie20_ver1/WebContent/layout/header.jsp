@@ -11,11 +11,11 @@
 </script>
 
 	<c:choose>
-		<c:when test="${sessionScope.mvo==null}">
+		<c:when test="${sessionScope.membervo==null}">
 			 <a href="member/loginForm.jsp">Login</a>
 		</c:when>	
 		<c:otherwise>
-			${mvo.name}님 로그인 &nbsp;
+			${membervo.name}님 로그인 &nbsp;
 			<a href="DispatcherServlet?command=logout">로그아웃</a>
 		</c:otherwise>
 	</c:choose>

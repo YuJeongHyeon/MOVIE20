@@ -18,12 +18,12 @@ public class LoginController implements Controller {
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
 		System.out.println("id :" + id + " " + "password : "+ password);
-		MemberVO mvo = new MemberVO(id, password);
-		MemberVO vo = MemberDAO.getInstance().login(mvo);
+		MemberVO membervo = new MemberVO(id, password);
+		MemberVO vo = MemberDAO.getInstance().login(membervo);
 		
 		if(vo != null){
 			HttpSession session = request.getSession();
-			session.setAttribute("mvo", vo);
+			session.setAttribute("membervo", vo);
 			//session.setAttribute("noList", new ArrayList<Integer>());
 			return "redirect:index.jsp";
 		}else{

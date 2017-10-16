@@ -17,7 +17,7 @@ public class MovieDetailController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String movieNo = request.getParameter("movieNo");
-		
+		System.out.println(movieNo);
 		if(request.getSession(false)!=null) {
 			MovieDAO.getInstance().movieHitsup(movieNo);
 		}
@@ -37,7 +37,7 @@ public class MovieDetailController implements Controller {
 		ArrayList<ReviewVO> rlist =MovieDAO.getInstance().movieReviewList(movieNo,pb);
 		ReviewListVO listVO=new ReviewListVO(rlist,pb);
 		request.setAttribute("listVO", listVO);//보여줄 리뷰리스트		
-		request.setAttribute("mvo", movievo);//영화정보
+		request.setAttribute("movievo", movievo);//영화정보
 		
 		String url = "../movie/movieDetailResult.jsp";
 		request.setAttribute("url", url);
