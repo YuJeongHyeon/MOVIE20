@@ -38,16 +38,29 @@ public class MemberDAO {
 	}
 	
 	public MemberVO login(MemberVO mvo) throws SQLException {
+		MemberVO vo = null;
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
+		
 		try {	
+			con = dataSource.getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append("select name from semi_member where id=? and password=?");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, mvo.getId());
+			pstmt.setString(2, mvo.getPassword());
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				vo = new MemberVO(rs.getString(1));
+			}
 			
 		}finally{
 			closeAll(rs, pstmt, con);
 		}
 		
-		return null;
+		return vo;
 		
 	}
 	public void registerMember(MemberVO mvo) throws SQLException {
