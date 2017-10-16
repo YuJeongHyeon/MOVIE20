@@ -25,7 +25,7 @@ public class HitDaHitController implements Controller{
 		}
 		
 		ArrayList<MovieVO> mList = MovieDAO.getInstance().hitDaHit(MoviePagingBean);
-		MainListVO lvo = new MainListVO(mList, MoviePagingBean);
+		MainListVO<MovieVO> lvo = new MainListVO<MovieVO>(mList, MoviePagingBean);
 		request.setAttribute("lvo", lvo);
 		request.setAttribute("url", "/movie/hitDaHitResult.jsp");
 		
