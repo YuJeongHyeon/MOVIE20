@@ -36,7 +36,7 @@
 			        <li class="dropdown">
 			          <a class="dropdown-toggle" id="gerneA" data-toggle="dropdown" href="#">장르별 <span class="caret"></span></a>
 			          <ul class="dropdown-menu">
-			            <li><a href="#section41">Section 4-1</a></li>
+			            <li><a href="#section41">Section 4-1</a></li>  
 			            <li><a href="#section42">Section 4-2</a></li>
 			          </ul>
 			        </li>
