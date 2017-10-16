@@ -17,10 +17,10 @@
 		<td><input type="button" value="삭제" id="deleteReview" onClick="location.href='DispatcherServlet?command=deleteReview&rno=${rvo.rno}'">	</td>
 	<tr>
 </c:if>  --%>
-<%-- <tr>
-	<td colspan="4"><input type="button" value="뒤로가기" id="back" onClick="location.href='DispatcherServlet?command=MovieDetail&mNo=${rvo.mno}'">	</td>
+ <tr>
+	<td colspan="4"><input type="button" value="뒤로가기" id="back" onClick="location.href='DispatcherServlet?command=MovieDetail&movieNo=${rvo.mno}'">	</td>
 	
-</tr> --%>
+</tr>
 </tbody>
 
 </table>

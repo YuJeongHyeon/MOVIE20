@@ -16,12 +16,12 @@ public class MovieDetailController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String mNo = request.getParameter("mNo");
+		String movieNo = request.getParameter("movieNo");
 		
 		if(request.getSession(false)!=null) {
-			MovieDAO.getInstance().movieHitsup(mNo);
+			MovieDAO.getInstance().movieHitsup(movieNo);
 		}
-		MovieVO mvo =MovieDAO.getInstance().movieDetail(mNo);
+		MovieVO movievo =MovieDAO.getInstance().movieDetail(movieNo);
 		
 		int totalPostCount=MovieDAO.getInstance().getReviewListcount();
 		String pno=request.getParameter("pageNo");
@@ -34,10 +34,10 @@ public class MovieDetailController implements Controller {
 		}
 
 		
-		ArrayList<ReviewVO> rlist =MovieDAO.getInstance().movieReviewList(mNo,pb);
+		ArrayList<ReviewVO> rlist =MovieDAO.getInstance().movieReviewList(movieNo,pb);
 		ReviewListVO listVO=new ReviewListVO(rlist,pb);
 		request.setAttribute("listVO", listVO);//보여줄 리뷰리스트		
-		request.setAttribute("mvo", mvo);//영화정보
+		request.setAttribute("mvo", movievo);//영화정보
 		
 		String url = "../movie/movieDetailResult.jsp";
 		request.setAttribute("url", url);

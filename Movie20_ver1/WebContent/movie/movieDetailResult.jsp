@@ -7,29 +7,29 @@
 		<tbody>						
 								
 			<tr>
-				<td rowspan='4'><img src="${pageContext.request.contextPath}/img/${mvo.picture }"></td>
+				<td rowspan='4'><img src="${pageContext.request.contextPath}/img/${movievo.picture }"></td>
 			    <td>영화 제목</td>
-				<td>${requestScope.mvo.title }</td>
+				<td>${requestScope.movievo.title }</td>
 				<td>감독</td>
-				<td>${requestScope.mvo.director }</td>				
+				<td>${requestScope.movievo.director }</td>				
 			</tr>
 			<tr>
 				<td>장르</td>
-				<td>${requestScope.mvo.genre }</td>
+				<td>${requestScope.movievo.genre }</td>
 			    <td>출연</td>
-				<td>${requestScope.mvo.character }</td>								
+				<td>${requestScope.movievo.character }</td>								
 			</tr>
 			<tr>
 			    <td>상영시간</td>
-				<td>${requestScope.mvo.runtime }</td>
+				<td>${requestScope.movievo.runtime }</td>
 				<td>상영여부</td>
-				<td>${requestScope.mvo.viewingcheck }</td>				
+				<td>${requestScope.movievo.viewingcheck }</td>				
 			</tr>
 			<tr>
 			    <td>개봉일</td>
-				<td>${requestScope.mvo.playdate }</td>
+				<td>${requestScope.movievo.playdate }</td>
 				<td>등급</td>
-				<td>${requestScope.mvo.grade }</td>				
+				<td>${requestScope.movievo.grade }</td>				
 			</tr>
 			
 			<tr>
@@ -37,7 +37,7 @@
 								
 			</tr>	
 			<tr>
-				<td colspan='4'>${requestScope.mvo.summary }</td>
+				<td colspan='4'>${requestScope.movievo.summary }</td>
 			</tr>
 			
 			
@@ -45,14 +45,14 @@
 
 		</tbody>					
 	</table>
-	<c:if test="${sessionScope.mvo.id!=null}">
-<form method="post" action="DispatcherServlet?id=${sessionScope.mvo.id}&title=rtitle&content=rcontent&mno=${mvo.mno }">
+	<c:if test="${sessionScope.membervo.id!=null}">
+<form method="post" action="DispatcherServlet?id=${sessionScope.membervo.id}&title=rtitle&content=rcontent&movieno=${movievo.mno }">
 		<input type="hidden" name="command" value="reviewWrite">
 <table  class="table table-hover">
 <tbody>
 	<tr>
 		<td >제목</td><td><input type="text" id="rtitle"> </td>
-		<td >작성자 </td><td>${sessionScope.mvo.id}</td>
+		<td >작성자 </td><td>${sessionScope.membervo.id}</td>
 	<tr>
 		<td colspan='4'>내용</td >
 	</tr>
@@ -115,7 +115,7 @@
 			</c:forEach>
     	<c:choose>
 	    	<c:when test="${requestScope.listVO.pb.isNextPageGroup()}">  
-	    		<li><a href="DispatcherServlet?command=MovieDetail&mNo=${mvo.mno}&listpage=${requestScope.listVO.pb.getEndPageOfPageGroup()+1}">Next</a></li>
+	    		<li><a href="DispatcherServlet?command=MovieDetail&movieNo=${movievo.mno}&listpage=${requestScope.listVO.pb.getEndPageOfPageGroup()+1}">Next</a></li>
 	    	</c:when> 
 	    	</c:choose>
 	 	 </ul>

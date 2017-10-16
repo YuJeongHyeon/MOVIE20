@@ -16,8 +16,8 @@ public class ReviewWriteRegisterController implements Controller {
 		String id=request.getParameter("id");
 		String title=request.getParameter("title");
 		String content=request.getParameter("content");
-		String mno=request.getParameter("mno");
-		ReviewVO rvo=new ReviewVO( title, content, mno, id);
+		String movieno=request.getParameter("movieno");
+		ReviewVO rvo=new ReviewVO( title, content, movieno, id);
 		
 		MovieDAO.getInstance().reviewWrite(rvo);		
 
