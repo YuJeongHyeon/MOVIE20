@@ -153,7 +153,7 @@ values(semi_movie_seq.nextval, '다크나이트', '2008.08.06', '크리스찬 베일, 히스 
  
  
  select* from semi_movie;
- 
+ delete from SEMI_MOVIE;
  
  select title, picture from semi_movie order by hits desc;
    

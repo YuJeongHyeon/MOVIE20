@@ -29,7 +29,7 @@ public class MainMovieListController implements Controller {
 		}
 		MoviePagingBean mpb = new MoviePagingBean(tpc,nowPage);*/
 		ArrayList<MovieVO> list =  MovieDAO.getInstance().movieList(mpb);
-		MainListVO lvo = new MainListVO(list,mpb);
+		MainListVO<MovieVO> lvo = new MainListVO<MovieVO>(list,mpb);
 		request.setAttribute("lvo", lvo);
 		request.setAttribute("url", "/movie/mainMovieList.jsp");
 		return "/layout/home.jsp";
