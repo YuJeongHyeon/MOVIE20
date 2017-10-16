@@ -3,6 +3,9 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 mainMovieList
 
+<c:if test="${sessionScope.membervo.authority eq '관리자'}">
+	<a href="DispatcherServlet?command=movieRegisterView">등록</a>
+</c:if>
 
 <table id="mainTable">
 	<tbody>

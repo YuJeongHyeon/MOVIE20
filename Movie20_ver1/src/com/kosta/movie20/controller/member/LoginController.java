@@ -17,7 +17,6 @@ public class LoginController implements Controller {
 
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
-		System.out.println("id :" + id + " " + "password : "+ password);
 		MemberVO membervo = new MemberVO(id, password);
 		MemberVO vo = MemberDAO.getInstance().login(membervo);
 		
