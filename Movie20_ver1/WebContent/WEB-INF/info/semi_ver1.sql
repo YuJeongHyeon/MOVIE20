@@ -155,6 +155,7 @@ values(semi_movie_seq.nextval, '다크나이트', '2008.08.06', '크리스찬 베일, 히스 
 -- review 추가
 
 
+select count(*) from SEMI_MOVIE where title like '%타%'; 
  
  
  select* from semi_movie;
@@ -184,3 +185,5 @@ insert into SEMI_NOTICE(nNo,title,content,regdate,id)
 values(SEMI_NOTICE_seq.nextval,'123','123',sysdate,'a'); 
 
 select nNo,regdate,id from SEMI_NOTICE where nNo=SEMI_NOTICE_seq.currval
+
+

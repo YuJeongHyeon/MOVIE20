@@ -18,7 +18,7 @@ public class MovieSearchController implements Controller {
 		
 		String strSearchWord = request.getParameter("searchWord");
 		int totalCount = MovieDAO.getInstance().getTotalSearchMovieCount(strSearchWord);
-		
+		System.out.println("r검색 totalCount : "+ totalCount);
 		String pno = request.getParameter("pageNo");
 		PagingBeanSearch pb = null;
 		if(pno==null) {
@@ -29,6 +29,7 @@ public class MovieSearchController implements Controller {
 		
 		ArrayList<MovieVO> list = 
 				MovieDAO.getInstance().searchMovieByName(strSearchWord,pb);
+		System.out.println("list size:"+ list.size());
 		
 		SeachListVO listVO = new SeachListVO(list, pb);
 		

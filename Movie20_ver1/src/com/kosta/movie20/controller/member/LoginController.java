@@ -1,6 +1,6 @@
 package com.kosta.movie20.controller.member;
 
-import java.util.ArrayList;
+
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

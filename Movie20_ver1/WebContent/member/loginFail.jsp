@@ -9,7 +9,7 @@
 <body>
 	<script type="text/javascript">
 		alert("로그인 실패");
-		location.href="index.jsp";
+		location.href="../index.jsp";
 	</script>
 </body>
 </html>

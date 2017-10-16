@@ -16,18 +16,6 @@ public class MemberVO {
 	public MemberVO() {
 		super();
 	}
-	
-	public MemberVO(String name) {
-		super();
-		this.name = name;
-	}
-	
-	public MemberVO(String id, String password) {
-		super();
-		this.id = id;
-		this.password = password;
-	}
-
 	public MemberVO(ArrayList<MovieVO> cart, String id, String name, String password, String nick, String address,
 			String birthday, String tel, String favoriteGenre, String authority) {
 		super();
@@ -41,6 +29,11 @@ public class MemberVO {
 		this.tel = tel;
 		this.favoriteGenre = favoriteGenre;
 		this.authority = authority;
+	}
+	public MemberVO(String id, String password) {
+		super();
+		this.id = id;
+		this.password = password;
 	}
 	public ArrayList<MovieVO> getCart() {
 		return cart;
@@ -108,6 +101,6 @@ public class MemberVO {
 				+ ", address=" + address + ", birthday=" + birthday + ", tel=" + tel + ", favoriteGenre="
 				+ favoriteGenre + ", authority=" + authority + "]";
 	}
-
-
+	
+	
 }

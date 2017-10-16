@@ -290,9 +290,9 @@ public class MovieDAO {
 			sql.append(") ");
 			sql.append("where title like ?  and  rnum between ? and ?  ");
 			sql.append("order by mNo desc ");
-			
+			String temp = "%"+name+"%";
 			pstmt = con.prepareStatement(sql.toString());
-			pstmt.setString(1, "%"+name+"%");
+			pstmt.setString(1, temp);
 			pstmt.setInt(2, pb.getStartRowNumber());
 			pstmt.setInt(3, pb.getEndRowNumber());
 			

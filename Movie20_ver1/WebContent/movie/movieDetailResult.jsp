@@ -7,7 +7,7 @@
 		<tbody>						
 								
 			<tr>
-				<td rowspan='4'><img src="${pageContext.request.contextPath}/img/${movievo.picture }"></td>
+				<td rowspan='4'><img id="imgDetail" src="${pageContext.request.contextPath}/img/${movievo.picture }" ></td>
 			    <td>영화 제목</td>
 				<td>${requestScope.movievo.title }</td>
 				<td>감독</td>

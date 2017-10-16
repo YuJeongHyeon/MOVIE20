@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.kosta.movie20.model.common.MoviePagingBean;
 import com.kosta.movie20.model.common.PagingBean;
 
-@SuppressWarnings("rawtypes")
+
 public class MainListVO<T> {
 	private ArrayList<T> list = new ArrayList<T>();
 	private PagingBean pb;
