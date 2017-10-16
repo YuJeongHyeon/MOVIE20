@@ -171,7 +171,7 @@ public class MasterDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String no = null;
+		int no = 0;
 		try {
 			con = dataSource.getConnection();
 			StringBuilder sql=new StringBuilder();
@@ -186,19 +186,19 @@ public class MasterDAO {
 			pstmt=con.prepareStatement("select SEMI_NOTICE_seq.currval from dual");
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
-			no = rs.getString(1);
-			nvo.setnNo(no);	
+			no = rs.getInt(1);
+			nvo.setnNo(Integer.toString(no));	
+			System.out.println(no);
 			}
 			pstmt.close();
 			rs.close();
 			String sql2 = "select regdate,id from SEMI_NOTICE where nNo=?";
 			pstmt = con.prepareStatement(sql2);
-			pstmt.setString(1, no);
+			pstmt.setInt(1, no);
 			rs=pstmt.executeQuery();
 			if(rs.next()) {
-			//	nvo.setnNo(rs.getString(1));
-				nvo.setRegdate(rs.getString(2));
-				nvo.setMasterId(rs.getString(3));
+				nvo.setRegdate(rs.getString(1));
+				nvo.setMasterId(rs.getString(2));
 			}
 			
 		} finally {
