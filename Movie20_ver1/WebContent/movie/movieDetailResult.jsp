@@ -5,32 +5,31 @@
 <table class="table table-bordered  table-hover boardlist">
 		<thead>		
 		<tbody>						
-			<c:forEach var="mvo" items="${requestScope.mvo}">
-						
+								
 			<tr>
 				<td rowspan='4'><img src="${pageContext.request.contextPath}/img/${mvo.picture }"></td>
 			    <td>영화 제목</td>
-				<td>${mvo.title }</td>
+				<td>${requestScope.mvo.title }</td>
 				<td>감독</td>
-				<td>${mvo.director }</td>				
+				<td>${requestScope.mvo.director }</td>				
 			</tr>
 			<tr>
 				<td>장르</td>
-				<td>${mvo.genre }</td>
+				<td>${requestScope.mvo.genre }</td>
 			    <td>출연</td>
-				<td>${mvo.character }</td>								
+				<td>${requestScope.mvo.character }</td>								
 			</tr>
 			<tr>
 			    <td>상영시간</td>
-				<td>${mvo.runtime }</td>
+				<td>${requestScope.mvo.runtime }</td>
 				<td>상영여부</td>
-				<td>${mvo.viewingcheck }</td>				
+				<td>${requestScope.mvo.viewingcheck }</td>				
 			</tr>
 			<tr>
 			    <td>개봉일</td>
-				<td>${mvo.playdate }</td>
+				<td>${requestScope.mvo.playdate }</td>
 				<td>등급</td>
-				<td>${mvo.grade }</td>				
+				<td>${requestScope.mvo.grade }</td>				
 			</tr>
 			
 			<tr>
@@ -38,9 +37,9 @@
 								
 			</tr>	
 			<tr>
-				<td colspan='4'>${mvo.summary }</td>
+				<td colspan='4'>${requestScope.mvo.summary }</td>
 			</tr>
-			</c:forEach>	
+			
 			
  
 
@@ -79,14 +78,14 @@
 			</tr>
 		</thead>
 		<tbody>						
-				<c:forEach var="rvo" items="${requestScope.rlist.rvo}">				
+			<c:forEach var="rvo" items="${requestScope.listVO.list}">				
 			<tr>			
 				<td><a href="DispatcherServlet?command=reviewDetail&rno=${rvo.rno }">${rvo.rno }</a></td>
 				<td><a href="DispatcherServlet?command=reviewDetail&rno=${rvo.rno }">${rvo.title }</a></td>
 				<td><a href="DispatcherServlet?command=reviewDetail&rno=${rvo.rno }">${rvo.id }</a></td>
 				<td><a href="DispatcherServlet?command=reviewDetail&rno=${rvo.rno }">${rvo.regdate }</a></td>
 				<td><a href="DispatcherServlet?command=reviewDetail&rno=${rvo.rno }">${rvo.hits }</a></td>
-				</a>
+				
 			</tr>	
 			</c:forEach>	
 			
@@ -100,13 +99,13 @@
 		 
 		 <c:choose>
 		
-		 <c:when test="${requestScope.rlist.pb.isPreviousPageGroup()}">
-		  	<li><a href="DispatcherServlet?command=list&listpage=${requestScope.rlist.pb.getStartPageOfPageGroup()-1}">Previous</a></li> 
+		 <c:when test="${requestScope.listVO.pb.isPreviousPageGroup()}">
+		  	<li><a href="DispatcherServlet?command=list&listpage=${requestScope.listVO.pb.getStartPageOfPageGroup()-1}">Previous</a></li> 
 		  </c:when>
 		  	</c:choose>
-		  	<c:forEach begin='${requestScope.rlist.pb.getStartPageOfPageGroup()}' end='${requestScope.rlist.pb.getEndPageOfPageGroup()}' var='num'>
+		  	<c:forEach begin='${requestScope.listVO.pb.getStartPageOfPageGroup()}' end='${requestScope.listVO.pb.getEndPageOfPageGroup()}' var='num'>
 	   		<c:choose>
-	   		<c:when test="${num==requestScope.rlist.pb.nowPage}">
+	   		<c:when test="${num==requestScope.listVO.pb.nowPage}">
 	   			<li><a>${num}</a></li>
 	   		</c:when>
 	   		<c:otherwise>
@@ -115,12 +114,12 @@
 			</c:choose>
 			</c:forEach>
     	<c:choose>
-	    	<c:when test="${requestScope.rlist.pb.isNextPageGroup()}">  
-	    		<li><a href="DispatcherServlet?command=MovieDetail&mNo=${mvo.mno}&listpage=${requestScope.rlist.pb.getEndPageOfPageGroup()+1}">Next</a></li>
+	    	<c:when test="${requestScope.listVO.pb.isNextPageGroup()}">  
+	    		<li><a href="DispatcherServlet?command=MovieDetail&mNo=${mvo.mno}&listpage=${requestScope.listVO.pb.getEndPageOfPageGroup()+1}">Next</a></li>
 	    	</c:when> 
 	    	</c:choose>
 	 	 </ul>
 	 	
- </div>
+ </div> 
  
  

@@ -80,13 +80,13 @@ public class MovieDAO {
 			sql.append("from semi_movie ");			
 			sql.append("where mNo=? ");
 			pstmt=con.prepareStatement(sql.toString());	
-			pstmt.setInt(1,Integer.getInteger(mNo));
+			pstmt.setInt(1,Integer.parseInt(mNo));
 			
 			rs=pstmt.executeQuery();	
 			//목록에서 게시물 content는 필요없으므로 null로 setting
 			//select no,title,time_posted,hits,id,name
 			while(rs.next()){	
-				
+				mvo=new MovieVO();
 				mvo.setmNo(rs.getString(1));
 				mvo.setTitle(rs.getString(2));
 				mvo.setPlaydate(rs.getString(3));
@@ -131,6 +131,7 @@ public class MovieDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		
 		try {
 			con=getConnection(); 
 			StringBuilder sql=new StringBuilder();
@@ -138,7 +139,7 @@ public class MovieDAO {
 			sql.append("from semi_review ");			
 			sql.append("where mNo=? and rNo between ? and ?");
 			pstmt=con.prepareStatement(sql.toString());	
-			pstmt.setInt(1,Integer.getInteger(mNo));
+			pstmt.setInt(1,Integer.parseInt(mNo));
 			pstmt.setInt(2,pb.getStartRowNumber());
 			pstmt.setInt(3,pb.getEndRowNumber());
 			rs=pstmt.executeQuery();	
@@ -162,6 +163,7 @@ public class MovieDAO {
 		
 		return rList;
 	}
+	@SuppressWarnings("null")
 	public ReviewVO movieReviewDetail(String rNo) throws SQLException {
 		ReviewVO rvo = null;
 		Connection con = null;
@@ -174,13 +176,13 @@ public class MovieDAO {
 			sql.append("from semi_review ");			
 			sql.append("where rNo=? ");
 			pstmt=con.prepareStatement(sql.toString());	
-			pstmt.setInt(1,Integer.getInteger(rNo));
+			pstmt.setInt(1,Integer.parseInt(rNo));
 			
 			rs=pstmt.executeQuery();	
 			
 			while(rs.next()){	
-				
-				rvo.setRno(rs.getString(1));
+				rvo = new ReviewVO();
+				rvo.setRno(Integer.toString(rs.getInt(1)));
 				rvo.setTitle(rs.getString(2));
 				rvo.setContent(rs.getString(3));
 				rvo.setRegdate(rs.getString(4));
@@ -422,5 +424,24 @@ public class MovieDAO {
 			closeAll(rs, pstmt, con);
 		}
 		
+	}
+	public void reviewHitsup(String rNo) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			
+			StringBuilder sql = new StringBuilder();
+			sql.append(" update semi_review set ");
+			sql.append(" hits=hits+1  where rNo=? ");			
+			
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setInt(1, Integer.parseInt(rNo));
+					
+			
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
 	}
 }

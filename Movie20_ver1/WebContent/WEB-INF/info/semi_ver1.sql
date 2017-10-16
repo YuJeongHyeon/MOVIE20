@@ -36,6 +36,9 @@ DROP TABLE semi_review;
 DROP sequence semi_review_seq;
 CREATE sequence semi_review_seq nocache;
 
+insert into semi_review(rno,title,content,regdate,mno,id) 
+values(semi_review_seq.nextval,'바보 배승찬2','바보래요!!!',sysdate,2,'jquery')
+
 ---- movie Table 관련 -----------------
 CREATE TABLE semi_movie(
 	mNo                  NUMBER  PRIMARY KEY ,
@@ -56,6 +59,8 @@ CREATE TABLE semi_movie(
 
 SELECT * FROM semi_movie;
 DROP TABLE semi_movie;
+
+
 
 DROP sequence semi_movie_seq;
 CREATE sequence semi_movie_seq nocache;
@@ -163,4 +168,4 @@ values(semi_movie_seq.nextval, '다크나이트', '2008.08.06', '크리스찬 베일, 히스 
  WHERE rnum between 1 and 5
  ORDER BY hits DESC
 
-
+select rNo,content,regdate,title,hits,mNo,id from semi_review where mNo=2 and rNo between 1 and 1

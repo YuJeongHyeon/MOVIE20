@@ -12,10 +12,13 @@ public class ReviewDetailController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String rNo=request.getParameter("rno");
+		if(request.getSession(false)!=null) {
+			MovieDAO.getInstance().reviewHitsup(rNo);
+		}
 		ReviewVO rvo=MovieDAO.getInstance().movieReviewDetail(rNo);
 		request.setAttribute("rvo", rvo);
 
-		String url = "movie/reviewDetail.jsp";
+		String url = "../movie/reviewDetail.jsp";
 		request.setAttribute("url", url);
 		return "layout/home.jsp";
 	}

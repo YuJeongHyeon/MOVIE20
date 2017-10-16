@@ -9,14 +9,14 @@ mainMovieList
 		<tr>
 			<c:forEach var="mvo" items="${requestScope.lvo.list}" varStatus="cnt">
 				<c:if test="${cnt.count<5}">
-					<td><img class="mainImg" src="img/${mvo.picture}"></td>
+					<td><a href="DispatcherServlet?command=MovieDetail&mNo=${mvo.mNo}"><img class="mainImg" src="img/${mvo.picture}">${mvo.mNo}</a></td>
 				</c:if>		
 			</c:forEach>
 		</tr>
 		<tr>
 			<c:forEach var="mvo" items="${requestScope.lvo.list}" varStatus="cnt">
 				<c:if test="${cnt.count>4}">
-					<td><img class="mainImg" src="img/${mvo.picture}"></td>
+					<td><a href="DispatcherServlet?command=MovieDetail&mNo=${mvo.mNo}"><img class="mainImg" src="img/${mvo.picture}">${mvo.mNo}</a></td>
 				</c:if>		
 			</c:forEach>
 		</tr>
