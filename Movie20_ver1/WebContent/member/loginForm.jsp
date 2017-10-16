@@ -10,7 +10,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <title>믿고 고르는 영화</title>
-  <!-- Bootstrap core CSS-->
+  <!-- Bootstrap core CSS-->  
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom fonts for this template-->
   <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
