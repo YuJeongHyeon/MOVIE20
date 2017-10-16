@@ -73,13 +73,58 @@ public class MovieDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
+			con=getConnection(); 
+			StringBuilder sql=new StringBuilder();
+			sql.append("select mNo,title,playdate,character,director,genre,  ");
+			sql.append("summary,runtime,viewingcheck,hits,grade,picture ");	
+			sql.append("from semi_movie ");			
+			sql.append("where mNo=? ");
+			pstmt=con.prepareStatement(sql.toString());	
+			pstmt.setInt(1,Integer.getInteger(mNo));
 			
-			
+			rs=pstmt.executeQuery();	
+			//목록에서 게시물 content는 필요없으므로 null로 setting
+			//select no,title,time_posted,hits,id,name
+			while(rs.next()){	
+				
+				mvo.setmNo(rs.getString(1));
+				mvo.setTitle(rs.getString(2));
+				mvo.setPlaydate(rs.getString(3));
+				mvo.setCharacter(rs.getString(4));
+				mvo.setDirector(rs.getString(5));
+				mvo.setGenre(rs.getString(6));	
+				mvo.setSummary(rs.getString(7));	
+				mvo.setRuntime(rs.getString(8));	
+				mvo.setViewingcheck(rs.getString(9));	
+				mvo.setHits(rs.getInt(10));	
+				mvo.setGrade(rs.getInt(11));	
+				mvo.setPicture(rs.getString(12));
+				
+			}			
 		}finally {
 			closeAll(rs, pstmt, con);
 		}
 		
 		return mvo;
+	}
+	public int getReviewListcount() throws SQLException {
+		int num=0;		
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try{
+			con=getConnection();
+			String sql="select count(*) from semi_review";			
+			pstmt=con.prepareStatement(sql);			
+			rs=pstmt.executeQuery();		
+			if(rs.next()){
+				num=rs.getInt(1);
+			}
+			//System.out.println("dao getContent:"+bvo);
+		}finally{
+			closeAll(rs,pstmt,con);
+		}
+		return num;
 	}
 	public ArrayList<ReviewVO> movieReviewList(String mNo, PagingBean pb) throws SQLException{
 		ArrayList<ReviewVO> rList = new ArrayList<ReviewVO>();
@@ -87,7 +132,29 @@ public class MovieDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			
+			con=getConnection(); 
+			StringBuilder sql=new StringBuilder();
+			sql.append("select rNo,content,regdate,title,hits,mNo,id  ");
+			sql.append("from semi_review ");			
+			sql.append("where mNo=? and rNo between ? and ?");
+			pstmt=con.prepareStatement(sql.toString());	
+			pstmt.setInt(1,Integer.getInteger(mNo));
+			pstmt.setInt(2,pb.getStartRowNumber());
+			pstmt.setInt(3,pb.getEndRowNumber());
+			rs=pstmt.executeQuery();	
+			//목록에서 게시물 content는 필요없으므로 null로 setting
+			//select no,title,time_posted,hits,id,name
+			while(rs.next()){		
+				ReviewVO rvo=new ReviewVO();
+				rvo.setRno(rs.getString(1));
+				rvo.setContent(rs.getString(2));
+				rvo.setRegdate(rs.getString(3));
+				rvo.setTitle(rs.getString(4));
+				rvo.setHits(rs.getInt(5));
+				rvo.setId(rs.getString(6));				
+				
+				rList.add(rvo);			
+			}
 			
 		}finally {
 			closeAll(rs, pstmt, con);
@@ -101,11 +168,32 @@ public class MovieDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
+			con=getConnection(); 
+			StringBuilder sql=new StringBuilder();
+			sql.append("select rno,title,content,regdate,hits,mno,id  ");	
+			sql.append("from semi_review ");			
+			sql.append("where rNo=? ");
+			pstmt=con.prepareStatement(sql.toString());	
+			pstmt.setInt(1,Integer.getInteger(rNo));
 			
+			rs=pstmt.executeQuery();	
 			
+			while(rs.next()){	
+				
+				rvo.setRno(rs.getString(1));
+				rvo.setTitle(rs.getString(2));
+				rvo.setContent(rs.getString(3));
+				rvo.setRegdate(rs.getString(4));
+				rvo.setHits(rs.getInt(5));
+				rvo.setMno(rs.getString(6));	
+				rvo.setId(rs.getString(7));	
+				
+				
+			}			
 		}finally {
 			closeAll(rs, pstmt, con);
 		}
+		
 		return rvo;
 	}
 	public ArrayList<MovieVO> genreList(String genre, PagingBean pb) throws SQLException{
@@ -127,6 +215,17 @@ public class MovieDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
+			con = dataSource.getConnection();
+			
+			StringBuilder sql = new StringBuilder();
+			sql.append("insert into semi_review(rno,title,content,regdate,mno,id)");
+			sql.append("values(semi_review_seq.nextval,?,?,sysdate,?,?)");			
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, rvo.getTitle());
+			pstmt.setString(2, rvo.getContent());
+			pstmt.setString(3, rvo.getMno());
+			pstmt.setString(4, rvo.getId());
+			pstmt.executeUpdate();
 			
 			
 		}finally {
@@ -139,18 +238,35 @@ public class MovieDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
+			con = dataSource.getConnection();
+			
+			String sql;
+			sql="delete from semi_review where rNo=?";
+						
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, rNo);
+			
 			
 			
 		}finally {
 			closeAll(rs, pstmt, con);
 		}
 	}
-	public void reviewUpdate(String rNo) throws SQLException {
+	public void reviewUpdate(ReviewVO rvo) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
+			con = dataSource.getConnection();
 			
+			StringBuilder sql = new StringBuilder();
+			sql.append(" update semi_review set ");
+			sql.append(" title=? ,content=? where rNo=? ");			
+			
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, rvo.getTitle());
+			pstmt.setString(2, rvo.getContent());
+			pstmt.setInt(3, Integer.parseInt(rvo.getRno()));			
 			
 		}finally {
 			closeAll(rs, pstmt, con);
@@ -287,5 +403,24 @@ public class MovieDAO {
 		}
 		return tpc;
 	}
-
+	public void movieHitsup(String mNo) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = dataSource.getConnection();
+			
+			StringBuilder sql = new StringBuilder();
+			sql.append(" update semi_movie set ");
+			sql.append(" hits=hits+1  where mNo=? ");			
+			
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setInt(1, Integer.parseInt(mNo));
+					
+			
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		
+	}
 }

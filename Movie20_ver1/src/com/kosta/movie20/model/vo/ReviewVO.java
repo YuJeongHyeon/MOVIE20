@@ -21,6 +21,20 @@ public class ReviewVO {
 		this.mno = mno;
 		this.id = id;
 	}
+	public ReviewVO(String title, String content,String mno, String id) {
+		super();		
+		this.title = title;
+		this.content = content;		
+		this.mno = mno;
+		this.id = id;
+	}
+	public ReviewVO(String title, String content,String mno) {
+		super();		
+		this.title = title;
+		this.content = content;		
+		this.mno = mno;
+	
+	}
 	public String getRno() {
 		return rno;
 	}

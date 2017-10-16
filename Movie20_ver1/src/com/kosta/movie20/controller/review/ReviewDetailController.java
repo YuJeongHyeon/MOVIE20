@@ -7,20 +7,15 @@ import com.kosta.movie20.controller.common.Controller;
 import com.kosta.movie20.model.dao.MovieDAO;
 import com.kosta.movie20.model.vo.ReviewVO;
 
-public class ReviewUpdateController implements Controller {
+public class ReviewDetailController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-				
-	
-		String title=request.getParameter("title");
-		String content=request.getParameter("content");
-		String rno=request.getParameter("rno");
-		ReviewVO rvo=new ReviewVO( title, content, rno);
-		
-		MovieDAO.getInstance().reviewUpdate(rvo);
-		
-		String url = "movie/movieDetailResult.jsp";
+		String rNo=request.getParameter("rno");
+		ReviewVO rvo=MovieDAO.getInstance().movieReviewDetail(rNo);
+		request.setAttribute("rvo", rvo);
+
+		String url = "movie/reviewDetail.jsp";
 		request.setAttribute("url", url);
 		return "layout/home.jsp";
 	}
