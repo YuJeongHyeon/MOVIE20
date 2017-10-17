@@ -130,4 +130,67 @@ public class MemberDAO {
 		
 		
 	}
+	public MemberVO memberSearch(String id) throws SQLException {
+		MemberVO vo = null;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		try {	
+			con = dataSource.getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append("select id,name,password,nick,address,to_char(birth,'YYYY.MM.DD') as birth,tel,favoritegenre,authority from semi_member where id=?");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, id);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				vo = new MemberVO();
+				vo.setId(rs.getString("id"));
+				vo.setName(rs.getString("name"));
+				vo.setPassword(rs.getString("password"));
+				vo.setNick(rs.getString("nick"));
+				vo.setAddress(rs.getString("address"));
+				vo.setBirthday(rs.getString("birth"));
+				vo.setTel(rs.getString("tel"));
+				vo.setFavoriteGenre(rs.getString("favoritegenre"));				
+				vo.setAuthority(rs.getString("authority"));
+			}
+			
+		}finally{
+			closeAll(rs, pstmt, con);
+		}
+		
+		return vo;		
+		
+	}
+	public void memberUpdate(MemberVO membervo) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		
+		try {
+			con = dataSource.getConnection();
+			
+			StringBuilder sql = new StringBuilder();
+			sql.append(" update semi_member set ");
+			sql.append(" name=?,password=?,nick=?,address=?,");
+			sql.append(" tel=?,favoriteGenre=? where id=? ");			
+			
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, membervo.getName());
+			pstmt.setString(2, membervo.getPassword());
+			pstmt.setString(3, membervo.getNick());	
+			pstmt.setString(4, membervo.getAddress());	
+			pstmt.setString(5, membervo.getTel());
+			pstmt.setString(6, membervo.getFavoriteGenre());
+			pstmt.setString(7, membervo.getId());
+			pstmt.executeUpdate();
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		
+	}
 }

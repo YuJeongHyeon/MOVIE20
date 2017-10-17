@@ -16,6 +16,17 @@ public class MemberVO {
 	public MemberVO() {
 		super();
 	}
+	public MemberVO(String id, String name, String password, String nick, String address, String tel,
+			String favoriteGenre) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.password = password;
+		this.nick = nick;
+		this.address = address;
+		this.tel = tel;
+		this.favoriteGenre = favoriteGenre;
+	}
 	public MemberVO(ArrayList<MovieVO> cart, String id, String name, String password, String nick, String address,
 			String birthday, String tel, String favoriteGenre, String authority) {
 		super();

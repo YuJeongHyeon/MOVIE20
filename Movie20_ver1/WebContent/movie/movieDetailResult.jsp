@@ -54,10 +54,10 @@
 		<td >제목</td><td><input type="text" name="title"> </td>
 		<td >작성자 </td><td>${sessionScope.membervo.id}</td>
 	<tr>
-		<td colspan='4'>내용</td >
+		<td colspan='5'>내용</td >
 	</tr>
 	<tr>
-		<td colspan='4'><textarea name="content"> </textarea></td>
+		<td colspan='5'><textarea name="content" cols="120"rows="10"> </textarea></td>
 	</tr>
 	<tr>
 	<td><input type="submit" value="리뷰등록"></td>

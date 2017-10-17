@@ -16,7 +16,8 @@
 		</c:when>	
 		<c:otherwise>
 			${membervo.name}님 로그인 &nbsp;
-			<a href="DispatcherServlet?command=logout">로그아웃</a>
+			<a href="DispatcherServlet?command=logout">로그아웃</a>&nbsp;&nbsp;
+			<a href="DispatcherServlet?command=cmdMemberUpdateForm">회원 정보 수정</a>
 		</c:otherwise>
 	</c:choose>
 
