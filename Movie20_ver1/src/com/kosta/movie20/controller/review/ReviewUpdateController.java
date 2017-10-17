@@ -9,20 +9,24 @@ import com.kosta.movie20.model.vo.ReviewVO;
 
 public class ReviewUpdateController implements Controller {
 
-	@Override
-	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-				
-	
-		String title=request.getParameter("title");
-		String content=request.getParameter("content");
-		String rno=request.getParameter("rno");
-		ReviewVO rvo=new ReviewVO( title, content, rno);
+		@Override
+		public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+					
 		
-		MovieDAO.getInstance().reviewUpdate(rvo);
-		
-		String url = "movie/movieDetailResult.jsp";
-		request.setAttribute("url", url);
-		return "layout/home.jsp";
+			String title=request.getParameter("title");
+			String content=request.getParameter("content");
+			String rno=request.getParameter("rno");
+			
+			ReviewVO rvo=new ReviewVO( title, content, rno);
+			
+			
+			MovieDAO.getInstance().reviewUpdate(rvo);
+			ReviewVO rivo=MovieDAO.getInstance().movieReviewDetail(rno);
+			
+			String url = "redirect:DispatcherServlet?command=MovieDetail&movieNo="+rivo.getMno();
+			//request.setAttribute("url", url);
+			return url;
+		}
+
 	}
 
-}

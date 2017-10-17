@@ -135,9 +135,12 @@ public class MovieDAO {
 		try {
 			con=getConnection(); 
 			StringBuilder sql=new StringBuilder();
-			sql.append("select rNo,content,regdate,title,hits,mNo,id  ");
-			sql.append("from semi_review ");			
-			sql.append("where mNo=? and rNo between ? and ?");
+	
+			sql.append("select * from(select row_number() over(order by rNo desc) ");
+			sql.append(" as rnum,rNo,content,regdate,title,hits,mno,id ");
+			sql.append(" from semi_review) ");			
+			sql.append(" where mno=? and rnum between ? and ? ");
+			sql.append(" ORDER BY rNo DESC ");
 			pstmt=con.prepareStatement(sql.toString());	
 			pstmt.setInt(1,Integer.parseInt(mNo));
 			pstmt.setInt(2,pb.getStartRowNumber());
@@ -147,12 +150,12 @@ public class MovieDAO {
 			//select no,title,time_posted,hits,id,name
 			while(rs.next()){		
 				ReviewVO rvo=new ReviewVO();
-				rvo.setRno(rs.getString(1));
-				rvo.setContent(rs.getString(2));
-				rvo.setRegdate(rs.getString(3));
-				rvo.setTitle(rs.getString(4));
-				rvo.setHits(rs.getInt(5));
-				rvo.setId(rs.getString(6));				
+				rvo.setRno(rs.getString(2));
+				rvo.setContent(rs.getString(3));
+				rvo.setRegdate(rs.getString(4));
+				rvo.setTitle(rs.getString(5));
+				rvo.setHits(rs.getInt(6));
+				rvo.setId(rs.getString(8));				
 				
 				rList.add(rvo);			
 			}
@@ -246,8 +249,8 @@ public class MovieDAO {
 			sql="delete from semi_review where rNo=?";
 						
 			pstmt = con.prepareStatement(sql.toString());
-			pstmt.setString(1, rNo);
-			
+			pstmt.setInt(1,Integer.parseInt(rNo));
+			pstmt.executeUpdate();
 			
 			
 		}finally {
@@ -258,6 +261,8 @@ public class MovieDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		
+		
 		try {
 			con = dataSource.getConnection();
 			
@@ -268,8 +273,8 @@ public class MovieDAO {
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, rvo.getTitle());
 			pstmt.setString(2, rvo.getContent());
-			pstmt.setInt(3, Integer.parseInt(rvo.getRno()));			
-			
+			pstmt.setInt(3, Integer.parseInt(rvo.getMno()));			
+			pstmt.executeUpdate();
 		}finally {
 			closeAll(rs, pstmt, con);
 		}

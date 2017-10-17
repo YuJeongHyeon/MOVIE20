@@ -18,7 +18,7 @@ public class ReviewUpdateFormController implements Controller {
 		ReviewVO rvo=MovieDAO.getInstance().movieReviewDetail(rNo);		
 		request.setAttribute("rvo", rvo);
 		
-		String url = "movie/reviewupdateform.jsp";
+		String url = "../movie/reviewupdateform.jsp";
 		request.setAttribute("url", url);
 		return "layout/home.jsp";
 	}

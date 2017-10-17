@@ -7,7 +7,7 @@
 		<tbody>						
 								
 			<tr>
-				<td rowspan='4'><img id="imgDetail" src="${pageContext.request.contextPath}/img/${movievo.picture }" ></td>
+				<td rowspan='4'><img src="${pageContext.request.contextPath}/img/${movievo.picture }"></td>
 			    <td>영화 제목</td>
 				<td>${requestScope.movievo.title }</td>
 				<td>감독</td>
@@ -46,18 +46,18 @@
 		</tbody>					
 	</table>
 	<c:if test="${sessionScope.membervo.id!=null}">
-<form method="post" action="DispatcherServlet?id=${sessionScope.membervo.id}&title=rtitle&content=rcontent&movieno=${movievo.mNo }">
+<form method="post" action="DispatcherServlet?id=${sessionScope.membervo.id}&movieno=${movievo.mNo }">
 		<input type="hidden" name="command" value="reviewWrite">
 <table  class="table table-hover">
 <tbody>
 	<tr>
-		<td >제목</td><td><input type="text" id="rtitle"> </td>
+		<td >제목</td><td><input type="text" name="title"> </td>
 		<td >작성자 </td><td>${sessionScope.membervo.id}</td>
 	<tr>
 		<td colspan='4'>내용</td >
 	</tr>
 	<tr>
-		<td colspan='4'><textarea id="rcontent"> </textarea></td>
+		<td colspan='4'><textarea name="content"> </textarea></td>
 	</tr>
 	<tr>
 	<td><input type="submit" value="리뷰등록"></td>
@@ -66,6 +66,7 @@
 
 </table>
 </form>
+
 </c:if>
 	<table class="table table-bordered  table-hover boardlist">
 		<thead>

@@ -12,7 +12,6 @@ public class ReviewWriteRegisterController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		
 		String id=request.getParameter("id");
 		String title=request.getParameter("title");
 		String content=request.getParameter("content");
@@ -21,9 +20,10 @@ public class ReviewWriteRegisterController implements Controller {
 		
 		MovieDAO.getInstance().reviewWrite(rvo);		
 
-		String url = "movie/movieDetailResult.jsp";
-		request.setAttribute("url", url);
-		return "layout/home.jsp";
+		request.setAttribute("movieNo", movieno);
+		String url = "redirect:DispatcherServlet?command=MovieDetail&movieNo="+movieno;
+		//request.setAttribute("url", url);
+		return url;
 	}
 
 }

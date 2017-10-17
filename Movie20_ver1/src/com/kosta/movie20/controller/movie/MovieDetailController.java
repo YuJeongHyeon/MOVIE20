@@ -26,7 +26,7 @@ public class MovieDetailController implements Controller {
 		}
 		
 		MovieVO movievo =MovieDAO.getInstance().movieDetail(movieNo);
-			
+		
 		///// 광태 추가  카트 코드 
 		if(session!=null&&session.getAttribute("membervo")!=null) {
 			MemberVO mvo=	(MemberVO)session.getAttribute("membervo");
@@ -50,7 +50,7 @@ public class MovieDetailController implements Controller {
 				}			
 			}
 		}
-		//////// 카트 코드 end
+		//////// 카트 코드 end		
 		
 		int totalPostCount=MovieDAO.getInstance().getReviewListcount();
 		String pno=request.getParameter("pageNo");

@@ -11,14 +11,14 @@
 <tr>
 <td colspan="4">${rvo.content }</td>
 </tr>
-<%--  <c:if test=(${sessionScope.mvo.id!=null&&sessionScope.mvo.id==rvo.id})>
+ <c:if test="${sessionScope.membervo.id==rvo.id}">
  
 	<tr>	
 		<td><input type="button" value="수정" id="updateReview" onClick="location.href='DispatcherServlet?command=updateReviewform&rno=${rvo.rno}'"
 ></td>
-		<td><input type="button" value="삭제" id="deleteReview" onClick="location.href='DispatcherServlet?command=deleteReview&rno=${rvo.rno}'">	</td>
+		<td><input type="button" value="삭제" id="deleteReview" onClick="location.href='DispatcherServlet?command=deleteReview&rno=${rvo.rno}&movieno=${rvo.mno}'">	</td>
 	<tr>
-</c:if>  --%>
+</c:if>
  <tr>
 	<td colspan="4"><input type="button" value="뒤로가기" id="back" onClick="location.href='DispatcherServlet?command=MovieDetail&movieNo=${rvo.mno}'">	</td>
 	
