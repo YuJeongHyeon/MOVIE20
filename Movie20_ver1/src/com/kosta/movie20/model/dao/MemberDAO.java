@@ -70,25 +70,42 @@ public class MemberDAO {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		try {	
-			
+			con=getConnection();
+			String sql="insert into semi_member(id,name,password,nick,address,birth,tel,favoriteGenre,authority) values(?,?,?,?,?,?,?,?,'일반')";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, mvo.getId());
+			pstmt.setString(2, mvo.getName());
+			pstmt.setString(3, mvo.getPassword());
+			pstmt.setString(4, mvo.getNick());
+			pstmt.setString(5, mvo.getAddress());
+			pstmt.setString(6, mvo.getBirthday());
+			pstmt.setString(7, mvo.getTel());
+			pstmt.setString(8, mvo.getFavoriteGenre());
+			pstmt.executeUpdate();
 		}finally{
-			closeAll( pstmt, con);
+			closeAll(pstmt, con);
 		}
 		
 		
 	}
 	public int checkDuplicateId(String id) throws SQLException {
+		int check = 0;
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		try {	
-			
+			con=getConnection();
+			String sql="select count(*) from semi_member where id=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs=pstmt.executeQuery();
+			if(rs.next()&&rs.getInt(1)==1) {
+				check=1;
+			}
 		}finally{
 			closeAll(rs, pstmt, con);
 		}
-		return 0;
-		
-		
+		return check;
 	}
 	public void memberDelete(String id) throws SQLException {
 		Connection con=null;

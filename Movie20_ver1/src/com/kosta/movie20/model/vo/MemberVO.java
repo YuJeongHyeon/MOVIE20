@@ -30,6 +30,18 @@ public class MemberVO {
 		this.favoriteGenre = favoriteGenre;
 		this.authority = authority;
 	}
+	public MemberVO(String id, String name, String password, String nick, String address, String birthday, String tel,
+			String favoriteGenre) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.password = password;
+		this.nick = nick;
+		this.address = address;
+		this.birthday = birthday;
+		this.tel = tel;
+		this.favoriteGenre = favoriteGenre;
+	}
 	public MemberVO(String id, String password) {
 		super();
 		this.id = id;

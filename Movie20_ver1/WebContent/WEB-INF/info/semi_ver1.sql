@@ -77,6 +77,7 @@ CREATE TABLE semi_notice(
 );
 SELECT * FROM semi_notice;
 DROP TABLE semi_notice;
+DELETE FROM SEMI_NOTICE;
 
 DROP sequence semi_notice_seq;
 CREATE sequence semi_notice_seq nocache;

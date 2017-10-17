@@ -1,9 +1,12 @@
 package com.kosta.movie20.controller.handler;
 
 import com.kosta.movie20.controller.common.Controller;
+import com.kosta.movie20.controller.member.CheckDuplicateIdController;
 import com.kosta.movie20.controller.member.DeleteMemberController;
 import com.kosta.movie20.controller.member.LoginController;
 import com.kosta.movie20.controller.member.LogoutController;
+import com.kosta.movie20.controller.member.MemberRegisterController;
+import com.kosta.movie20.controller.member.MemberRegisterViewController;
 import com.kosta.movie20.controller.member.MemberSearchController;
 import com.kosta.movie20.controller.member.MemberSearchFormController;
 import com.kosta.movie20.controller.member.UpdateAuthorityController;
@@ -77,6 +80,12 @@ public class HandlerMapping {
 			controller = new DeleteMemberController();
 		}else if(command.equals("cmdUpdateAuthority")) {
 			controller = new UpdateAuthorityController();
+		}else if(command.equals("idCheck")) {			
+			controller = new CheckDuplicateIdController();
+		}else if(command.equals("register")){
+			controller = new MemberRegisterController();
+		}else if(command.equals("memberRegisterView")) {
+			controller = new MemberRegisterViewController();
 		}
 		
 		

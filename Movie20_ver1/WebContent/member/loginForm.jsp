@@ -33,7 +33,7 @@
             <input type="password" class="form-control" id="password" placeholder="패스워드" name="password">
           </div>
           <input type="submit" value="로그인" class="btn btn-primary btn-block">
-          <a class="btn btn-primary btn-block" href="memberRegister.jsp">회원가입</a>
+          <a class="btn btn-primary btn-block" href="../DispatcherServlet?command=memberRegisterView">회원가입</a>
         </form>
       </div>
       
