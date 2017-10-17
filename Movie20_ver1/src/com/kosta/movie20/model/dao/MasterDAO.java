@@ -211,24 +211,35 @@ public class MasterDAO {
 	public void noticeDelete(String nNo) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
 		try {
-
+			con = dataSource.getConnection();
+			StringBuilder sql=new StringBuilder();
+			sql.append("delete from SEMI_NOTICE ");
+			sql.append("where nNo=?");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, nNo);
+			pstmt.executeUpdate();
 		} finally {
-			closeAll(rs, pstmt, con);
+			closeAll( pstmt, con);
 		}
 	}// noticeDelete
 
-	public void noticeUpdate(String nNo) throws SQLException {
+	public void noticeUpdate(NoticeVO nvo) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
 		try {
-
+			con = dataSource.getConnection();
+			StringBuilder sql=new StringBuilder();
+			sql.append("update SEMI_NOTICE ");
+			sql.append("set title=? ,content=? ,id=? where nNo=? ");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, nvo.getTitle());
+			pstmt.setString(2, nvo.getContent());
+			pstmt.setString(3, nvo.getMasterId());
+			pstmt.setString(4, nvo.getnNo());
+			pstmt.executeUpdate();
 		} finally {
-			closeAll(rs, pstmt, con);
+			closeAll( pstmt, con);
 		}
 	}// noticeUpdate
 	

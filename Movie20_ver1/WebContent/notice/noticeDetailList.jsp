@@ -9,7 +9,7 @@ function deleteBoard(){
 }
 function updateBoard(){
 	if(confirm("게시글을 수정하시겠습니까?")){
-		location.href="${pageContext.request.contextPath}/DispatcherServlet?command=cmdUpdateFormNotice&nNo=${requestScope.nvo.nNo}";
+		location.href="${pageContext.request.contextPath}/DispatcherServlet?command=cmdUpdateFormNotice&nNo=${requestScope.nvo.nNo }";
 	}
 }
 </script>

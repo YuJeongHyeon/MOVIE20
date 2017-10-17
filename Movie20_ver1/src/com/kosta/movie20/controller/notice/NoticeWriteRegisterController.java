@@ -16,7 +16,8 @@ public class NoticeWriteRegisterController implements Controller {
 		HttpSession session=request.getSession(false);
 		String path ="";
 		if(session==null||session.getAttribute("membervo")==null) {
-			request.setAttribute("url", "redirect:../notice/noticeList.jsp");
+			path = "redirect:index.jsp";
+		//	request.setAttribute("url", "redirect:index.jsp");
 		}else {
 	//		MemberVO mvo = (MemberVO) session.getAttribute("membervo");
 	//		String masterId  = mvo.getId();

@@ -10,6 +10,13 @@ public class NoticeVO {
 	public NoticeVO() {
 		super();
 	}
+	public NoticeVO(String nNo, String title, String content, String masterId) {
+		super();
+		this.nNo = nNo;
+		this.title = title;
+		this.content = content;
+		this.masterId = masterId;
+	}
 	public NoticeVO(String title, String content, String masterId) {
 		super();
 		this.title = title;

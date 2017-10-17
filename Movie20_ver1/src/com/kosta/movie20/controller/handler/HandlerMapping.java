@@ -11,8 +11,10 @@ import com.kosta.movie20.controller.movie.HitDaHitController;
 import com.kosta.movie20.controller.movie.MainMovieListController;
 import com.kosta.movie20.controller.movie.MovieDetailController;
 import com.kosta.movie20.controller.movie.MovieSearchController;
+import com.kosta.movie20.controller.notice.NoticeDeleteController;
 import com.kosta.movie20.controller.notice.NoticeDetailController;
 import com.kosta.movie20.controller.notice.NoticeListController;
+import com.kosta.movie20.controller.notice.NoticeUpdateController;
 import com.kosta.movie20.controller.notice.NoticeUpdateFormController;
 import com.kosta.movie20.controller.notice.NoticeWriteFormController;
 import com.kosta.movie20.controller.notice.NoticeWriteRegisterController;
@@ -63,6 +65,10 @@ public class HandlerMapping {
 			controller = new NoticeWriteFormController();
 		}else if(command.equals("cmdNoticeWrite")) {
 			controller = new NoticeWriteRegisterController();
+		}else if(command.equals("cmdUpdateNotice")) {
+			controller = new NoticeUpdateController();
+		}else if(command.equals("cmdDeleteNotice")) {
+			controller = new NoticeDeleteController();
 		}else if(command.equals("cmdMemberSearchForm")) {
 			controller = new MemberSearchFormController();
 		}else if(command.equals("cmdMemberSearch")) {

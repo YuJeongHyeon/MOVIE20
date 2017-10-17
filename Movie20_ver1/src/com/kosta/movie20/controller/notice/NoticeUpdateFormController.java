@@ -2,15 +2,25 @@ package com.kosta.movie20.controller.notice;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kosta.movie20.controller.common.Controller;
+import com.kosta.movie20.model.dao.MasterDAO;
+import com.kosta.movie20.model.vo.NoticeVO;
 
 public class NoticeUpdateFormController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		HttpSession session=request.getSession(false);
+		if(session==null||session.getAttribute("membervo")==null){
+			return "redirect:index.jsp";
+		}
+		String nNo = request.getParameter("nNo");
+		NoticeVO nvo = MasterDAO.getInstance().noticeDetail(nNo);
+		request.setAttribute("nvo", nvo);
+		request.setAttribute("url", "../notice/noticeUpdate.jsp");
+		return "/layout/home.jsp";
 	}
 
 }
