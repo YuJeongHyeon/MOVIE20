@@ -27,7 +27,7 @@
     <div class="table-responsive">
 		<form action="DispatcherServlet" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="command" value="movieRegister">
-			<table class=table table-bordered" id="dataTable" width="600" cellspacing="20px">
+			<table class="table table-bordered" id="dataTable" width="600" cellspacing="20px">
 				<tr>
 					<th>제목</th>
 					<td colspan="3"><input type="text" name="title"></td>
