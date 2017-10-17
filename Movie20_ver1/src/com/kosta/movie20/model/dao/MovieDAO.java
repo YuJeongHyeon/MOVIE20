@@ -284,25 +284,31 @@ public class MovieDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		ArrayList<MovieVO> movieList =  new ArrayList<MovieVO>();
+		System.out.println("name: "+ name);
+		System.out.println("pb: "+ pb.getStartRowNumber());
+		System.out.println("pb: "+ pb.getEndRowNumber());
 		try {
 			con = dataSource.getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("select *  ");
+			sql.append("select * ");
 			sql.append("from( ");
-			sql.append("SELECT	row_number() over(order by mNo desc) as rnum, ");
-			sql.append("mNo, title, playdate, character, director, genre, runtime, viewingcheck, grade, picture  ");
-			sql.append("FROM semi_movie   ");
-			sql.append(") ");
-			sql.append("where title like ?  and  rnum between ? and ?  ");
-			sql.append("order by mNo desc ");
+			sql.append("SELECT row_number() over(order by mNo desc) as rnum, ");
+			sql.append("mNo, title, to_char(playdate,'YYYY.MM.DD') as playdate, character, director, genre, runtime, viewingcheck, grade, picture ");
+			sql.append("FROM semi_movie ");
+			sql.append("where title like ? ) ");
+			sql.append("where rnum between ? and ?");
+			sql.append("order by mNo desc");
 			String temp = "%"+name+"%";
+			System.out.println("temp: "+temp);
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, temp);
 			pstmt.setInt(2, pb.getStartRowNumber());
 			pstmt.setInt(3, pb.getEndRowNumber());
 			
+			
+			
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
+			while(rs.next()){
 					MovieVO mvo = new MovieVO();
 					mvo.setmNo(rs.getString("mNo"));
 					mvo.setTitle(rs.getString("title"));
@@ -315,8 +321,9 @@ public class MovieDAO {
 					mvo.setGrade(rs.getInt("grade"));
 					mvo.setPicture(rs.getString("picture"));
 					movieList.add(mvo);
+					System.out.println(mvo.toString());
 			}
-			
+			System.out.println("movieList size: "+ movieList.size());
 		} finally {
 			closeAll(rs, pstmt, con);
 		}

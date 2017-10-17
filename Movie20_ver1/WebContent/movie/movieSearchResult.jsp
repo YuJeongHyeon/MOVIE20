@@ -9,13 +9,17 @@
     
 <br>
 
-<p>영화 ( ${requestScope.totalCount } 건)</p>
+<p>영화 ( ${requestScope.totalCount} 건)</p>
 	<table class="searchTable" >
 		<tbody >	
 		<c:forEach items="${requestScope.serchListVO.list}" var="s">
 				<tr>
-				<th rowspan="3"  class="searchImgTh"><img class="searchImg" src="${pageContext.request.contextPath}/img/${s.picture}"></th>
-				<td> <a href="">${s.title}</a> </td>
+				<th rowspan="3" class="searchImgTh">
+				<a href="DispatcherServlet?command=MovieDetail&movieNo=${s.mNo}">
+				<img class="searchImg" src="${pageContext.request.contextPath}/img/${s.picture}">
+				</a>
+				</th>
+				<td> <a href="DispatcherServlet?command=MovieDetail&movieNo=${s.mNo}">${s.title}</a> </td>
 				</tr>				
 				<tr><td>${s.genre}  |  ${s.runtime}  |  ${s.playdate} </td></tr>
 				<tr><td>감독: ${s.director}  |  출연: ${s.character}  |  등급: ${s.grade}</td></tr>	

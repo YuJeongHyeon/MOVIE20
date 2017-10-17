@@ -5,6 +5,7 @@ import com.kosta.movie20.controller.member.DeleteMemberController;
 import com.kosta.movie20.controller.member.LoginController;
 import com.kosta.movie20.controller.member.LogoutController;
 import com.kosta.movie20.controller.member.CheckDuplicateIdController;
+import com.kosta.movie20.controller.member.CheckIdController;
 import com.kosta.movie20.controller.member.DeleteMemberController;
 import com.kosta.movie20.controller.member.LoginController;
 import com.kosta.movie20.controller.member.LogoutController;
@@ -95,6 +96,8 @@ public class HandlerMapping {
 			controller = new MemberUpdateFormController();
 		}else if(command.equals("cmdMemberUpdate")) {
 			controller = new MemberUpdateController();
+		}else if(command.equals("cmdCheckId")) {
+			controller = new CheckIdController();
 		}
 		
 		

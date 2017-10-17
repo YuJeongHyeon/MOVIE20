@@ -356,4 +356,29 @@ public class MasterDAO {
 			closeAll( pstmt, con);
 		}
 	}//deleteMemberById
+	
+	public int checkMemberByIdAjax(String id) throws SQLException {
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = -1;
+		try {
+			con = dataSource.getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append("select count(*) FROM semi_member WHERE id=? ");
+			
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, id);
+
+			rs = pstmt.executeQuery();
+			if(rs.next())
+				count = rs.getInt(1);
+			
+			System.out.println("count : "+count);
+		} finally {
+			closeAll( pstmt, con);
+		}
+		return count;
+	}//checkMemberByIdAjax
 }
