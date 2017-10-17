@@ -24,6 +24,14 @@
 		            <li><a href="#section42">영화 관리</a></li>
 		          </ul>
 		        </li>
+		         <li class="dropdown">
+		          <a class="dropdown-toggle gerneA" data-toggle="dropdown" href="#"> 영화 모임 <span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+
+		            <li><a href="${pageContext.request.contextPath}/DispatcherServlet?command=cmdMeetingListInfo">정모 정보</a></li>
+		
+		          </ul>
+		        </li>
 		      </ul>
 		</div>
 	</c:when>
@@ -40,6 +48,15 @@
 			            <li><a href="#section42">Section 4-2</a></li>
 			          </ul>
 			        </li>
+			         <li class="dropdown">
+		          <a class="dropdown-toggle gerneA" data-toggle="dropdown" href="#"> 영화 모임 <span class="caret"></span></a>
+		          <ul class="dropdown-menu">
+
+		            <li><a href="${pageContext.request.contextPath}/DispatcherServlet?command=cmdMeetingListInfo">정모 정보</a></li>
+		
+		          </ul>
+		        </li>
+			        
 			      </ul>
 			</div>
 	</c:otherwise>

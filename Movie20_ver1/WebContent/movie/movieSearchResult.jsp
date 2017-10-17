@@ -14,7 +14,7 @@
 		<tbody >	
 		<c:forEach items="${requestScope.serchListVO.list}" var="s">
 				<tr>
-				<th rowspan="3" class="searchImgTh">
+				<th rowspan="4" class="searchImgTh">
 				<a href="DispatcherServlet?command=MovieDetail&movieNo=${s.mNo}">
 				<img class="searchImg" src="${pageContext.request.contextPath}/img/${s.picture}">
 				</a>
@@ -23,6 +23,16 @@
 				</tr>				
 				<tr><td>${s.genre}  |  ${s.runtime}  |  ${s.playdate} </td></tr>
 				<tr><td>감독: ${s.director}  |  출연: ${s.character}  |  등급: ${s.grade}</td></tr>	
+				<tr><td>
+				<c:if test="${sessionScope.membervo.authority eq '관리자'}">
+				<form action="DispatcherServlet">
+						<input type="hidden" name="command" value="cmdMeetingRegisterForm">
+						<input type="hidden" name="mNo" value="${s.mNo}">	
+						<input type="hidden" name="title" value="${s.title}">					
+						<input type="submit" value="모임등록">
+				</form>
+				</c:if>
+ 				</td></tr>	
 		</c:forEach>		
 		
 		</tbody>	

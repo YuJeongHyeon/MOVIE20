@@ -32,6 +32,9 @@ import com.kosta.movie20.controller.review.ReviewDetailController;
 import com.kosta.movie20.controller.review.ReviewUpdateController;
 import com.kosta.movie20.controller.review.ReviewUpdateFormController;
 import com.kosta.movie20.controller.review.ReviewWriteRegisterController;
+import com.kosta.movie20.second.seatcontroller.MeetingListInfoController;
+import com.kosta.movie20.second.seatcontroller.MeetingRegisterController;
+import com.kosta.movie20.second.seatcontroller.MeetingRegisterFormController;
 
 public class HandlerMapping {
 	private static HandlerMapping instance=new HandlerMapping();
@@ -99,8 +102,16 @@ public class HandlerMapping {
 		}else if(command.equals("cmdCheckId")) {
 			controller = new CheckIdController();
 		}
-		
-		
+		/////////////////////////2 차////////////////////////////////
+		else if(command.equals("cmdMeetingRegisterForm")) {
+			controller = new MeetingRegisterFormController();
+		}else if(command.equals("cmdMeetingRegister")) {
+			controller = new MeetingRegisterController();
+		}else if(command.equals("cmdMeetingListInfo")) {
+			controller = new MeetingListInfoController();
+		}
+	
+
 		return controller;
 	}
 	

@@ -110,10 +110,11 @@ CREATE sequence semi_seat_seq nocache;
 CREATE TABLE semi_meeting
 (
 	meetingDate           VARCHAR2(100)  primary key ,
-	mNo                  NUMBER  ,
+	mNo                  NUMBER not null  ,
 	FOREIGN KEY(mNo) REFERENCES semi_movie(mNo),
 	seatNum               VARCHAR2(100)  ,
-	FOREIGN KEY(seatNum) REFERENCES semi_seat(seatNum)
+	FOREIGN KEY(seatNum) REFERENCES semi_seat(seatNum),
+	location 	varchar2(100) not null
 );
 
 SELECT * FROM semi_meeting;
@@ -151,17 +152,7 @@ values('a', '진영훈', '6', '후니', '야탑', '1990.01.02', '012', '공포', '관리자'
 
 select * from semi_member;
 
-CREATE TABLE semi_member(
-	id                  VARCHAR2(100)  PRIMARY KEY ,
-	name                  VARCHAR2(100)  NOT NULL ,
-	password              VARCHAR2(100)  NOT NULL ,
-	nick                  VARCHAR2(100)  NOT NULL ,
-	address               VARCHAR2(100)  NOT NULL ,
-	birth                 DATE  NOT NULL ,
-	tel                   VARCHAR2(100)  NOT NULL ,
-	favoriteGenre         VARCHAR2(100)  NOT NULL ,
-	authority             VARCHAR2(100)  NOT NULL 
-);
+
 
 
 
@@ -256,3 +247,17 @@ where rnum between 1 and 4
 order by mNo desc
 
 select count(*) from SEMI_MOVIE where title like '%아%'
+----------------------------------------
+-- 1017 2244 추가분 밑 -------
+insert into SEMI_MEETING(meetingDate, mNo,location) 
+values('2017-10-31',3,'고릴라 볼링장');
+--seat Num추가
+insert into SEMI_SEAT(seatNum) values(12);
+
+-- meeting list info 쿼리
+select me.meetingDate, me.location, mv.mNo, mv.title, mv.runtime, mv.picture 
+FROM SEMI_MEETING me, SEMI_MOVIE mv 
+WHERE me.mNo = mv.mNo;
+
+
+
