@@ -14,6 +14,8 @@
 					required="required" placeholder="공지사항 내용을 입력하세요"></textarea></td>
 		</tr>
 	</table>
+	<input type="radio" name="important" value="일반">일반
+	<input type="radio" name="important" value="중요">중요
 	<!-- <div class="btnArea">
     	<button type="submit" class="btn" >확인</button>  
    		<button type="reset" class="btn" >취소</button>   

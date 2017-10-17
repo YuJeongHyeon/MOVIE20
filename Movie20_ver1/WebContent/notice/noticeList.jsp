@@ -16,6 +16,15 @@ function writeNotice(){
 			<th>조회수</th>
 			<th>작성일</th>
 		</tr>
+		<c:forEach var="importnvo" items="${requestScope.importList}">
+				<tr>
+					<th><font color="red">중요</font></th>
+					<th><a
+						href="${pageContext.request.contextPath}/DispatcherServlet?command=cmdNoticeDetail&nNo=${importnvo.nNo}"><font color="red">${importnvo.title}</font></a></th>
+					<th>${importnvo.hits}</th>
+					<th>${importnvo.regdate}</th>
+				</tr>
+		</c:forEach>
 	</thead>
 	<tbody>
 		<c:forEach var="nvo" items="${requestScope.lvo.list}" varStatus="cnt">
@@ -43,7 +52,7 @@ function writeNotice(){
 <hr>
 <br>
 <div class="pagingInfo">
-	<c:set var="pb" value="${requestScope.lvo.pb}"></c:set>
+	<c:set var="pb" value="${requestScope.lvo.npb}"></c:set>
 	<ul class="pagination">
 		<c:if test="${pb.previousPageGroup}">
 			<li><a

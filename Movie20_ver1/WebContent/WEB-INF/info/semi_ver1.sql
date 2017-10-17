@@ -71,6 +71,7 @@ CREATE TABLE semi_notice(
 	content             CLOB  NOT NULL ,
 	regdate               DATE  NOT NULL ,
 	hits                  NUMBER  DEFAULT 0 ,
+	important			VARCHAR2(100)  NOT NULL ,
 	id                    VARCHAR2(100)  NOT NULL,
 	CONSTRAINT semi_notice_id_fk FOREIGN KEY(id) REFERENCES semi_member(id)
 );
