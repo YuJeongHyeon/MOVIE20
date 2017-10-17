@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).rea
+</script>
 <form action="${pageContext.request.contextPath}/DispatcherServlet" method="post" >
  <input type="hidden" name="command" value="cmdUpdateNotice"></input>	
  <input type="hidden" name="nNo" value="${nvo.nNo}"></input>
@@ -16,7 +20,9 @@
      <textarea cols="90" rows="15" name="content" required="required" >${nvo.content}</textarea>
      </td>
     </tr> 
-     </table>    
+     </table>  
+     <input type="radio" id="general" name="" value="일반">일반
+     <input type="radio" id="important" name="" value="중요">중요 
      <div class="btnArea">
      <button type="submit" class="btn" >수정</button>  
      <button type="reset" class="btn" >취소</button>   

@@ -2,11 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript">
-function writeNotice(){
-	if(confirm("공지사항을 작성하시겠습니까?")){
-		document.writeForm.submit();
+	function writeNotice() {
+		if (confirm("공지사항을 작성하시겠습니까?")) {
+			document.writeForm.submit();
+		}
 	}
-}
 </script>
 <table class="table table-striped">
 	<thead>
@@ -16,7 +16,7 @@ function writeNotice(){
 			<th>조회수</th>
 			<th>작성일</th>
 		</tr>
-		<c:forEach var="importnvo" items="${requestScope.importList}">
+			<c:forEach var="importnvo" items="${requestScope.importList}">
 				<tr>
 					<th><font color="red">중요</font></th>
 					<th><a
@@ -24,10 +24,10 @@ function writeNotice(){
 					<th>${importnvo.hits}</th>
 					<th>${importnvo.regdate}</th>
 				</tr>
-		</c:forEach>
+			</c:forEach>
 	</thead>
 	<tbody>
-		<c:forEach var="nvo" items="${requestScope.lvo.list}" varStatus="cnt">
+		<c:forEach var="nvo" items="${requestScope.lvo.list}">
 			<tr>
 				<th>${nvo.nNo}</th>
 				<th><a
@@ -39,9 +39,11 @@ function writeNotice(){
 		<tr>
 			<td colspan="4" class="btnArea">
 				<c:if test="${sessionScope.membervo.authority eq '관리자'}">
-					<form name="writeForm" action="${pageContext.request.contextPath}/DispatcherServlet" method="post">
-					<input type="hidden" name="command" value="cmdWriteFormNotice">
-					<button type="button" class="btn" onclick="writeNotice()">공지사항작성</button>
+					<form name="writeForm"
+						action="${pageContext.request.contextPath}/DispatcherServlet"
+						method="post">
+						<input type="hidden" name="command" value="cmdWriteFormNotice">
+						<button type="button" class="btn" onclick="writeNotice()">공지사항작성</button>
 					</form>
 				</c:if>
 			</td>

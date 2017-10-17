@@ -17,7 +17,6 @@ public class NoticeWriteRegisterController implements Controller {
 		String path ="";
 		if(session==null||session.getAttribute("membervo")==null) {
 			path = "redirect:index.jsp";
-		//	request.setAttribute("url", "redirect:index.jsp");
 		}else {
 	//		MemberVO mvo = (MemberVO) session.getAttribute("membervo");
 	//		String masterId  = mvo.getId();
@@ -25,7 +24,8 @@ public class NoticeWriteRegisterController implements Controller {
 			System.out.println(masterId);
 			String title = request.getParameter("title");
 			String content = request.getParameter("content");
-			NoticeVO nvo = new NoticeVO(title,content,masterId);
+			String important = request.getParameter("important");
+			NoticeVO nvo = new NoticeVO(title,content,important,masterId);
 			nvo = MasterDAO.getInstance().noticeWrite(nvo);
 			System.out.println(nvo);
 			path="redirect:DispatcherServlet?command=cmdNoticeDetail&nNo="+nvo.getnNo();
