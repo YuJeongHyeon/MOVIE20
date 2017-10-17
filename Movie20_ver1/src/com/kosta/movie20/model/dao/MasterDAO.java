@@ -61,7 +61,6 @@ public class MasterDAO {
 		}
 		return tpc;
 	}
-	
 	// 후에 셀렉 컬럼 중 important 제거 
 		public ArrayList<NoticeVO> ImportNoticeList() throws SQLException {
 			ArrayList<NoticeVO> nList = new ArrayList<NoticeVO>();
@@ -158,7 +157,7 @@ public class MasterDAO {
 		try {
 			con = dataSource.getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT title,content,regdate,hits,id ");
+			sql.append("SELECT title,content,regdate,hits,important,id ");
 			sql.append("from SEMI_NOTICE ");
 			sql.append("where nNo=? ");
 			pstmt=con.prepareStatement(sql.toString());	
@@ -171,6 +170,7 @@ public class MasterDAO {
 				nvo.setContent(rs.getString("content"));
 				nvo.setRegdate(rs.getString("regdate"));
 				nvo.setHits(rs.getInt("hits"));
+				nvo.setImportant(rs.getString("important"));
 				nvo.setMasterId(rs.getString("id"));
 			}
 			
@@ -244,7 +244,6 @@ public class MasterDAO {
 		return nvo;
 	}// noticeWrite
 
-
 	public void noticeDelete(String nNo) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -268,12 +267,13 @@ public class MasterDAO {
 			con = dataSource.getConnection();
 			StringBuilder sql=new StringBuilder();
 			sql.append("update SEMI_NOTICE ");
-			sql.append("set title=? ,content=? ,id=? where nNo=? ");
+			sql.append("set title=? ,content=? ,id=? ,important=? where nNo=? ");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setString(1, nvo.getTitle());
 			pstmt.setString(2, nvo.getContent());
 			pstmt.setString(3, nvo.getMasterId());
-			pstmt.setString(4, nvo.getnNo());
+			pstmt.setString(4, nvo.getImportant());
+			pstmt.setString(5, nvo.getnNo());
 			pstmt.executeUpdate();
 		} finally {
 			closeAll( pstmt, con);

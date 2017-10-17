@@ -19,6 +19,7 @@ public class NoticeUpdateFormController implements Controller {
 		String nNo = request.getParameter("nNo");
 		NoticeVO nvo = MasterDAO.getInstance().noticeDetail(nNo);
 		request.setAttribute("nvo", nvo);
+	//	System.out.println(nvo.getImportant());
 		request.setAttribute("url", "../notice/noticeUpdate.jsp");
 		return "/layout/home.jsp";
 	}

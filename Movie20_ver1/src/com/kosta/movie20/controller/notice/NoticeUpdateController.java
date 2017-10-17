@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import com.kosta.movie20.controller.common.Controller;
 import com.kosta.movie20.model.dao.MasterDAO;
+import com.kosta.movie20.model.vo.MemberVO;
 import com.kosta.movie20.model.vo.NoticeVO;
 
 public class NoticeUpdateController implements Controller {
@@ -20,8 +21,18 @@ public class NoticeUpdateController implements Controller {
 		String nNo = request.getParameter("nNo");
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
-		String masterId = request.getParameter("masterId");
-		NoticeVO nvo = new NoticeVO(nNo,title,content,masterId);
+		MemberVO membervo = (MemberVO) session.getAttribute("membervo");
+		String masterId = membervo.getId();
+		String important = request.getParameter("important");
+		System.out.println(important);
+		NoticeVO nvo = MasterDAO.getInstance().noticeDetail(nNo);
+		nvo.setTitle(title);
+		nvo.setContent(content);
+		nvo.setMasterId(masterId);
+		nvo.setImportant(important);
+	//	NoticeVO nvo = new NoticeVO(nNo,title,content,important,masterId);
+		System.out.println(nvo);
+		System.out.println(nvo.getImportant());
 		MasterDAO.getInstance().noticeUpdate(nvo);
 		path = "redirect:DispatcherServlet?command=cmdNoticeDetail&nNo="+nNo;
 		

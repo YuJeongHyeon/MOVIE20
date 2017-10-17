@@ -13,3 +13,18 @@
 	#mainTable td{
 		padding: 5px;
 	}
+	#listBtn{
+		float: right;
+	}
+	#mainScore-table1{
+		color: #0066ff;
+		font-weight: bold;
+		text-align: center;
+		width: 161px;
+	}
+	#mainScore-table2{
+		color: #0066ff;
+		font-weight: bold;
+		text-align: center;
+		width: 161px;
+	}

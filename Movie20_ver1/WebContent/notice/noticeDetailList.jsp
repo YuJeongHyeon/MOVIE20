@@ -2,15 +2,18 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript">
-function deleteBoard(){
-	if(confirm("게시글을 삭제하시겠습니까?")){
+function deleteNotice(){
+	if(confirm("공지사항 삭제하시겠습니까?")){
 		document.deleteForm.submit();
 	}
 }
-function updateBoard(){
-	if(confirm("게시글을 수정하시겠습니까?")){
+function updateNotice(){
+	if(confirm("공지사항을 수정하시겠습니까?")){
 		location.href="${pageContext.request.contextPath}/DispatcherServlet?command=cmdUpdateFormNotice&nNo=${requestScope.nvo.nNo }";
 	}
+}
+function noticeList(){
+	location.href="${pageContext.request.contextPath}/DispatcherServlet?command=cmdNoticeList";
 }
 </script>
 <table class="table table-striped">
@@ -32,8 +35,9 @@ function updateBoard(){
 			 	<input type="hidden" name="command" value="cmdDeleteNotice">
 			 	<input type="hidden" name="nNo" value="${requestScope.nvo.nNo}">
 			 </form>
-			 <button type="button" class="btn" onclick="deleteBoard()">삭제</button>
-			 <button type="button" class="btn" onclick="updateBoard()">수정</button>
+			 <button type="button" class="btn" onclick="deleteNotice()">삭제</button>
+			 <button type="button" class="btn" onclick="updateNotice()">수정</button>
+			 <button type="button" id="listBtn" class="btn" onclick="noticeList()">목록</button>
 			 </c:if>
 			 </td>
 		</tr>

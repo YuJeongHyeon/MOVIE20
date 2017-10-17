@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-mainMovieList
-
 <c:if test="${sessionScope.membervo.authority eq '관리자'}">
 	<a href="DispatcherServlet?command=movieRegisterView">등록</a>
 </c:if>
@@ -12,14 +10,35 @@ mainMovieList
 		<tr>
 			<c:forEach var="movievo" items="${requestScope.lvo.list}" varStatus="cnt">
 				<c:if test="${cnt.count<5}">
-					<td><a href="DispatcherServlet?command=MovieDetail&movieNo=${movievo.mNo}"><img class="mainImg" src="img/${movievo.picture}"></a></td>
+					<td>
+						<a href="DispatcherServlet?command=MovieDetail&movieNo=${movievo.mNo}"><img class="mainImg" src="img/${movievo.picture}"></a>
+						<br>
+							<table id="mainScore-table1">
+								<tbody>
+									<tr>
+										<td>회원 평점 9점</td>
+									</tr>
+								</tbody>
+							</table>
+					</td>
+					
 				</c:if>		
 			</c:forEach>
 		</tr>
 		<tr>
 			<c:forEach var="movievo" items="${requestScope.lvo.list}" varStatus="cnt">
 				<c:if test="${cnt.count>4}">
-					<td><a href="DispatcherServlet?command=MovieDetail&movieNo=${movievo.mNo}"><img class="mainImg" src="img/${movievo.picture}"></a></td>
+					<td>
+						<a href="DispatcherServlet?command=MovieDetail&movieNo=${movievo.mNo}"><img class="mainImg" src="img/${movievo.picture}"></a>
+						<br>
+							<table id="mainScore-table2">
+								<tbody>
+									<tr>
+										<td>회원 평점 10점</td>
+									</tr>
+								</tbody>
+							</table>
+					</td>
 				</c:if>		
 			</c:forEach>
 		</tr>
