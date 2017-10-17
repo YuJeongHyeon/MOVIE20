@@ -18,8 +18,13 @@ import com.kosta.movie20.controller.member.MemberUpdateFormController;
 import com.kosta.movie20.controller.member.UpdateAuthorityController;
 import com.kosta.movie20.controller.movie.HitDaHitController;
 import com.kosta.movie20.controller.movie.MainMovieListController;
+import com.kosta.movie20.controller.movie.MovieDeleteController;
 import com.kosta.movie20.controller.movie.MovieDetailController;
+import com.kosta.movie20.controller.movie.MovieRegisterViewController;
 import com.kosta.movie20.controller.movie.MovieSearchController;
+import com.kosta.movie20.controller.movie.MovieUpdateController;
+import com.kosta.movie20.controller.movie.MovieUpdateFormController;
+import com.kosta.movie20.controller.movie.UploadController;
 import com.kosta.movie20.controller.notice.NoticeDeleteController;
 import com.kosta.movie20.controller.notice.NoticeDetailController;
 import com.kosta.movie20.controller.notice.NoticeListController;
@@ -101,6 +106,16 @@ public class HandlerMapping {
 			controller = new MemberUpdateController();
 		}else if(command.equals("cmdCheckId")) {
 			controller = new CheckIdController();
+		}else if(command.equals("upload")) {
+			controller =  new UploadController();
+		}else if(command.equals("movieRegisterView")) {
+			controller = new MovieRegisterViewController();
+		}else if(command.equals("movieUpdateForm")) {
+			controller = new MovieUpdateFormController();
+		}else if(command.equals("movieDelete")) {
+			controller = new MovieDeleteController();
+		}else if(command.equals("movieUpdate")) {
+			controller = new MovieUpdateController();
 		}
 		/////////////////////////2 차////////////////////////////////
 		else if(command.equals("cmdMeetingRegisterForm")) {

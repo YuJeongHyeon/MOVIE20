@@ -27,6 +27,37 @@ public class MovieVO {
 		this.picture = picture;
 	}
 
+	public MovieVO(String mNo, String title, String summary, String character, String director, String genre,
+			String runtime, String viewingcheck, String playdate, int grade, String picture) {
+		super();
+		this.mNo = mNo;
+		this.title = title;
+		this.summary = summary;
+		this.character = character;
+		this.director = director;
+		this.genre = genre;
+		this.runtime = runtime;
+		this.viewingcheck = viewingcheck;
+		this.playdate = playdate;
+		this.grade = grade;
+		this.picture = picture;
+	}
+
+	public MovieVO(String mNo, String title, String summary, String character, String director, String genre,
+			String runtime, String viewingcheck, String playdate, int grade) {
+		super();
+		this.mNo = mNo;
+		this.title = title;
+		this.summary = summary;
+		this.character = character;
+		this.director = director;
+		this.genre = genre;
+		this.runtime = runtime;
+		this.viewingcheck = viewingcheck;
+		this.playdate = playdate;
+		this.grade = grade;
+	}
+
 	public ArrayList<ReviewVO> getRlist() {
 		return rlist;
 	}

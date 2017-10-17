@@ -126,29 +126,85 @@ public class MasterDAO {
 			return nList;
 		}// noticeList
 
-	public void movieRegister(MovieVO mvo) throws SQLException {
+	public void movieRegister(MovieVO movievo) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
+		
 		try {
-
+			con = dataSource.getConnection();
+			con.setAutoCommit(false);
+			StringBuilder sql = new StringBuilder();
+			sql.append("insert into semi_movie(mNo, title, playdate, character, director, genre, summary, runtime, viewingcheck, grade, picture, id) ");
+			sql.append("values(semi_movie_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, movievo.getTitle());
+			pstmt.setString(2, movievo.getPlaydate());
+			pstmt.setString(3, movievo.getCharacter());
+			pstmt.setString(4, movievo.getDirector());
+			pstmt.setString(5, movievo.getGenre());
+			pstmt.setString(6, movievo.getSummary());
+			pstmt.setString(7, movievo.getRuntime());
+			pstmt.setString(8, movievo.getViewingcheck());
+			pstmt.setInt(9, movievo.getGrade());
+			pstmt.setString(10, movievo.getPicture());
+			pstmt.setString(11, movievo.getMasterId());
+			pstmt.executeQuery();
+			con.commit();
+		} catch (SQLException se) {
+		      con.rollback();
+		      se.printStackTrace();
 		} finally {
-			closeAll(rs, pstmt, con);
+			closeAll(pstmt, con);
 		}
 	}// movieRegister
 
 	public void movieDelete(String mNo) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
 
+		System.out.println("배승찬 영화 삭제: "+mNo);
+		
 		try {
+			con = getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append("delete from semi_movie where mNo=?");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, mNo);
+			pstmt.executeUpdate();
+		} finally {
+			closeAll(pstmt, con);
+		}
+	}// movieDelete
 
+	public void movieUpdate(MovieVO movievo) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		
+		try {
+			con = getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append("UPDATE semi_movie ");
+			sql.append("SET title=?, director=?, genre=?, character=?, runtime=?, ");
+			sql.append("viewingcheck=?, grade=?, summary=? ");
+			sql.append("WHERE mNo=?");
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, movievo.getTitle());
+			pstmt.setString(2, movievo.getDirector());
+			pstmt.setString(3, movievo.getGenre());
+			pstmt.setString(4, movievo.getCharacter());
+			pstmt.setString(5, movievo.getRuntime());
+			pstmt.setString(6, movievo.getViewingcheck());
+			pstmt.setInt(7, movievo.getGrade());
+			pstmt.setString(8, movievo.getSummary());
+			pstmt.setString(9, movievo.getmNo());
+			pstmt.executeUpdate();
 		} finally {
 			closeAll(rs, pstmt, con);
 		}
-	}// movieDelete
+	}// movieUpdate
+	
 	public NoticeVO noticeDetail(String nNo) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -381,4 +437,45 @@ public class MasterDAO {
 		}
 		return count;
 	}//checkMemberByIdAjax
+	
+	// 수정할 때 값 넘겨주기 위해 사용하는 메서드
+	public MovieVO getMoviePostingByNo(String mNo) throws SQLException{
+		MovieVO movievo=null;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		try{
+			con = getConnection();
+			StringBuilder sql=new StringBuilder();
+			sql.append("SELECT title, director, genre, character, runtime, viewingcheck, playdate, picture, grade, summary, id ");
+			sql.append("FROM semi_movie ");
+			sql.append("WHERE mNo=?"); 	
+			pstmt=con.prepareStatement(sql.toString());
+			pstmt.setString(1, mNo);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()){
+				movievo = new MovieVO();
+				movievo.setmNo(mNo);
+				movievo.setTitle(rs.getString(1));
+				movievo.setDirector(rs.getString(2));				
+				movievo.setGenre(rs.getString(3));
+				movievo.setCharacter(rs.getString(4));
+				movievo.setRuntime(rs.getString(5));
+				movievo.setViewingcheck(rs.getString(6));
+				movievo.setPlaydate(rs.getString(7));
+				movievo.setPicture(rs.getString(8));
+				movievo.setGrade(rs.getInt(9));
+				movievo.setSummary(rs.getString(10));
+				movievo.setMasterId(rs.getString(11));
+				
+			}
+			//System.out.println("dao getContent:"+bvo);
+		}finally{
+			closeAll(rs,pstmt,con);
+		}
+		return movievo;
+	}//getMoviePostingByNo
+	
 }

@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:if test="${sessionScope.membervo.authority eq '관리자'}">
-	<a href="DispatcherServlet?command=movieRegisterView">등록</a>
-</c:if>
+<div align="right">
+	<c:if test="${sessionScope.membervo.authority eq '관리자'}">
+		<a href="DispatcherServlet?command=movieRegisterView" class="btn btn-primary" width="10%">영화등록</a>
+	</c:if>
+</div>
 
 <table id="mainTable">
 	<tbody>

@@ -2,6 +2,18 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<script type="text/javascript">
+	function checkUpdate(){
+		location.href="${pageContext.request.contextPath}/DispatcherServlet?command=movieUpdateForm&mNo=${requestScope.movievo.mNo}";
+	}
+	
+	function checkDelete(){
+		if(confirm("영화를 삭제하시겠습니까?")){
+			document.deleteForm.submit();
+		}
+	}
+</script>
+
 <table class="table table-bordered  table-hover boardlist">
 		<thead>		
 		<tbody>						
@@ -33,15 +45,27 @@
 			</tr>
 			
 			<tr>
-			    <td colspan='4'>줄거리</td>
+			    <td colspan='5'>줄거리</td>
 								
 			</tr>	
 			<tr>
-				<td colspan='4'>${requestScope.movievo.summary }</td>
+				<td colspan='5'>${requestScope.movievo.summary }</td>
 			</tr>
 			
-			
- 
+			<tr>
+				<td colspan="5" align="right">
+					<div>
+						<c:if test="${sessionScope.membervo.authority eq '관리자'}">
+							 <form name="deleteForm" action="${pageContext.request.contextPath}/DispatcherServlet" method="post">
+							 	<input type="hidden" name="command" value="movieDelete">
+							 	<input type="hidden" name="mNo" value="${requestScope.movieupdatevo.mNo}">
+							 </form>
+								<input type="button" value="수정" onclick="checkUpdate()" class="btn btn-primary" width="10%">
+								<input type="button" value="삭제" onclick="checkDelete()" class="btn btn-primary" width="10%">
+						</c:if>
+					</div>
+				</td>
+			</tr>
 
 		</tbody>					
 	</table>
