@@ -17,6 +17,45 @@ CREATE TABLE semi_member(
 SELECT * FROM semi_member;
 DROP TABLE semi_member;
 
+---- movie Table 관련 -----------------
+CREATE TABLE semi_movie(
+	mNo                  NUMBER  PRIMARY KEY ,
+	title                 VARCHAR2(100)  NOT NULL ,
+	playdate              DATE  NOT NULL ,
+	character             VARCHAR2(100)  NOT NULL ,
+	director              VARCHAR2(100)  NOT NULL ,
+	genre                 VARCHAR2(100)  NOT NULL ,
+	summary               CLOB  NOT NULL ,
+	runtime               VARCHAR2(100)  NOT NULL ,
+	viewingcheck          VARCHAR2(100)  NOT NULL ,
+	hits                  NUMBER DEFAULT 0,
+	grade                 NUMBER  NOT NULL ,
+	picture 			VARCHAR2(100) NOT NULL ,
+	id                    VARCHAR2(100)  NOT NULL,
+	CONSTRAINT semi_movie_id_fk FOREIGN KEY(id) REFERENCES semi_member(id)
+);
+
+SELECT * FROM semi_movie;
+DROP TABLE semi_movie;
+
+DROP sequence semi_movie_seq;
+CREATE sequence semi_movie_seq nocache;
+---- notice Table 관련 -----------------
+CREATE TABLE semi_notice(
+	nNo                  NUMBER PRIMARY KEY ,
+	title                 VARCHAR2(100)  NOT NULL ,
+	content             CLOB  NOT NULL ,
+	regdate               DATE  NOT NULL ,
+	hits                  NUMBER  DEFAULT 0 ,
+	important			VARCHAR2(100)  NOT NULL,
+	id                    VARCHAR2(100)  NOT NULL,
+	CONSTRAINT semi_notice_id_fk FOREIGN KEY(id) REFERENCES semi_member(id)
+);
+SELECT * FROM semi_notice;
+DROP TABLE semi_notice;
+
+DROP sequence semi_notice_seq;
+CREATE sequence semi_notice_seq nocache;
 ---- review Table 관련 -----------------
 CREATE TABLE semi_review(
 	rNo                  NUMBER  PRIMARY KEY ,
@@ -39,48 +78,63 @@ CREATE sequence semi_review_seq nocache;
 insert into semi_review(rno,title,content,regdate,mno,id) 
 values(semi_review_seq.nextval,'바보 배승찬2','바보래요!!!',sysdate,2,'jquery')
 
----- movie Table 관련 -----------------
-CREATE TABLE semi_movie(
-	mNo                  NUMBER  PRIMARY KEY ,
-	title                 VARCHAR2(100)  NOT NULL ,
-	playdate              DATE  NOT NULL ,
-	character             VARCHAR2(100)  NOT NULL ,
-	director              VARCHAR2(100)  NOT NULL ,
-	genre                 VARCHAR2(100)  NOT NULL ,
-	summary               CLOB  NOT NULL ,
-	runtime               VARCHAR2(100)  NOT NULL ,
-	viewingcheck          VARCHAR2(100)  NOT NULL ,
-	hits                  NUMBER DEFAULT 0,
-	grade                 NUMBER  NOT NULL ,
-	picture 			VARCHAR2(100) NOT NULL ,
-	id                    VARCHAR2(100)  NOT NULL,
-	CONSTRAINT semi_movie_id_fk FOREIGN KEY(id) REFERENCES semi_member(id)
+
+
+---- score Table 관련 -----------------
+CREATE TABLE semi_score
+(
+	id                    VARCHAR2(100)  ,
+	mNo                  NUMBER  ,
+	score                 NUMBER  not null ,
+	PRIMARY KEY(id, mNo),
+    FOREIGN KEY(id) REFERENCES semi_member(id),
+    FOREIGN KEY(mNo) REFERENCES semi_movie(mNo)
 );
 
-SELECT * FROM semi_movie;
-DROP TABLE semi_movie;
+SELECT * FROM semi_score;
+DROP TABLE semi_score;
 
-
-
-DROP sequence semi_movie_seq;
-CREATE sequence semi_movie_seq nocache;
----- notice Table 관련 -----------------
-CREATE TABLE semi_notice(
-	nNo                  NUMBER PRIMARY KEY ,
-	title                 VARCHAR2(100)  NOT NULL ,
-	content             CLOB  NOT NULL ,
-	regdate               DATE  NOT NULL ,
-	hits                  NUMBER  DEFAULT 0 ,
-	important			VARCHAR2(100)  NOT NULL ,
-	id                    VARCHAR2(100)  NOT NULL,
-	CONSTRAINT semi_notice_id_fk FOREIGN KEY(id) REFERENCES semi_member(id)
+---- semi_seat Table 관련 -----------------
+CREATE TABLE semi_seat
+(
+	seatNum               VARCHAR2(100)  primary key ,
+	id                    VARCHAR2(100)  ,
+	FOREIGN KEY(id) REFERENCES semi_member(id)
 );
-SELECT * FROM semi_notice;
-DROP TABLE semi_notice;
-DELETE FROM SEMI_NOTICE;
+SELECT * FROM semi_seat;
+DROP TABLE semi_seat;
 
-DROP sequence semi_notice_seq;
-CREATE sequence semi_notice_seq nocache;
+DROP sequence semi_seat_seq;
+CREATE sequence semi_seat_seq nocache;
+--------meeting table 관련----------------
+CREATE TABLE semi_meeting
+(
+	meetingDate           VARCHAR2(100)  primary key ,
+	mNo                  NUMBER  ,
+	FOREIGN KEY(mNo) REFERENCES semi_movie(mNo),
+	seatNum               VARCHAR2(100)  ,
+	FOREIGN KEY(seatNum) REFERENCES semi_seat(seatNum)
+);
+
+SELECT * FROM semi_meeting;
+DROP TABLE semi_meeting;
+---- comment Table 관련 -----------------
+
+CREATE TABLE semi_comment
+(
+	cNo                  NUMBER  primary key ,
+	content               VARCHAR2(100) NOT NULL ,
+	writeTime             DATE NOT NULL ,
+	id                    VARCHAR2(100)  NOT NULL ,
+	FOREIGN KEY(id) REFERENCES semi_member(id),
+	rNo                  NUMBER  NOT NULL ,
+	FOREIGN KEY(rNo) REFERENCES semi_review(rNo)
+);
+SELECT * FROM semi_comment;
+DROP TABLE semi_comment;
+
+DROP sequence semi_comment_seq;
+CREATE sequence semi_comment_seq nocache;
 
 --E N D ----- CREATE Table Query   -----------------------
 
@@ -113,7 +167,7 @@ CREATE TABLE semi_member(
 
 -- Movie List 추가 ---
 insert into semi_movie(mNo, title, playdate, character, director, genre, summary, runtime, viewingcheck, hits, grade, picture, id) 
-values(semi_movie_seq.nextval, '타이타닉', '1998.02.20', '레오나르도 디카프리오, 케이트 윈슬렛', '제임스 카메론', '멜로', 
+values(semi_movie_seq.nextval,'타이타닉', '1998.02.20', '레오나르도 디카프리오, 케이트 윈슬렛', '제임스 카메론', '멜로', 
 '1912년 북대서양의 차가운 바닷물 속에서 당대 꿈의 배라고 불렸던 타이타닉 호가 탐사대들에 의해 세상에 발견되면서 오랫동안 감춰져 있던 비극적인 스토리가 세상에 알려지게 된다. 
  17세기 엄격한 사회 질서에 숨막혀 하는 미국 상류층 로즈(케이트 윈슬렛)는 사교계의 굴레에서 벗어나지 못하는 어머니와 권위적인 재벌 귀족 약혼자와 함께 미국으로 향하는 타이타닉 호 1등실에 승선한다. 배가 출발하기 전 부두의 선술집에서 도박으로 운 좋게 타이타닉호의 3등실 티켓을 얻은 가난한 화가 잭(레오나르도 디카프리오) 역시 아슬아슬하게 배에 승선한다. 
  첫 눈에 1등실의 로즈에게 반한 잭은 갑판에서 우연히 바다로 몸을 던지려 하는 로즈를 발견하고 재치 있는 언변과 행동으로 그녀의 생명을 구한다. 이 사건을 계기로 1등실의 저녁식사에 초대받게 되고 서로에게 끌리는 자신들을 발견한다. 이후 그들의 금지된 사랑은 아무도 상상하지 못했던 타이타닉호 침몰조차 갈라 놓을 수 없었던 세기의 로맨스가 된다.', 
@@ -138,8 +192,8 @@ values(semi_movie_seq.nextval, '캐롤', '2016 .02.04', '케이트 블란쳇, 루니 마라,
  각자의 상황을 잊을 만큼 통제할 수 없이 서로에게 빠져드는 감정의 혼란 속에서 둘은 확신하게 된다. 
  인생의 마지막에, 그리고 처음으로 찾아온 진짜 사랑임을…', '118분', 'no', '19', '캐롤.jpg' ,'a');
 
- insert into semi_movie(mNo, title, playdate, character, director, genre, summary, runtime, viewingcheck, hits, grade, picture, id) 
-values(semi_movie_seq.nextval, '다크나이트', '2008.08.06', '크리스찬 베일, 히스 레저', '크리스토퍼 놀란', '액션', '어둠의 기사 배트맨 VS 절대 악 조커
+insert into semi_movie(mNo, title, playdate, character, director, genre, summary, runtime, viewingcheck, hits, grade, picture, id) 
+values(semi_movie_seq.nextval,'다크나이트', '2008.08.06', '크리스찬 베일, 히스 레저', '크리스토퍼 놀란', '액션', '어둠의 기사 배트맨 VS 절대 악 조커
 운명을 건 최후의 결전이 시작된다!
 정의로운 지방 검사 ‘하비 덴트’, ‘짐 고든’ 반장과 함께 범죄 소탕 작전을 펼치며
  범죄와 부패로 들끓는 고담시를 지켜나가는 ‘배트맨’
@@ -150,7 +204,7 @@ values(semi_movie_seq.nextval, '다크나이트', '2008.08.06', '크리스찬 베일, 히스 
  
  급기야 배트맨을 향한 강한 집착을 드러낸 조커는
  그가 시민들 앞에 정체를 밝힐 때까지 매일 새로운 사람들을 죽이겠다 선포하고
- 배트맨은 사상 최악의 악당 조커를 막기 위해 자신의 모든 것을 내던진 마지막 대결을 준비한다.', '152분', 'no', 10, '15', '다크나이트.jpg' ,'a');
+ 배트맨은 사상 최악의 악당 조커를 막기 위해 자신의 모든 것을 내던진 마지막 대결을 준비한다.', '152분', 'no', 10, '15','다크나이트.jpg' ,'a');
 
 
  
@@ -188,4 +242,17 @@ values(SEMI_NOTICE_seq.nextval,'123','123',sysdate,'a');
 
 select nNo,regdate,id from SEMI_NOTICE where nNo=SEMI_NOTICE_seq.currval
 
+select count(*) FROM semi_member WHERE id='sdf'
 
+
+select * 
+from( 
+SELECT	row_number() over(order by mNo desc) as rnum, 
+mNo, title, to_char(playdate,'YYYY.MM.DD') as playdate, character, director, genre, runtime, viewingcheck, grade, picture  
+FROM semi_movie 
+where title like '%다%'
+) 
+where rnum between 1 and 4
+order by mNo desc
+
+select count(*) from SEMI_MOVIE where title like '%아%'
