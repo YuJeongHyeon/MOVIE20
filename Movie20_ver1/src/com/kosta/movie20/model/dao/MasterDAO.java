@@ -124,7 +124,7 @@ public class MasterDAO {
 		try {
 			con = dataSource.getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT title,content,regdate,hits ");
+			sql.append("SELECT title,content,regdate,hits,id ");
 			sql.append("from SEMI_NOTICE ");
 			sql.append("where nNo=? ");
 			pstmt=con.prepareStatement(sql.toString());	
@@ -132,10 +132,12 @@ public class MasterDAO {
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				nvo = new NoticeVO();
-				nvo.setTitle(rs.getString(1));
-				nvo.setContent(rs.getString(2));
-				nvo.setRegdate(rs.getString(3));
-				nvo.setHits(rs.getInt(4));
+				nvo.setnNo(nNo);
+				nvo.setTitle(rs.getString("title"));
+				nvo.setContent(rs.getString("content"));
+				nvo.setRegdate(rs.getString("regdate"));
+				nvo.setHits(rs.getInt("hits"));
+				nvo.setMasterId(rs.getString("id"));
 			}
 			
 		}finally {
