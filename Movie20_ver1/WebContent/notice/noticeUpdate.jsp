@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="//code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript">
-	$(document).rea
+	$(document).read
 </script>
 <form action="${pageContext.request.contextPath}/DispatcherServlet" method="post" >
  <input type="hidden" name="command" value="cmdUpdateNotice"></input>	
@@ -21,8 +21,8 @@
      </td>
     </tr> 
      </table>  
-     <input type="radio" id="general" name="" value="일반">일반
-     <input type="radio" id="important" name="" value="중요">중요 
+     <input type="radio" id="general" name="important" value="일반">일반
+     <input type="radio" id="important" name="important" value="중요">중요 
      <div class="btnArea">
      <button type="submit" class="btn" >수정</button>  
      <button type="reset" class="btn" >취소</button>   
