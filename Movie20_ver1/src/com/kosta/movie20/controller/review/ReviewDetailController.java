@@ -15,15 +15,12 @@ public class ReviewDetailController implements Controller {
 		if(request.getSession(false)!=null) {
 			MovieDAO.getInstance().reviewHitsup(rNo);
 		}
-		
-		MovieDAO.getInstance().reviewDelete(rNo);
-		
-		String movieno=request.getParameter("movieno");
-		System.out.println(movieno);
-		request.setAttribute("movieNo", movieno);
-		String url = "DispatcherServlet?command=MovieDetail&movieNo="+movieno;
-		//request.setAttribute("url", url);
-		return url;
+		ReviewVO rvo=MovieDAO.getInstance().movieReviewDetail(rNo);
+		request.setAttribute("rvo", rvo);
+
+		String url = "../movie/reviewDetail.jsp";
+		request.setAttribute("url", url);
+		return "layout/home.jsp";
 	}
 
 }

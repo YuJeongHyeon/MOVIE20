@@ -7,7 +7,7 @@
 		<tbody>						
 								
 			<tr>
-				<td rowspan='4'><img src="${pageContext.request.contextPath}/img/${movievo.picture }"></td>
+				<td rowspan='4'><img src="${pageContext.request.contextPath}/img/${movievo.picture }" id="imgDetail"></td>
 			    <td>영화 제목</td>
 				<td>${requestScope.movievo.title }</td>
 				<td>감독</td>
@@ -81,11 +81,11 @@
 		<tbody>						
 			<c:forEach var="rvo" items="${requestScope.listVO.list}">				
 			<tr>			
-				<td><a href="DispatcherServlet?command=reviewDetail&rno=${rvo.rno }">${rvo.rno }</a></td>
-				<td><a href="DispatcherServlet?command=reviewDetail&rno=${rvo.rno }">${rvo.title }</a></td>
-				<td><a href="DispatcherServlet?command=reviewDetail&rno=${rvo.rno }">${rvo.id }</a></td>
-				<td><a href="DispatcherServlet?command=reviewDetail&rno=${rvo.rno }">${rvo.regdate }</a></td>
-				<td><a href="DispatcherServlet?command=reviewDetail&rno=${rvo.rno }">${rvo.hits }</a></td>
+				<td><a href="DispatcherServlet?command=reviewDetail&rno=${rvo.rno }&movieno=${movievo.mNo }">${rvo.rno }</a></td>
+				<td><a href="DispatcherServlet?command=reviewDetail&rno=${rvo.rno }&movieno=${movievo.mNo }">${rvo.title }</a></td>
+				<td><a href="DispatcherServlet?command=reviewDetail&rno=${rvo.rno }&movieno=${movievo.mNo }">${rvo.id }</a></td>
+				<td><a href="DispatcherServlet?command=reviewDetail&rno=${rvo.rno }&movieno=${movievo.mNo }">${rvo.regdate }</a></td>
+				<td><a href="DispatcherServlet?command=reviewDetail&rno=${rvo.rno }&movieno=${movievo.mNo }">${rvo.hits }</a></td>
 				
 			</tr>	
 			</c:forEach>	

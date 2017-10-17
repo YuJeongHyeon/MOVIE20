@@ -4,7 +4,7 @@
  <form action="DispatcherServlet" method="post" >
  <input type="hidden" name="command" value="updateReview"></input>
  <input type="hidden" name="rno" value="${requestScope.rvo.rno}"></input>
-
+  
    <table class="table" >
     <tr>
     <td>제목 &nbsp;&nbsp;

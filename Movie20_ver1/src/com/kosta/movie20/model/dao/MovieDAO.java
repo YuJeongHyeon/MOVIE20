@@ -423,7 +423,7 @@ public class MovieDAO {
 			
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setInt(1, Integer.parseInt(mNo));
-					
+			pstmt.executeUpdate();			
 			
 		}finally {
 			closeAll(rs, pstmt, con);
@@ -443,7 +443,7 @@ public class MovieDAO {
 			
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setInt(1, Integer.parseInt(rNo));
-					
+			pstmt.executeUpdate();		
 			
 		}finally {
 			closeAll(rs, pstmt, con);
