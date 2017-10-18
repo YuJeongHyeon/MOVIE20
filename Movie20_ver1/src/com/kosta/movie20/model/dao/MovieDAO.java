@@ -205,19 +205,57 @@ public class MovieDAO {
 		
 		return rvo;
 	}
-	public ArrayList<MovieVO> genreList(String genre, PagingBean pb) throws SQLException{
+	public ArrayList<MovieVO> genreList(String genre,MoviePagingBean mpb) throws SQLException{
 		ArrayList<MovieVO> mList = new ArrayList<MovieVO>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		
 		try {
+			con = dataSource.getConnection();
+			StringBuilder sql=new StringBuilder();
 			
+			sql.append("SELECT mNo,picture,genre ");
+			sql.append("from (select row_number() over(order by mNo desc) as rnum,mNo,picture,genre from SEMI_MOVIE where genre=?) ");
+			sql.append("SEMI_MOVIE ");
+			sql.append("where rnum between ? and ? ");
+			sql.append("ORDER BY mNo DESC");
+			pstmt=con.prepareStatement(sql.toString());	
+			pstmt.setString(1, genre);
+			pstmt.setInt(2, mpb.getStartRowNumber());
+			pstmt.setInt(3, mpb.getEndRowNumber());
 			
+			rs=pstmt.executeQuery();
+			while(rs.next()){		
+				MovieVO mvo=new MovieVO();
+				mvo.setmNo(rs.getString(1));
+				mvo.setPicture(rs.getString(2));
+				mvo.setGenre(rs.getString(3));
+				mList.add(mvo);
+			}		
 		}finally {
 			closeAll(rs, pstmt, con);
 		}
-		
 		return mList;
+	}
+	public int getPostCountByGenre(String genre) throws SQLException {
+		int tpc = 0;
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		try{
+			con = dataSource.getConnection();
+			String sql = "select count(*) from semi_movie where genre=?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, genre);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				tpc = rs.getInt(1);
+			}
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		return tpc;
 	}
 	public void reviewWrite(ReviewVO rvo) throws SQLException {
 		Connection con = null;

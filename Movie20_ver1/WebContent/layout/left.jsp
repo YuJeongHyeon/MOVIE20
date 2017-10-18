@@ -12,8 +12,11 @@
 		        <li class="dropdown">
 		          <a class="dropdown-toggle gerneA" data-toggle="dropdown" href="#"> 장르별 <span class="caret"></span></a>
 		          <ul class="dropdown-menu">
-		            <li><a href="#section41">Section 4-1</a></li>
-		            <li><a href="#section42">Section 4-2</a></li>
+		            <li><a href="${pageContext.request.contextPath}/DispatcherServlet?command=genre&genre=액션">액션</a></li>
+			            <li><a href="${pageContext.request.contextPath}/DispatcherServlet?command=genre&genre=코미디">코미디</a></li>
+			            <li><a href="${pageContext.request.contextPath}/DispatcherServlet?command=genre&genre=멜로">멜로</a></li>
+			            <li><a href="${pageContext.request.contextPath}/DispatcherServlet?command=genre&genre=로맨스">로맨스</a></li>
+			            <li><a href="${pageContext.request.contextPath}/DispatcherServlet?command=genre&genre=19">19</a></li>
 		          </ul>
 		        </li>
 		        <li class="dropdown">
@@ -44,8 +47,11 @@
 			        <li class="dropdown">
 			          <a class="dropdown-toggle gerneA" data-toggle="dropdown" href="#"> 장르별 <span class="caret"></span></a>
 			          <ul class="dropdown-menu">
-			            <li><a href="#section41">Section 4-1</a></li>
-			            <li><a href="#section42">Section 4-2</a></li>
+			            <li><a href="${pageContext.request.contextPath}/DispatcherServlet?command=genre&genre=액션">액션</a></li>
+			            <li><a href="${pageContext.request.contextPath}/DispatcherServlet?command=genre&genre=코미디">코미디</a></li>
+			            <li><a href="${pageContext.request.contextPath}/DispatcherServlet?command=genre&genre=멜로">멜로</a></li>
+			            <li><a href="${pageContext.request.contextPath}/DispatcherServlet?command=genre&genre=로맨스">로맨스</a></li>
+			            <li><a href="${pageContext.request.contextPath}/DispatcherServlet?command=genre&genre=19">19</a></li>
 			          </ul>
 			        </li>
 			         <li class="dropdown">
