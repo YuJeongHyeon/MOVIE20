@@ -36,7 +36,7 @@ public class NoticePagingBean {
 	/**
 	 * 총 게시물 수 : 
 	 */
-	private int totalPostCount;
+	private int totalPostCount; 
 	
 	public NoticePagingBean() {
 		

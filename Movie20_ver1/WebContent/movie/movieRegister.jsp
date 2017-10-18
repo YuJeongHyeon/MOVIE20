@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <script type="text/javascript">
-
+	function checkReg(){
+		confirm("등록하시겠습니까?");
+	}
 </script>
 
   <!-- Bootstrap core CSS-->
@@ -29,6 +31,10 @@
 			<input type="hidden" name="command" value="movieRegister">
 			<table class="table table-bordered" id="dataTable" width="600" cellspacing="20px">
 				<tr>
+					<th>등록인</th>
+					<td colspan="3"><input type="text" value="${requestScope.masterId}" name="id" readonly="readonly"></td>
+				</tr>
+				<tr>
 					<th>제목</th>
 					<td colspan="3"><input type="text" name="title"></td>
 				</tr>
@@ -48,11 +54,11 @@
 				</tr>
 				<tr>
 					<th>줄거리</th>
-					<td colspan="3"><input type="text" name="content"></td>
+					<td colspan="3"><input type="text" name="summary"></td>
 				</tr>
 				<tr>
 					<th>상영시간</th>
-					<td><input type="text" name="rumtime"></td>
+					<td><input type="text" name="runtime"></td>
 					<th>현재상영여부</th>
 					<td><input type="text" name="viewingcheck"></td>
 				</tr>
@@ -74,7 +80,7 @@
 				</tr>
 				<tr>
 					<td colspan="4">
-						<input type="submit" value="등록">
+						<input type="submit" value="등록" onclick="checkReg()">
 					</td>
 				</tr>
 			</table>

@@ -14,7 +14,7 @@ public class UploadController implements Controller {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 	//Workspace 업로드 경로 : 개발시 경로 
-		String workspacePath="C:\\Users\\kosta\\Desktop\\Movie20_ver4\\WebContent\\img";
+		String workspacePath="C:\\java-kosta\\MOVIE20\\Movie20_ver2\\WebContent\\img";
 	//WAS 업로드 경로 : 개발완료후에는 이 경로로 변경 
 	//	String savePath = request.getServletContext().getRealPath("upload");		 
 	//	System.out.println(savePath);
@@ -47,8 +47,6 @@ public class UploadController implements Controller {
 		movievo.setGrade(grade);
 		movievo.setPicture(picture);
 		movievo.setMasterId(id);
-		
-		System.out.println(movievo);
 		
 		MasterDAO.getInstance().movieRegister(movievo);
 		request.setAttribute("movieRegvo", movievo);

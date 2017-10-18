@@ -60,7 +60,7 @@ public class DispatcherServlet extends HttpServlet {
 			//파일업로드 요청이면 
 			if(request.getContentType() != null && 
 				    request.getContentType().toLowerCase().indexOf("multipart/form-data") > -1) {				
-				command="Upload";
+				command="upload";
 				System.out.println("파일업로드요청 "+command);
 			}else {//일반요청이면 
 				command=request.getParameter("command");
