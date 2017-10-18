@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import com.kosta.movie20.controller.common.Controller;
 import com.kosta.movie20.model.dao.MovieDAO;
+import com.kosta.movie20.second.comment.CommentDAO;
 
 public class ReviewDeleteController implements Controller {
 
@@ -17,6 +18,8 @@ public class ReviewDeleteController implements Controller {
 		}
 		String rNo=request.getParameter("rno");
 		MovieDAO.getInstance().reviewDelete(rNo);
+		
+		CommentDAO.getInstance().commentDelete(rNo);
 		
 		String movieno=request.getParameter("movieno");
 		

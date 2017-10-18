@@ -262,7 +262,7 @@ WHERE me.mNo = mv.mNo;
 select mno,title from SEMI_MOVIE
 
 insert into semi_review(rno,title,content,regdate,mno,id) 
-values(semi_review_seq.nextval,'¹Ùº¸ ¹è½ÂÂù2','¹Ùº¸·¡¿ä!!!',sysdate,2,'jquery')
+values(semi_review_seq.nextval,'¹Ùº¸ ¹è½ÂÂù2','¹Ùº¸·¡¿ä!!!',sysdate,6,'jquery')
 
 insert into SEMI_COMMENT(cno,content,writetime,id,rno)
 values(semi_comment_seq.nextval,'ÄÚÄÚ¸àÆ®',sysdate,'jquery',30)
@@ -270,7 +270,12 @@ values(semi_comment_seq.nextval,'ÄÚÄÚ¸àÆ®',sysdate,'jquery',30)
 update semi_comment set content='ÄÚÆÄ´Â ½ÂÂ÷´Ï' where cNo=4
 
 insert into semi_comment(cno,content,writetime,id,rno)
-values(semi_review_seq.nextval,'¾Ó ½ÂÂ»Âô',sysdate,'a',30)
+values(semi_review_seq.nextval,'¾Ó ½ÂÂ»Âô',sysdate,'a',6)
 
+select count(*) from semi_review where mno=2
 
-
+select * from(select row_number() over(order by rNo desc)
+as rnum,rNo,content,regdate,title,hits,mno,id
+from semi_review where mno=2)		
+where mno=2 and rnum between 1 and 5
+ORDER BY rNo DESC

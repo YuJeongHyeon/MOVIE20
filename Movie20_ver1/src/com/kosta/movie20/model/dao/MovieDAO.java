@@ -107,15 +107,18 @@ public class MovieDAO {
 		
 		return mvo;
 	}
-	public int getReviewListcount() throws SQLException {
+	public int getReviewListcount(String movieNo) throws SQLException {
 		int num=0;		
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		try{
 			con=getConnection();
-			String sql="select count(*) from semi_review";			
-			pstmt=con.prepareStatement(sql);			
+			String sql="select count(*) from semi_review where mno=?";			
+			pstmt=con.prepareStatement(sql);	
+			pstmt.setInt(1,Integer.parseInt(movieNo));
+			
+			
 			rs=pstmt.executeQuery();		
 			if(rs.next()){
 				num=rs.getInt(1);
@@ -138,19 +141,20 @@ public class MovieDAO {
 	
 			sql.append("select * from(select row_number() over(order by rNo desc) ");
 			sql.append(" as rnum,rNo,content,regdate,title,hits,mno,id ");
-			sql.append(" from semi_review) ");			
+			sql.append(" from semi_review where mno=?) ");			
 			sql.append(" where mno=? and rnum between ? and ? ");
 			sql.append(" ORDER BY rNo DESC ");
 			pstmt=con.prepareStatement(sql.toString());	
 			pstmt.setInt(1,Integer.parseInt(mNo));
-			pstmt.setInt(2,pb.getStartRowNumber());
-			pstmt.setInt(3,pb.getEndRowNumber());
+			pstmt.setInt(2,Integer.parseInt(mNo));
+			pstmt.setInt(3,pb.getStartRowNumber());
+			pstmt.setInt(4,pb.getEndRowNumber());
 			rs=pstmt.executeQuery();	
 			//목록에서 게시물 content는 필요없으므로 null로 setting
 			//select no,title,time_posted,hits,id,name
 			while(rs.next()){		
 				ReviewVO rvo=new ReviewVO();
-				rvo.setRno(rs.getString(2));
+				rvo.setRno(rs.getString(1));
 				rvo.setContent(rs.getString(3));
 				rvo.setRegdate(rs.getString(4));
 				rvo.setTitle(rs.getString(5));
@@ -241,18 +245,26 @@ public class MovieDAO {
 	public void reviewDelete(String rNo) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
 		ResultSet rs = null;
 		try {
 			con = dataSource.getConnection();
 			
 			String sql;
-			sql="delete from semi_review where rNo=?";
+			sql="delete from semi_comment where rNo=?";
 						
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setInt(1,Integer.parseInt(rNo));
+			pstmt.executeUpdate();			
 			pstmt.executeUpdate();
 			
+			String sql2;
+			sql2="delete from semi_review where rNo=?";						
+			pstmt2 = con.prepareStatement(sql2.toString());
+			pstmt2.setInt(1,Integer.parseInt(rNo));
+			pstmt2.executeUpdate();
 			
+			pstmt2.close();
 		}finally {
 			closeAll(rs, pstmt, con);
 		}

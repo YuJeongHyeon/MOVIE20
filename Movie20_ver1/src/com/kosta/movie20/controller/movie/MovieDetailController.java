@@ -52,7 +52,7 @@ public class MovieDetailController implements Controller {
 		}
 		//////// 카트 코드 end		
 		
-		int totalPostCount=MovieDAO.getInstance().getReviewListcount();
+		int totalPostCount=MovieDAO.getInstance().getReviewListcount(movieNo);
 		String pno=request.getParameter("pageNo");
 		
 		PagingBean pb=null;

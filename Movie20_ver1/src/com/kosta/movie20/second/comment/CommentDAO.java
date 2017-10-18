@@ -130,7 +130,7 @@ public class CommentDAO {
 			StringBuilder sql = new StringBuilder();
 			sql.append(" update semi_comment set ");
 			sql.append(" content=? where cNo=? ");			
-			System.out.println(cvo.getCno()+" "+cvo.getContent());
+			
 			pstmt = con.prepareStatement(sql.toString());
 			
 			pstmt.setString(1, cvo.getContent());
