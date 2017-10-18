@@ -30,7 +30,7 @@ public class MovieDetailController implements Controller {
 		///// 광태 추가  카트 코드 
 		if(session!=null&&session.getAttribute("membervo")!=null) {
 			MemberVO mvo=	(MemberVO)session.getAttribute("membervo");
-			System.out.println("mvo.getCart().size() ::" + mvo.getCart().size());
+			
 			if(mvo.getCart().size()==0) {
 				mvo.getCart().add(movievo);
 			}else {

@@ -37,6 +37,9 @@ import com.kosta.movie20.controller.review.ReviewDetailController;
 import com.kosta.movie20.controller.review.ReviewUpdateController;
 import com.kosta.movie20.controller.review.ReviewUpdateFormController;
 import com.kosta.movie20.controller.review.ReviewWriteRegisterController;
+import com.kosta.movie20.second.commentcontroller.CommentWriteController;
+import com.kosta.movie20.second.commentcontroller.DeleteCommentController;
+import com.kosta.movie20.second.commentcontroller.UpdateCommentController;
 import com.kosta.movie20.second.seatcontroller.MeetingListInfoController;
 import com.kosta.movie20.second.seatcontroller.MeetingRegisterController;
 import com.kosta.movie20.second.seatcontroller.MeetingRegisterFormController;
@@ -124,9 +127,13 @@ public class HandlerMapping {
 			controller = new MeetingRegisterController();
 		}else if(command.equals("cmdMeetingListInfo")) {
 			controller = new MeetingListInfoController();
+		}else if(command.equals("cmdupdateComment")) {
+			controller = new UpdateCommentController();
+		}else if(command.equals("cmddeleteComment")) {
+			controller = new DeleteCommentController();
+		}else if(command.equals("cmdCommentWrite")) {
+			controller = new CommentWriteController();
 		}
-	
-
 		return controller;
 	}
 	
