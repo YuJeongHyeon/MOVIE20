@@ -27,7 +27,8 @@ public class GenreController implements Controller {
 
 		ArrayList<MovieVO> list = MovieDAO.getInstance().genreList(genre, mpb);
 		ListVO<MovieVO> lvo = new ListVO<MovieVO>(list, mpb);
-		if (genre.equals("액션") || genre.equals("멜로") || genre.equals("로맨스") || genre.equals("코미디")) {
+		if (genre.equals("액션") || genre.equals("멜로") || genre.equals("로맨스") || genre.equals("코미디")
+				|| genre.equals("19")) {
 			request.setAttribute("lvo", lvo);
 			request.setAttribute("url", "/movie/genre.jsp");
 		}

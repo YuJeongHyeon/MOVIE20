@@ -16,9 +16,11 @@ public class MeetingListInfoController implements Controller {
 		
 		ArrayList<MeetingVO> list =
 				SeatDAO.getInstance().getMeetingListInfo();
+		if(list.isEmpty()) {
+			request.setAttribute("url", "../second/meetingListInfo_empty.jsp");
+			return "/layout/home.jsp";
+		}
 		
-		
-
 		request.setAttribute("meetList", list);
 
 		request.setAttribute("url", "../second/meetingListInfo.jsp");

@@ -85,7 +85,7 @@ CREATE TABLE semi_score
 (
 	id                    VARCHAR2(100)  ,
 	mNo                  NUMBER  ,
-	score                 NUMBER  not null ,
+	score                 NUMBER  default -1 ,
 	PRIMARY KEY(id, mNo),
     FOREIGN KEY(id) REFERENCES semi_member(id),
     FOREIGN KEY(mNo) REFERENCES semi_movie(mNo)
@@ -97,24 +97,24 @@ DROP TABLE semi_score;
 ---- semi_seat Table 관련 -----------------
 CREATE TABLE semi_seat
 (
-	seatNum               VARCHAR2(100)  primary key ,
+	meetingDate           VARCHAR2(100) NOT NULL,
+	FOREIGN KEY(meetingDate) REFERENCES semi_meeting(meetingDate),
+	seatNum               VARCHAR2(100) default '0',
 	id                    VARCHAR2(100)  ,
 	FOREIGN KEY(id) REFERENCES semi_member(id)
 );
 SELECT * FROM semi_seat;
 DROP TABLE semi_seat;
 
-DROP sequence semi_seat_seq;
-CREATE sequence semi_seat_seq nocache;
+--DROP sequence semi_seat_seq;
+--CREATE sequence semi_seat_seq nocache;
 --------meeting table 관련----------------
 CREATE TABLE semi_meeting
 (
 	meetingDate           VARCHAR2(100)  primary key ,
 	mNo                  NUMBER not null  ,
 	FOREIGN KEY(mNo) REFERENCES semi_movie(mNo),
-	seatNum               VARCHAR2(100)  ,
-	FOREIGN KEY(seatNum) REFERENCES semi_seat(seatNum),
-	location 	varchar2(100) not null
+	location 	varchar2(100) default '미정'
 );
 
 SELECT * FROM semi_meeting;
@@ -142,7 +142,7 @@ CREATE sequence semi_comment_seq nocache;
 
 -- Member 추가 ---
 insert into semi_member(id, name, password, nick, address, birth, tel, favoriteGenre, authority) 
-values('java', '배승찬', '1234', '배찬', '동탄', '1989.01.07', '017', '로맨스', '일반'); 
+values('java7', '배승찬7', '1234', '배찬', '동탄', '1989.01.07', '017', '로맨스', '일반'); 
 
 insert into semi_member(id, name, password, nick, address, birth, tel, favoriteGenre, authority) 
 values('jquery', '한송희', '3456', '송히', '남양주', '1994.01.01', '016', '액션', '일반'); 
@@ -158,7 +158,7 @@ select * from semi_member;
 
 -- Movie List 추가 ---
 insert into semi_movie(mNo, title, playdate, character, director, genre, summary, runtime, viewingcheck, hits, grade, picture, id) 
-values(semi_movie_seq.nextval,'타이타닉', '1998.02.20', '레오나르도 디카프리오, 케이트 윈슬렛', '제임스 카메론', '멜로', 
+values(semi_movie_seq.nextval,'타이타닉', '1998.02.20', '레오나르도 디카프리오, 케이트 윈슬렛', '제임스 카메론', '19', 
 '1912년 북대서양의 차가운 바닷물 속에서 당대 꿈의 배라고 불렸던 타이타닉 호가 탐사대들에 의해 세상에 발견되면서 오랫동안 감춰져 있던 비극적인 스토리가 세상에 알려지게 된다. 
  17세기 엄격한 사회 질서에 숨막혀 하는 미국 상류층 로즈(케이트 윈슬렛)는 사교계의 굴레에서 벗어나지 못하는 어머니와 권위적인 재벌 귀족 약혼자와 함께 미국으로 향하는 타이타닉 호 1등실에 승선한다. 배가 출발하기 전 부두의 선술집에서 도박으로 운 좋게 타이타닉호의 3등실 티켓을 얻은 가난한 화가 잭(레오나르도 디카프리오) 역시 아슬아슬하게 배에 승선한다. 
  첫 눈에 1등실의 로즈에게 반한 잭은 갑판에서 우연히 바다로 몸을 던지려 하는 로즈를 발견하고 재치 있는 언변과 행동으로 그녀의 생명을 구한다. 이 사건을 계기로 1등실의 저녁식사에 초대받게 되고 서로에게 끌리는 자신들을 발견한다. 이후 그들의 금지된 사랑은 아무도 상상하지 못했던 타이타닉호 침몰조차 갈라 놓을 수 없었던 세기의 로맨스가 된다.', 
@@ -248,19 +248,37 @@ order by mNo desc
 
 select count(*) from SEMI_MOVIE where title like '%아%'
 ----------------------------------------
--- 1017 2244 추가분 밑 -------
+-- 1017 2244 광태 쿼리 -------
 insert into SEMI_MEETING(meetingDate, mNo,location) 
 values('2017-10-31',3,'고릴라 볼링장');
 --seat Num추가
-insert into SEMI_SEAT(seatNum) values(12);
+insert into SEMI_SEAT(seatNum) values(25);
+select seatNum, id from SEMI_SEAT
 
 -- meeting list info 쿼리
 select me.meetingDate, me.location, mv.mNo, mv.title, mv.runtime, mv.picture 
 FROM SEMI_MEETING me, SEMI_MOVIE mv 
 WHERE me.mNo = mv.mNo;
 
+<<<<<<< HEAD
+SELECT * FROM tab;
+select * from semi_meeting
+-- 좌석 등록
+select * from semi_seat
+insert into semi_seat(meetingdate,seatNum,id) 
+values('2017-10-30','4','java')
+=======
 select mno,title from SEMI_MOVIE
+>>>>>>> branch 'master' of https://github.com/YuJeongHyeon/MOVIE20.git
 
+<<<<<<< HEAD
+update semi_seat set seatNum = '10' 
+WHERE meetingdate = '2017-10-30' and id = 'java'
+-- meeting data 조회
+select seatNum from semi_seat WHERE meetingDate = '2017-10-30' and id='java'
+------- end 광태 쿼리----------------
+select count(*) from semi_notice
+=======
 insert into semi_review(rno,title,content,regdate,mno,id) 
 values(semi_review_seq.nextval,'바보 배승찬2','바보래요!!!',sysdate,6,'jquery')
 
@@ -279,3 +297,4 @@ as rnum,rNo,content,regdate,title,hits,mno,id
 from semi_review where mno=2)		
 where mno=2 and rnum between 1 and 5
 ORDER BY rNo DESC
+>>>>>>> branch 'master' of https://github.com/YuJeongHyeon/MOVIE20.git
