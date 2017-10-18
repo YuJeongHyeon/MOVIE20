@@ -14,6 +14,7 @@ import com.kosta.movie20.model.common.PagingBean;
 import com.kosta.movie20.model.common.PagingBeanSearch;
 import com.kosta.movie20.model.vo.MovieVO;
 import com.kosta.movie20.model.vo.ReviewVO;
+import com.kosta.movie20.second.score.model.ScoreDAO;
 
 
 public class MovieDAO {
@@ -60,6 +61,8 @@ public class MovieDAO {
 				MovieVO mvo=new MovieVO();
 				mvo.setmNo(rs.getString(1));
 				mvo.setPicture(rs.getString(2));
+				// 영화 전체 평점 평균값 세팅
+				mvo.setAverageScore(ScoreDAO.getInstance().averageScore(rs.getString(1)));
 				mList.add(mvo);
 			}		
 		}finally {
@@ -99,12 +102,12 @@ public class MovieDAO {
 				mvo.setHits(rs.getInt(10));	
 				mvo.setGrade(rs.getInt(11));	
 				mvo.setPicture(rs.getString(12));
-				
+				// 영화 전체 평점 평균값 세팅
+				mvo.setAverageScore(ScoreDAO.getInstance().averageScore(rs.getString(1)));
 			}			
 		}finally {
 			closeAll(rs, pstmt, con);
 		}
-		
 		return mvo;
 	}
 	public int getReviewListcount(String movieNo) throws SQLException {

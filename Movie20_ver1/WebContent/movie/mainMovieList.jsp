@@ -18,7 +18,7 @@
 							<table id="mainScore-table1">
 								<tbody>
 									<tr>
-										<td>회원 평점 9점</td>
+										<td>영화 평점 : ${movievo.averageScore} 점</td>
 									</tr>
 								</tbody>
 							</table>
@@ -36,7 +36,7 @@
 							<table id="mainScore-table2">
 								<tbody>
 									<tr>
-										<td>회원 평점 10점</td>
+										<td>영화 평점 : ${movievo.averageScore} 점</td>
 									</tr>
 								</tbody>
 							</table>

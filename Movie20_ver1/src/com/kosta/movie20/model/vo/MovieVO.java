@@ -17,6 +17,7 @@ public class MovieVO {
 	private int grade;
 	private String picture;
 	private String masterId;
+	private int averageScore;
 	public MovieVO() {
 		super();
 	}
@@ -56,6 +57,40 @@ public class MovieVO {
 		this.viewingcheck = viewingcheck;
 		this.playdate = playdate;
 		this.grade = grade;
+	}
+	public MovieVO( String mNo, String title, String character, String director, String genre,
+			String runtime, String viewingcheck, String playdate, int grade, String picture) {
+		super();
+		this.mNo = mNo;
+		this.title = title;
+		this.character = character;
+		this.director = director;
+		this.genre = genre;
+		this.runtime = runtime;
+		this.viewingcheck = viewingcheck;
+		this.playdate = playdate;
+		this.grade = grade;
+		this.picture = picture;
+	}
+	public MovieVO(ArrayList<ReviewVO> rlist, String mNo, String title, String summary, String character,
+			String director, String genre, String runtime, String viewingcheck, String playdate, int hits, int grade,
+			String picture, String masterId, int averageScore) {
+		super();
+		this.rlist = rlist;
+		this.mNo = mNo;
+		this.title = title;
+		this.summary = summary;
+		this.character = character;
+		this.director = director;
+		this.genre = genre;
+		this.runtime = runtime;
+		this.viewingcheck = viewingcheck;
+		this.playdate = playdate;
+		this.hits = hits;
+		this.grade = grade;
+		this.picture = picture;
+		this.masterId = masterId;
+		this.averageScore = averageScore;
 	}
 
 	public ArrayList<ReviewVO> getRlist() {
@@ -142,29 +177,22 @@ public class MovieVO {
 	public void setMasterId(String masterId) {
 		this.masterId = masterId;
 	}
+	
+	public int getAverageScore() {
+		return averageScore;
+	}
+
+	public void setAverageScore(int averageScore) {
+		this.averageScore = averageScore;
+	}
 
 	@Override
 	public String toString() {
 		return "MovieVO [rlist=" + rlist + ", mNo=" + mNo + ", title=" + title + ", summary=" + summary + ", character="
 				+ character + ", director=" + director + ", genre=" + genre + ", runtime=" + runtime + ", viewingcheck="
 				+ viewingcheck + ", playdate=" + playdate + ", hits=" + hits + ", grade=" + grade + ", picture="
-				+ picture + ", masterId=" + masterId + "]";
+				+ picture + ", masterId=" + masterId + ", averageScore=" + averageScore + "]";
 	}
-	public MovieVO( String mNo, String title, String character, String director, String genre,
-			String runtime, String viewingcheck, String playdate, int grade, String picture) {
-		super();
-		this.mNo = mNo;
-		this.title = title;
-		this.character = character;
-		this.director = director;
-		this.genre = genre;
-		this.runtime = runtime;
-		this.viewingcheck = viewingcheck;
-		this.playdate = playdate;
-		this.grade = grade;
-		this.picture = picture;
-	}
-	
 
 	
 

@@ -12,6 +12,13 @@
 			document.deleteForm.submit();
 		}
 	}
+	
+	function registerScore(){
+		if(confirm("평점을 등록하시겠습니까?")){
+			document.registerScoreForm.submit();
+		}
+	}
+	
 </script>
 
 <table class="table table-bordered  table-hover boardlist">
@@ -19,7 +26,7 @@
 		<tbody>						
 								
 			<tr>
-				<td rowspan='4'><img src="${pageContext.request.contextPath}/img/${movievo.picture }" id="imgDetail"></td>
+				<td rowspan='5'><img src="${pageContext.request.contextPath}/img/${movievo.picture }" id="imgDetail"></td>
 			    <td>영화 제목</td>
 				<td>${requestScope.movievo.title }</td>
 				<td>감독</td>
@@ -42,6 +49,63 @@
 				<td>${requestScope.movievo.playdate }</td>
 				<td>등급</td>
 				<td>${requestScope.movievo.grade }</td>				
+			</tr>
+			<tr>
+			    <td>영화<br>전체<br>평점</td>
+				<td>${movievo.averageScore} 점</td>
+				<c:choose>
+					<c:when test="${sessionScope.membervo==null}">
+						<td></td>
+						<td></td>
+					</c:when>
+					<c:otherwise>
+						<%-- <td><font id="name" style="color: #0066ff;">${sessionScope.membervo.name}</font><br>님의<br>평점</td> --%>
+						<td>회원<br>평점</td>
+						<td>
+							<table class="table">
+							<c:choose>
+								<c:when test="${svo.score != -1}">
+								<tbody>
+									<tr>
+										<td>
+											<font id="name" style="color: #0066ff;">${sessionScope.membervo.name}</font> 님의 평점 : ${svo.score} 점
+										</td>
+									</tr>
+								</tbody>
+								</c:when>
+								<c:otherwise>
+								<tbody>
+									<tr>
+										<td>
+											<form name="registerScoreForm" action="${pageContext.request.contextPath}/DispatcherServlet">
+											<input type="hidden" name="command" value="cmdRegisterScore">
+											<input type="hidden" name="mNo" value="${requestScope.movievo.mNo }">
+											<input type="radio" name="score" value="1">1점
+											<input type="radio" name="score" value="2">2점
+											<input type="radio" name="score" value="3">3점
+											<input type="radio" name="score" value="4">4점
+											<input type="radio" name="score" value="5">5점
+											<button type="button" id="scoreBtn" class="btn" onclick="registerScore()">평점 등록</button>
+											</form>
+										</td>
+									</tr>
+								</tbody>
+								</c:otherwise>
+								</c:choose>
+							</table> 
+							<%-- <form name="registerScoreForm" action="${pageContext.request.contextPath}/DispatcherServlet">
+							<input type="hidden" name="command" value="cmdRegisterScore">
+							<input type="hidden" name="mNo" value="${requestScope.movievo.mNo }">
+							<input type="radio" name="score" value="1">1점
+							<input type="radio" name="score" value="2">2점
+							<input type="radio" name="score" value="3">3점
+							<input type="radio" name="score" value="4">4점
+							<input type="radio" name="score" value="5">5점
+							<button type="button" class="btn" onclick="registerScore()">평점 등록</button>
+							</form> --%>
+						</td>
+					</c:otherwise>
+				</c:choose>		
 			</tr>
 			
 			<tr>

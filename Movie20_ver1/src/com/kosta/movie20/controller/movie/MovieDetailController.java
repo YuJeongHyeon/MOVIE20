@@ -13,6 +13,8 @@ import com.kosta.movie20.model.vo.MemberVO;
 import com.kosta.movie20.model.vo.MovieVO;
 import com.kosta.movie20.model.vo.ReviewListVO;
 import com.kosta.movie20.model.vo.ReviewVO;
+import com.kosta.movie20.second.score.model.ScoreDAO;
+import com.kosta.movie20.second.score.model.ScoreVO;
 
 public class MovieDetailController implements Controller {
 
@@ -52,6 +54,28 @@ public class MovieDetailController implements Controller {
 		}
 		//////// 카트 코드 end		
 		
+		/////////////// 영훈 checkScore 코드 start
+		// db의 score table이 생성되었는지 여부 체킹 후 
+		// 생성이 되지 않았을 경우 생성해주는 과정
+		if(session!=null&&session.getAttribute("membervo")!=null) {
+			MemberVO membervo = (MemberVO) session.getAttribute("membervo");
+			String id = membervo.getId();
+			//	String movieNo = request.getParameter("movieNo");
+			int mNo = Integer.parseInt(movieNo);
+			ScoreVO svo = ScoreDAO.getInstance().checkScore(mNo, id);
+			System.out.println("처음 체킹 "+svo.getScore());
+			if(svo.getScore()==0) {
+				ScoreDAO.getInstance().registerScroreTable(svo);
+				ScoreVO svo2 = ScoreDAO.getInstance().checkScore(mNo,id);
+				svo = svo2;
+				System.out.println("new register 후 체킹 "+svo.getScore());	
+			}
+			request.setAttribute("svo", svo);
+			System.out.println("마지막 "+svo.getScore());
+		}
+	
+		//////////////// checkScore 코드 end
+	
 		int totalPostCount=MovieDAO.getInstance().getReviewListcount(movieNo);
 		String pno=request.getParameter("pageNo");
 		
