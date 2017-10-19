@@ -267,15 +267,17 @@ select * from semi_meeting
 select * from semi_seat
 insert into semi_seat(meetingdate,seatNum,id) 
 values('2017-10-30','4','java')
-=======
-select mno,title from SEMI_MOVIE
->>>>>>> branch 'master' of https://github.com/YuJeongHyeon/MOVIE20.git
 
-<<<<<<< HEAD
+-- ÁÂ¼® ¾÷µ¥ÀÌÆ®
 update semi_seat set seatNum = '10' 
 WHERE meetingdate = '2017-10-30' and id = 'java'
+
+--ÁÂ¼® ¿¹¾à Ãë¼Ò
+delete semi_seat WHERE id='a' and meetingDate = '2017-10-31' and seatNum = 6;
 -- meeting data Á¶È¸
 select seatNum from semi_seat WHERE meetingDate = '2017-10-30' and id='java'
+
+
 ------- end ±¤ÅÂ Äõ¸®----------------
 select count(*) from semi_notice
 =======
@@ -297,14 +299,7 @@ as rnum,rNo,content,regdate,title,hits,mno,id
 from semi_review where mno=2)		
 where mno=2 and rnum between 1 and 5
 ORDER BY rNo DESC
->>>>>>> branch 'master' of https://github.com/YuJeongHyeon/MOVIE20.git
 
-
-select rnum,cNo,Content,writeTime,id,rNo
-from (select row_number() over(order by rNo desc) as rnum,
-cNo,Content,writeTime,id,rNo from semi_comment where rno=1 )
- where rNo=1
- ORDER BY rnum DESC 
 
 
 

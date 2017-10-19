@@ -182,7 +182,7 @@ public class SeatDAO {
 			con = dataSource.getConnection();
 			StringBuilder sql = new StringBuilder();
 			
-sql.append("select seatNum from semi_seat WHERE meetingDate =? and id=?");
+			sql.append("select seatNum from semi_seat WHERE meetingDate =? and id=?");
 
 			
 			pstmt = con.prepareStatement(sql.toString());
@@ -198,5 +198,28 @@ sql.append("select seatNum from semi_seat WHERE meetingDate =? and id=?");
 		}
 		return seatNum;
 	}//updateSeatReservationById
+	
+	public void deleteSeatReservation(String id, String seatNum, String meetingDate) throws SQLException {
 
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = dataSource.getConnection();
+			StringBuilder sql = new StringBuilder();
+			
+			sql.append("delete semi_seat ");
+			sql.append("WHERE id=? and meetingDate = ? and seatNum = ?");
+			
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, id);
+			pstmt.setString(2, meetingDate);
+			pstmt.setString(3, seatNum);
+			pstmt.executeUpdate();
+			
+		} finally {
+			closeAll( pstmt, con);
+		}
+
+	}//updateSeatReservationById
 }

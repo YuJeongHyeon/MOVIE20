@@ -132,7 +132,15 @@
 			            <input type="hidden"  value="${requestScope.meetingData.meetingDate}" name="meetingDate"> 
 			            <input type="submit" value="수정" class="btn btn-primary active">
 			         </div>
-			    </form>        	
+			    </form>
+			    <form action="${pageContext.request.contextPath}/DispatcherServlet" method="post">  
+			        <div align="right">
+			          	<input type="hidden" value="cmdDeleteSeatReservation" name="command"> 
+			            <input type="hidden" id="seatChk" value="${requestScope.seatNum}" name="seatNum"> 
+			            <input type="hidden"  value="${requestScope.meetingData.meetingDate}" name="meetingDate"> 
+			            <input type="submit" value="예약취소" class="btn btn-primary active">
+			         </div>
+			    </form>            	
          	</c:otherwise>
          </c:choose>
          
