@@ -29,10 +29,11 @@
     <div class="table-responsive">
 		<form action="DispatcherServlet" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="command" value="movieRegister">
+			<input type="hidden" name="id" value="${requestScope.masterId}">
 			<table class="table table-bordered" id="dataTable" width="600" cellspacing="20px">
 				<tr>
 					<th>등록인</th>
-					<td colspan="3"><input type="text" value="${requestScope.masterId}" name="id" readonly="readonly"></td>
+					<td colspan="3">${requestScope.masterId}</td>
 				</tr>
 				<tr>
 					<th>제목</th>

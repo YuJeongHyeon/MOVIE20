@@ -134,8 +134,10 @@
 		</tbody>					
 	</table>
 	<c:if test="${sessionScope.membervo.id!=null}">
-<form method="post" action="DispatcherServlet?id=${sessionScope.membervo.id}&movieno=${movievo.mNo }">
+<form method="post" action="DispatcherServlet">
 		<input type="hidden" name="command" value="reviewWrite">
+		<input type="hidden" name="id" value="${sessionScope.membervo.id}">
+		<input type="hidden" name="movieno" value="${movievo.mNo }">
 <table  class="table table-hover">
 <tbody>
 	<tr>
@@ -169,7 +171,7 @@
 		<tbody>						
 			<c:forEach var="rvo" items="${requestScope.listVO.list}">				
 			<tr>			
-				<td><a href="DispatcherServlet?command=reviewDetail&rno=${rvo.rno }&movieno=${movievo.mNo }">${rvo.rno }</a></td>
+				<td><a href="DispatcherServlet?command=reviewDetail&rno=${rvo.rno }&movieno=${movievo.mNo }">${rvo.mno }</a></td>
 				<td><a href="DispatcherServlet?command=reviewDetail&rno=${rvo.rno }&movieno=${movievo.mNo }">${rvo.title }</a></td>
 				<td><a href="DispatcherServlet?command=reviewDetail&rno=${rvo.rno }&movieno=${movievo.mNo }">${rvo.id }</a></td>
 				<td><a href="DispatcherServlet?command=reviewDetail&rno=${rvo.rno }&movieno=${movievo.mNo }">${rvo.regdate }</a></td>

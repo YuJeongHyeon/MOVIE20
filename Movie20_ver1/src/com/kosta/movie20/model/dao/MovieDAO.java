@@ -157,12 +157,13 @@ public class MovieDAO {
 			//select no,title,time_posted,hits,id,name
 			while(rs.next()){		
 				ReviewVO rvo=new ReviewVO();
-				rvo.setRno(rs.getString(1));
+				rvo.setRno(rs.getString(2));
 				rvo.setContent(rs.getString(3));
 				rvo.setRegdate(rs.getString(4));
 				rvo.setTitle(rs.getString(5));
 				rvo.setHits(rs.getInt(6));
-				rvo.setId(rs.getString(8));				
+				rvo.setId(rs.getString(8));	
+				rvo.setMno(rs.getString(1));
 				
 				rList.add(rvo);			
 			}
