@@ -2,6 +2,8 @@ package com.kosta.movie20.second.seatcontroller;
 
 
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -23,17 +25,20 @@ public class SeatReservationFormController implements Controller {
 			System.out.println("session : 체크 실패 index로 ");
 			return "redirect:index.jsp";
 		}
-		System.out.println("session : 체크됨, 검색폼으로 ");
 		
 		String picture = request.getParameter("picture");
 		String title = request.getParameter("title");
 		String meetingDate = request.getParameter("meetingDate");
-		System.out.println("meetingDate :"+ meetingDate);
+		
 		MeetingVO mvo = 
 				SeatDAO.getInstance().meetingInfoByDate(meetingDate);
-		
-	    MemberVO mvo2 = (MemberVO)session.getAttribute("membervo");
-	    String seatNum = SeatDAO.getInstance().getSeatNumById(mvo2.getId(), meetingDate);
+
+
+		MemberVO mvo2 = (MemberVO)session.getAttribute("membervo");
+		String seatNum = SeatDAO.getInstance().getSeatNumById(mvo2.getId(), meetingDate);
+
+		ArrayList<String> seatList = SeatDAO.getInstance().getAllSeat();
+		request.setAttribute("seatList", seatList);
 		
 		if(mvo!=null) {
 			mvo.setTitle(title);

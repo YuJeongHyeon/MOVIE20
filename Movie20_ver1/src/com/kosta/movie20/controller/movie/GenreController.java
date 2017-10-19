@@ -31,6 +31,7 @@ public class GenreController implements Controller {
 				|| genre.equals("19")) {
 			request.setAttribute("lvo", lvo);
 			request.setAttribute("url", "/movie/genre.jsp");
+			request.setAttribute("genre", genre);
 		}
 
 		return "/layout/home.jsp";

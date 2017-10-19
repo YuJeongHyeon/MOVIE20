@@ -222,4 +222,27 @@ public class SeatDAO {
 		}
 
 	}//updateSeatReservationById
+
+	public ArrayList<String> getAllSeat() throws SQLException {
+		ArrayList<String> seatList = new ArrayList<String>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = dataSource.getConnection();
+			StringBuilder sql = new StringBuilder();
+			sql.append("select seatNum from semi_seat");
+			pstmt = con.prepareStatement(sql.toString());
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				seatList.add(rs.getString(1));
+			}
+		}finally {
+			closeAll(rs, pstmt, con);
+		}
+		System.out.println("디에이오: "+seatList.size());
+		return seatList;
+	}//getAllSeat
 }

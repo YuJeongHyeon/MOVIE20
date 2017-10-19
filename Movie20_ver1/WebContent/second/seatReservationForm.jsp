@@ -10,30 +10,50 @@
   
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript">
-     $(document).ready(function(){
-      var ticket = [];
-      
-      $("#ticketTable td").click(function(){
-         $().text($(this).text()).css("background-color", "#0059b3");
-         
-         if($(this).css("background-color")=="rgb(255, 255, 255)"){
-            if($("#ticketInfo").text() == ""){
-                 $(this).css("background-color", "#0059b3")
-                 ticket.push($(this).text());
-            }
-           }else{
-              $(this).css("background-color", "white")
-              var remove = $(this).text();
-              ticket = $.grep(ticket, function(data){
-                 return remove!=data;
-              });
-           }
-         
-           $("#ticketInfo").text(ticket.toString());
-           $("#seatChk").val(ticket.toString());
+  $(document).ready(function(){
+	     var ticket = [];
+		   var table = $("#ticketTable td");
+		   //alert(table.length);
+	      var seatList = ${requestScope.seatList};
+	       for(var i=0; i<seatList.length; i++){
+		   
+	    	   //에러 나는 위치
+		     for(var j=1; j<=table.length; j++){
+		    	// alert($("#"+j).text());
+		    	 if($("#"+j).text()==seatList[i].toString()){
+		    		
+		    		 $("#"+j).css('background-color', 'red');
+		    		// alert($("#"+j).css("background-color"));
+		    	 }//if 
+	    	  }//for j
+	      }//for i
+	       
+	       
+	       
+	      $("#ticketTable td").click(function(){
+	         
+	    	  if($(this).css("background-color")== "rgb(255, 0, 0)"){    		  
+	    		  alert("이미 예약된 좌석입니다.!");
+	    	  }else{
+	    		   if($(this).css("background-color")=="rgb(255, 255, 255)"){
+			            if($("#ticketInfo").text() == ""){
+			                 $(this).css("background-color", "#0059b3")
+			                 ticket.push($(this).text());
+			            }
+		          }else{
+		              $(this).css("background-color", "white")
+		              var remove = $(this).text();
+		              ticket = $.grep(ticket, function(data){
+		                 return remove!=data;
+		              });
+		          }
+		         
+		           $("#ticketInfo").text(ticket.toString());
+		           $("#seatChk").val(ticket.toString());
+	    	  }	      
 
-      });
-     });
+	      });
+	     });
   </script>
 
 
@@ -58,43 +78,53 @@
                    </td>
                    <td>
                       <table class="table table-bordered" id="ticketTable">
-                      <tr> <th colspan="6" style="text-align: center;">스 크 린</th> </tr>
+                      	<tr ><th colspan="6" style="text-align: center;">스크린</th> </tr>
                          <tr>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>3</td>
-                            <td>4</td>
-                            <td>5</td>
+                            <td id="1">1</td>
+                            <td id="2">2</td>
+                            <td id="3">3</td>
+                            <td id="4">4</td>
+                            <td id="5">5</td>
                          </tr>
                          <tr>
-                            <td>6</td>
-                            <td>7</td>
-                            <td>8</td>
-                            <td>9</td>
-                            <td>10</td>
+                            <td id="6">6</td>
+                            <td id="7">7</td>
+                            <td id="8">8</td>
+                            <td id="9">9</td>
+                            <td id="10">10</td>
                          </tr>
                          <tr>
-                            <td>11</td>
-                            <td>12</td>
-                            <td>13</td>
-                            <td>14</td>
-                            <td>15</td>
+                            <td id="11">11</td>
+                            <td id="12">12</td>
+                            <td id="13">13</td>
+                            <td id="14">14</td>
+                            <td id="15">15</td>
                          </tr>
                          <tr>
-                            <td>16</td>
-                            <td>17</td>
-                            <td>18</td>
-                            <td>19</td>
-                            <td>20</td>
+                            <td id="16">16</td>
+                            <td id="17">17</td>
+                            <td id="18">18</td>
+                            <td id="19">19</td>
+                            <td id="20">20</td>
                          </tr>
                          <tr>
-                            <td>21</td>
-                            <td>22</td>
-                            <td>23</td>
-                            <td>24</td>
-                            <td>25</td>
+                            <td id="21">21</td>
+                            <td id="22">22</td>
+                            <td id="23">23</td>
+                            <td id="24">24</td>
+                            <td id="25">25</td>
                          </tr>
+                           
                       </table>
+                      
+                      <table>
+                      		<tbody>
+                      			<tr>
+                         			<th style="background-color: #0059b3;"> 선택 좌석 </th> &nbsp;<th style="background-color: red;"> 예          약 </th>
+                     			  </tr>
+                      		</tbody>
+                      </table>
+                      
                   <tr>
                      <td colspan="3">
                            영화명 : ${requestScope.meetingData.title}  &nbsp;&nbsp;&nbsp;&nbsp;
