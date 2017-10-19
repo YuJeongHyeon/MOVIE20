@@ -2,4 +2,4 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<p>Footer Text</p>
+<p>Movie 2.0</p>

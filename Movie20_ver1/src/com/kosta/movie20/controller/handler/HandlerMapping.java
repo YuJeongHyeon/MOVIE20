@@ -47,6 +47,7 @@ import com.kosta.movie20.second.seatcontroller.MeetingRegisterController;
 import com.kosta.movie20.second.seatcontroller.MeetingRegisterFormController;
 import com.kosta.movie20.second.seatcontroller.SeatReservationController;
 import com.kosta.movie20.second.seatcontroller.SeatReservationFormController;
+import com.kosta.movie20.second.seatcontroller.UpdateSeatReservationController;
 
 public class HandlerMapping {
 	private static HandlerMapping instance=new HandlerMapping();
@@ -147,6 +148,8 @@ public class HandlerMapping {
 		////////////////////////////2차 SCORE/////////
 		else if(command.equals("cmdRegisterScore")) {
 			controller = new RegisterScoreController();
+		}else if( command.equals("cmdUpdateSeatReservation")) {
+			controller = new UpdateSeatReservationController();
 		}
 		
 		return controller;

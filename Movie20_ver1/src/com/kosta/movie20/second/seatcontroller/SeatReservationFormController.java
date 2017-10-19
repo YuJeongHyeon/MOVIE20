@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.kosta.movie20.controller.common.Controller;
+import com.kosta.movie20.model.vo.MemberVO;
 import com.kosta.movie20.second.seatmodel.MeetingVO;
 import com.kosta.movie20.second.seatmodel.SeatDAO;
 
@@ -30,7 +31,10 @@ public class SeatReservationFormController implements Controller {
 		System.out.println("meetingDate :"+ meetingDate);
 		MeetingVO mvo = 
 				SeatDAO.getInstance().meetingInfoByDate(meetingDate);
-		String seatNum = SeatDAO.getInstance().getSeatNumById(session.getId(), meetingDate);
+		
+	    MemberVO mvo2 = (MemberVO)session.getAttribute("membervo");
+	    String seatNum = SeatDAO.getInstance().getSeatNumById(mvo2.getId(), meetingDate);
+		
 		if(mvo!=null) {
 			mvo.setTitle(title);
 			mvo.setPicture(picture);

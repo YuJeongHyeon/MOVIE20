@@ -40,26 +40,25 @@
 <div class="bg-dark">
   <div class="seat-container">
     <div class="card card-login mx-auto mt-5">
-      <div class="card-header">좌석</div>
+      <div class="card-header">좌석 예약</div>
       
       <div class="card-body">
       
       <div  style="size: inherit;">
       
-        <form action="${pageContext.request.contextPath}/DispatcherServlet" method="post">
- 
-          
           
           <div class="form-group">
              
            <table class="table table-bordered" id="ticketTableForm">
              <tbody>
+   
                   <tr>
                      <td align="center">
                       <img src="${pageContext.request.contextPath}/img/${meetingData.picture}" width=300 height=400>
                    </td>
                    <td>
                       <table class="table table-bordered" id="ticketTable">
+                      <tr> <th colspan="6" style="text-align: center;">스 크 린</th> </tr>
                          <tr>
                             <td>1</td>
                             <td>2</td>
@@ -107,22 +106,36 @@
            </table>
            
            <div>
-              예약좌석: ${sessionScope.meetingData.seatNum}
+              예약좌석: ${requestScope.seatNum}
            </div>
            
            <div align="right">
               <span id="ticketInfo"></span>
            </div>
           </div>
-          
-          
-          <div align="right">
-          	<input type="hidden" value="cmdSeatReservation" name="command"> 
-               <input type="hidden" id="seatChk" value="" name="seatNum"> 
-               <input type="hidden"  value="${requestScope.meetingData.meetingDate}" name="meetingDate"> 
-             	<input type="submit" value="전송">
-          </div>
-        </form>
+         <c:choose>
+         	<c:when test="${requestScope.seatNum eq null}">
+         		<form action="${pageContext.request.contextPath}/DispatcherServlet" method="post">  
+		          <div align="right">
+		          	<input type="hidden" value="cmdSeatReservation" name="command"> 
+		               <input type="hidden" id="seatChk" value="" name="seatNum"> 
+		               <input type="hidden"  value="${requestScope.meetingData.meetingDate}" name="meetingDate"> 
+		             	<input type="submit" value="예약" class="btn btn-primary active">
+		          </div>
+        		</form>
+         	</c:when>
+         	<c:otherwise>
+			 	<form action="${pageContext.request.contextPath}/DispatcherServlet" method="post">  
+			        <div align="right">
+			          	<input type="hidden" value="cmdUpdateSeatReservation" name="command"> 
+			            <input type="hidden" id="seatChk" value="" name="seatNum"> 
+			            <input type="hidden"  value="${requestScope.meetingData.meetingDate}" name="meetingDate"> 
+			            <input type="submit" value="수정" class="btn btn-primary active">
+			         </div>
+			    </form>        	
+         	</c:otherwise>
+         </c:choose>
+         
         </div>
       </div>
       

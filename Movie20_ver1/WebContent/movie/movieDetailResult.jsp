@@ -149,7 +149,7 @@
 		<td colspan='5'>내용</td >
 	</tr>
 	<tr>
-		<td colspan='5'><textarea name="content" cols="120"rows="10"> </textarea></td>
+		<td colspan='5'><textarea name="content" cols="100" rows="10"> </textarea></td>
 	</tr>
 	<tr>
 	<td colspan="5" align="right"><input type="submit" value="리뷰등록" class="btn btn-primary" width="15%"></td>

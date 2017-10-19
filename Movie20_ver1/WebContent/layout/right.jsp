@@ -2,7 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
+<script type="text/javascript">
+$( '.top' ).click( function() {
+  $( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+  return false;
+} );
+</script>
 <c:choose>
 	<c:when test="${sessionScope.membervo!=null}">
 			 <div class="well right"  id="RightScrollspy" data-spy="affix">
@@ -15,7 +20,7 @@
 					</div>
 					<hr>
 					<div>
-						   <p style="font-size: 20px; text-align: center;"><a>top</a></p>
+						   <p style="font-size: 20px; text-align: center;"><a href="#" class="top">Top</a></p>
 					</div>
 						      
 			</div>	

@@ -162,8 +162,8 @@ public class SeatDAO {
 			sql.append("WHERE meetingdate = ? and id = ? ");
 			
 			pstmt = con.prepareStatement(sql.toString());
-			pstmt.setString(1, meetingDate);
-			pstmt.setString(2, seatNum);
+			pstmt.setString(1, seatNum);
+			pstmt.setString(2, meetingDate);
 			pstmt.setString(3, id);
 			pstmt.executeUpdate();
 			
