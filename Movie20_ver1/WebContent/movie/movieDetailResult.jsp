@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
 <script type="text/javascript">
 	function checkUpdate(){
 		location.href="${pageContext.request.contextPath}/DispatcherServlet?command=movieUpdateForm&mNo=${requestScope.movievo.mNo}";
@@ -150,7 +152,7 @@
 		<td colspan='5'><textarea name="content" cols="120"rows="10"> </textarea></td>
 	</tr>
 	<tr>
-	<td><input type="submit" value="리뷰등록"></td>
+	<td colspan="5" align="right"><input type="submit" value="리뷰등록" class="btn btn-primary" width="15%"></td>
 	</tr>
 </tbody>
 

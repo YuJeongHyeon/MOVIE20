@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     
+<link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">    
+    
 <table  class="table table-hover">
 <tbody>
 <tr>
@@ -15,13 +17,13 @@
  <c:if test="${sessionScope.membervo.id==rvo.id}">
  
 	<tr>	
-		<td colspan="1"><input type="button" value="리뷰 수정" id="updateReview" onClick="location.href='DispatcherServlet?command=updateReviewform&rno=${rvo.rno}'"
+		<td colspan="1"><input type="button" value="리뷰 수정" id="updateReview" onClick="location.href='DispatcherServlet?command=updateReviewform&rno=${rvo.rno}'" class="btn btn-primary" width="10%"
 ></td>
-		<td colspan="4"><input type="button" value="삭제" id="deleteReview" onClick="location.href='DispatcherServlet?command=deleteReview&rno=${rvo.rno}&movieno=${rvo.mno}'">	</td>
+		<td colspan="4"><input type="button" value="삭제" id="deleteReview" onClick="location.href='DispatcherServlet?command=deleteReview&rno=${rvo.rno}&movieno=${rvo.mno}'" class="btn btn-primary" width="10%">	</td>
 	<tr>
 </c:if>
  <tr>
-	<td colspan="5"><input type="button" value="뒤로가기" id="back" onClick="location.href='DispatcherServlet?command=MovieDetail&movieNo=${rvo.mno}'">	</td>
+	<td colspan="5"><input type="button" value="뒤로가기" id="back" onClick="location.href='DispatcherServlet?command=MovieDetail&movieNo=${rvo.mno}'" class="btn btn-primary" width="10%">	</td>
 	
 </tr>
 </tbody>
@@ -34,7 +36,7 @@
 		<tr>
 			<td >작성자 </td><td>${sessionScope.membervo.id}</td>
 			<td>댓글</td><td><input type='text' name="content" ></td>
-			<td><input type="submit" value="댓글등록"></td>
+			<td align="left"><input type="submit" value="댓글등록" class="btn btn-primary" width="15%"></td>
 		</tr>
 		
 	</tbody>
