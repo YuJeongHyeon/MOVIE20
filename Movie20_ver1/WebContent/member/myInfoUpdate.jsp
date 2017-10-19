@@ -1,28 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-    
 
 <meta charset="UTF-8">
 <title>회원 정보 수정</title>
 <script type="text/javascript">
-$(document).ready(function(){ 
-	
+$(document).ready(function(){
 	 $("#favoriteGenre").val("${memberVo.favoriteGenre}").attr("selected", "selected");
 	
-	
-	   $("#registerForm").submit(function() {
-	      var rf=document.registerForm;
-	      var password=rf.password.value;
-	      var repeatPassword=rf.repeatPassword.value;
-	      if(password!=repeatPassword){
-	         alert("패스워드와 패스워드 확인이 일치하지 않습니다");
-	         return false;
-	      }
-	     
-	   });//submit
-	  
-	});//ready
+	$("#updateForm").submit(function() {
+		
+	 	var rf=document.updateForm;
+		var password=rf.password.value;
+		var repeatPassword=rf.repeatPassword.value;
+		if(password!=repeatPassword){
+			alert("패스워드와 패스워드 확인이 일치하지 않습니다");
+			return false;
+		} 
+		
+	});//submit
+});
 
 </script>
 
@@ -32,14 +29,14 @@ $(document).ready(function(){
    <div class="container">
       <div class="card card-login mx-auto mt-5">
          <div class="card-body">
-            <form method="post" name="registerForm" action="DispatcherServlet">
+            <form method="post" id="updateForm" name="updateForm" action="DispatcherServlet">
                <input type="hidden" name="command" value="cmdMemberUpdate">
                <input type="hidden" name="id" value="${requestScope.memberVo.id}">
                <div class="form-group">
                    
                   <font color="#0059b3">아이디 : ${requestScope.memberVo.id}</font> <br>
                   <span id="checkResult"></span><br>
-                  <font color="#0059b3">패스워드:</font> <input type="password" class="register-control" name="password"  id="password"required="required" value="${requestScope.memberVo.password}"><br>
+                  <font color="#0059b3">패스워드:</font> <input type="password" class="register-control" name="password"  id="password" required="required" value="${requestScope.memberVo.password}"><br>
                   <font color="#0059b3">패스워드 확인:</font> <input type="password" class="register-control" name="repeatPassword" id="repeatPassword" required="required" value="${requestScope.memberVo.password}"><br>
                   <font color="#0059b3">닉네임:</font> <input type="text" class="register-control" name="nick" id="nick" required="required" value="${memberVo.nick}"><br>
                   <font color="#0059b3">이름:</font> <input type="text" class="register-control" name="name" id="name" required="required" value="${memberVo.name}"><br>
@@ -56,7 +53,7 @@ $(document).ready(function(){
                      <option value="19">19</option>
                   </select>
                   <br><br><br>
-                  <input type="submit" value="회원 정보 수정" class="btn btn-primary btn-block">
+                  <input type="submit" value="회원 정보 수정" id="updatesubmit" class="btn btn-primary btn-block">
                </div>
             </form>
 

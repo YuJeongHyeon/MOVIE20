@@ -47,23 +47,25 @@ public class CommentDAO {
 			con=getConnection(); 
 			StringBuilder sql=new StringBuilder();
 	
-			sql.append("select cNo,Content,writeTime,id,rNo from ");
-			sql.append(" semi_comment ");						
+			//sql.append(" select rnum,cNo,Content,writeTime,id,rNo "); 
+			sql.append(" select * ");
+			sql.append(" from (select row_number() over(order by rNo desc) as rnum, ");
+			sql.append(" cNo,Content,writeTime,id,rNo from semi_comment where rNo=? ) ");	
 			sql.append(" where rNo=? ");
-			sql.append(" ORDER BY cNo DESC ");
+			sql.append(" ORDER BY rnum DESC ");
 			pstmt=con.prepareStatement(sql.toString());	
 			pstmt.setInt(1,Integer.parseInt(rNo));
-			
+			pstmt.setInt(2,Integer.parseInt(rNo));
 			rs=pstmt.executeQuery();	
 			//목록에서 게시물 content는 필요없으므로 null로 setting
 			//select no,title,time_posted,hits,id,name
 			while(rs.next()){		
 				CommentVO cvo=new CommentVO();
-				cvo.setCno(rs.getString(1));
-				cvo.setContent(rs.getString(2));
-				cvo.setWritetime(rs.getString(3));
-				cvo.setId(rs.getString(4));
-				cvo.setRno(rs.getString(5));
+				cvo.setCno(rs.getString("rnum"));
+				cvo.setContent(rs.getString("Content"));
+				cvo.setWritetime(rs.getString("writeTime"));
+				cvo.setId(rs.getString("id"));
+				cvo.setRno(rs.getString("rNo"));
 							
 				cList.add(cvo);
 						

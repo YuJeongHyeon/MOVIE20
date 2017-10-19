@@ -28,9 +28,9 @@ public class CommentWriteController implements Controller {
 		
 		String mno = request.getParameter("mno");
 		request.setAttribute("rno", rno);
-		System.out.println(rno);
+		
 		request.setAttribute("mno", mno);
-		System.out.println(mno);
+		
 		String url = "DispatcherServlet?command=reviewDetail&rno="+rno+"&movieno="+mno;
 		return url;
 	}
