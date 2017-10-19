@@ -22,9 +22,9 @@
 		        <li class="dropdown">
 		          <a class="dropdown-toggle gerneA" data-toggle="dropdown" href="#"> 관리 <span class="caret"></span></a>
 		          <ul class="dropdown-menu">
-		            <li><a href="#section41">공지사항 관리</a></li>
+		            
 		            <li><a href="${pageContext.request.contextPath}/DispatcherServlet?command=cmdMemberSearchForm">회원 관리</a></li>
-		            <li><a href="#section42">영화 관리</a></li>
+		            <li><a href="DispatcherServlet?command=movieRegisterView&id=${sessionScope.membervo.id}">영화 등록</a></li>
 		          </ul>
 		        </li>
 		         <li class="dropdown">
