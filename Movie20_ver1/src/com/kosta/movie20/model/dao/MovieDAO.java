@@ -213,13 +213,11 @@ public class MovieDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
 		try {
 			con = dataSource.getConnection();
 			StringBuilder sql=new StringBuilder();
-			
-			sql.append("SELECT mNo,picture,genre ");
-			sql.append("from (select row_number() over(order by mNo desc) as rnum,mNo,picture,genre from SEMI_MOVIE where genre=?) ");
+			sql.append("SELECT mNo,picture,genre,hits ");
+			sql.append("from (select row_number() over(order by mNo desc) as rnum,mNo,picture,genre,hits from SEMI_MOVIE where genre=?) ");
 			sql.append("SEMI_MOVIE ");
 			sql.append("where rnum between ? and ? ");
 			sql.append("ORDER BY mNo DESC");
@@ -227,13 +225,15 @@ public class MovieDAO {
 			pstmt.setString(1, genre);
 			pstmt.setInt(2, mpb.getStartRowNumber());
 			pstmt.setInt(3, mpb.getEndRowNumber());
-			
 			rs=pstmt.executeQuery();
 			while(rs.next()){		
 				MovieVO mvo=new MovieVO();
 				mvo.setmNo(rs.getString(1));
 				mvo.setPicture(rs.getString(2));
 				mvo.setGenre(rs.getString(3));
+				mvo.setHits(rs.getInt(4));
+				// 영화 전체 평점 평균값 세팅
+				mvo.setAverageScore(ScoreDAO.getInstance().averageScore(rs.getString(1)));
 				mList.add(mvo);
 			}		
 		}finally {
@@ -407,23 +407,24 @@ public class MovieDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
 		try {
 			con = dataSource.getConnection();
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT hits, picture ");
-			sql.append("FROM (select row_number() over(order by mNo desc) as rnum,hits,picture from semi_movie ) semi_movie ");
+			// 171019 hit다hit에서 영화상세보기를 위해 mNo setting sql 수정
+			sql.append("SELECT mNo, hits, picture ");
+			sql.append("FROM (select row_number() over(order by mNo desc) as rnum,mNo,hits,picture from semi_movie ) semi_movie ");
 			sql.append("WHERE rnum between ? and ? ");
 			sql.append("ORDER BY hits desc");
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setInt(1, moviePagingBean.getStartRowNumber());
 			pstmt.setInt(2, moviePagingBean.getEndRowNumber());
 			rs = pstmt.executeQuery();
-			
 			while(rs.next()){
 				MovieVO mvo = new MovieVO();
-				mvo.setHits(rs.getInt(1));
-				mvo.setPicture(rs.getString(2));
+				// 171019 hit다hit에서 영화상세보기를 위해 mNo setting 코딩 수정
+				mvo.setmNo(rs.getString(1));
+				mvo.setHits(rs.getInt(2));
+				mvo.setPicture(rs.getString(3));
 				mList.add(mvo);
 			}
 			

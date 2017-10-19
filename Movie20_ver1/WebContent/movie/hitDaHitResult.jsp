@@ -3,20 +3,39 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <table id="mainTable">
 	<tr>
-		<c:forEach items="${requestScope.lvo.list}" var="mvo" varStatus="cnt">
+		<c:forEach items="${requestScope.lvo.list}" var="movievo" varStatus="cnt">
 			<c:if test="${cnt.count<5}">
-				<td align="center"><img class="mainImg" src="img/${mvo.picture}"><br>${mvo.hits}</td>
+				<td align="center">
+					<a href="DispatcherServlet?command=MovieDetail&movieNo=${movievo.mNo}"><img class="mainImg" src="img/${movievo.picture}"></a>
+					<table id="mainScore-table1">
+								<tbody>
+									<tr>
+										<td>조회수 : ${movievo.hits}</td>
+									</tr>
+								</tbody>
+					</table>
+				</td>
 			</c:if>
 		</c:forEach>
 	</tr>
 	<tr>
-		<c:forEach items="${requestScope.lvo.list}" var="mvo" varStatus="cnt">
+		<c:forEach items="${requestScope.lvo.list}" var="movievo" varStatus="cnt">
 			<c:if test="${cnt.count>4}">
-				hit: <td align="center"><img class="mainImg" src="img/${mvo.picture}"><br>${mvo.hits}</td>
+				<td align="center">
+					<a href="DispatcherServlet?command=MovieDetail&movieNo=${movievo.mNo}"><img class="mainImg" src="img/${movievo.picture}"></a>
+					<table id="mainScore-table1">
+								<tbody>
+									<tr>
+										<td>조회수 : ${movievo.hits}</td>
+									</tr>
+								</tbody>
+					</table>
+				</td>
 			</c:if>
 		</c:forEach>
 	</tr>
 </table>
+
 
 <br>
 <hr>
