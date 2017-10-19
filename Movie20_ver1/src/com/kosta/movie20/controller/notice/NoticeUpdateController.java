@@ -25,7 +25,7 @@ public class NoticeUpdateController implements Controller {
 		String masterId = membervo.getId();
 		String important = request.getParameter("important");
 		System.out.println(important);
-		NoticeVO nvo = MasterDAO.getInstance().noticeDetail(nNo);
+		NoticeVO nvo = MasterDAO.getInstance().getNoticeDetail(nNo);
 		nvo.setTitle(title);
 		nvo.setContent(content);
 		nvo.setMasterId(masterId);
@@ -33,7 +33,7 @@ public class NoticeUpdateController implements Controller {
 	//	NoticeVO nvo = new NoticeVO(nNo,title,content,important,masterId);
 		System.out.println(nvo);
 		System.out.println(nvo.getImportant());
-		MasterDAO.getInstance().noticeUpdate(nvo);
+		MasterDAO.getInstance().updateNotice(nvo);
 		path = "redirect:DispatcherServlet?command=cmdNoticeDetail&nNo="+nNo;
 		
 		return path;

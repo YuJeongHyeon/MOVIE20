@@ -17,9 +17,9 @@ public class ReviewDetailController implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String rNo=request.getParameter("rno");
 		if(request.getSession(false)!=null) {
-			MovieDAO.getInstance().reviewHitsup(rNo);
+			MovieDAO.getInstance().addReviewHit(rNo);
 		}
-		ReviewVO rvo=MovieDAO.getInstance().movieReviewDetail(rNo);
+		ReviewVO rvo=MovieDAO.getInstance().getMovieReviewDetail(rNo);
 		request.setAttribute("rvo", rvo);
 		
 		ArrayList<CommentVO> clist=CommentDAO.getInstance().commentList(rNo);

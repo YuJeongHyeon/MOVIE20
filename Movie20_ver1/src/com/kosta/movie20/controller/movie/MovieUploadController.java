@@ -9,7 +9,7 @@ import com.kosta.movie20.model.vo.MovieVO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-public class UploadController implements Controller {
+public class MovieUploadController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -48,7 +48,7 @@ public class UploadController implements Controller {
 		movievo.setPicture(picture);
 		movievo.setMasterId(id);
 		
-		MasterDAO.getInstance().movieRegister(movievo);
+		MasterDAO.getInstance().registerMovie(movievo);
 		request.setAttribute("movieRegvo", movievo);
 		return "/movie/fileupload.jsp";
 	}

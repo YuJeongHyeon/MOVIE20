@@ -6,11 +6,9 @@ import javax.servlet.http.HttpSession;
 
 import com.kosta.movie20.controller.common.Controller;
 import com.kosta.movie20.model.dao.MovieDAO;
-import com.kosta.movie20.model.vo.ReviewVO;
 import com.kosta.movie20.second.comment.CommentDAO;
-import com.kosta.movie20.second.comment.CommentVO;
 
-public class UpdateCommentController implements Controller {
+public class CommentDeleteController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -18,19 +16,16 @@ public class UpdateCommentController implements Controller {
 		if(session==null||session.getAttribute("membervo")==null){
 			return "redirect:index.jsp";
 		}
-	
-		String cno=request.getParameter("cno");
-		String comment=request.getParameter("comment");
+		String cNo=request.getParameter("cno");
+		CommentDAO.getInstance().commentDelete(cNo);
+		
 		String rno=request.getParameter("rno");
-		String mno=request.getParameter("mno");
-		CommentVO cvo=new CommentVO( cno,comment);
-		CommentDAO.getInstance().commentUpdate(cvo);
+		String mno = request.getParameter("mno");
+		request.setAttribute("rno", rno);
 		
-	
+		request.setAttribute("mno", mno);
 		
-		
-		String url = "redirect:DispatcherServlet?command=reviewDetail&rno="+rno+"&movieno="+mno;
-		
+		String url = "DispatcherServlet?command=reviewDetail&rno="+rno+"&movieno="+mno;
 		return url;
 	}
 

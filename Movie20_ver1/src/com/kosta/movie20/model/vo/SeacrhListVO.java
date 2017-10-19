@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 import com.kosta.movie20.model.common.PagingBeanSearch;
 
-public class SeachListVO {
+public class SeacrhListVO {
 	private ArrayList<MovieVO> list = new ArrayList<MovieVO>();
 	private PagingBeanSearch pb;
-	public SeachListVO() {
+	public SeacrhListVO() {
 		super();
 	}
-	public SeachListVO(ArrayList<MovieVO> list, PagingBeanSearch pb) {
+	public SeacrhListVO(ArrayList<MovieVO> list, PagingBeanSearch pb) {
 		super();
 		this.list = list;
 		this.pb = pb;

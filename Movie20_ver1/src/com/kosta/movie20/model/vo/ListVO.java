@@ -2,15 +2,15 @@ package com.kosta.movie20.model.vo;
 
 import java.util.ArrayList;
 
-import com.kosta.movie20.model.common.MoviePagingBean;
-import com.kosta.movie20.model.common.NoticePagingBean;
+import com.kosta.movie20.model.common.PagingBeanMovie;
+import com.kosta.movie20.model.common.PagingBeanNotice;
 import com.kosta.movie20.model.common.PagingBean;
 
 public class ListVO<T> {
 	private ArrayList<T> list = new ArrayList<T>();
 	private PagingBean pb;
-	private MoviePagingBean mpb;
-	private NoticePagingBean npb;
+	private PagingBeanMovie mpb;
+	private PagingBeanNotice npb;
 	public ListVO() {
 		super();
 	}
@@ -19,12 +19,12 @@ public class ListVO<T> {
 		this.list = list;
 		this.pb = pb;
 	}
-	public ListVO(ArrayList<T> list, MoviePagingBean mpb) {
+	public ListVO(ArrayList<T> list, PagingBeanMovie mpb) {
 		super();
 		this.list = list;
 		this.mpb = mpb;
 	}
-	public ListVO(ArrayList<T> list, NoticePagingBean npb) {
+	public ListVO(ArrayList<T> list, PagingBeanNotice npb) {
 		super();
 		this.list = list;
 		this.npb = npb;
@@ -41,16 +41,16 @@ public class ListVO<T> {
 	public void setPb(PagingBean pb) {
 		this.pb = pb;
 	}
-	public MoviePagingBean getMpb() {
+	public PagingBeanMovie getMpb() {
 		return mpb;
 	}
-	public void setMpb(MoviePagingBean mpb) {
+	public void setMpb(PagingBeanMovie mpb) {
 		this.mpb = mpb;
 	}
-	public NoticePagingBean getNpb() {
+	public PagingBeanNotice getNpb() {
 		return npb;
 	}
-	public void setNpb(NoticePagingBean npb) {
+	public void setNpb(PagingBeanNotice npb) {
 		this.npb = npb;
 	}
 	@Override

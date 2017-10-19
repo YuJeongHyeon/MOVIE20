@@ -21,7 +21,7 @@ public class MemberUpdateFormController implements Controller {
 		MemberVO membervo=(MemberVO)session.getAttribute("membervo");
 		String id=membervo.getId();
 		
-		MemberVO memberVo=MemberDAO.getInstance().memberSearch(id);
+		MemberVO memberVo=MemberDAO.getInstance().searchMember(id);
 		
 		request.setAttribute("memberVo", memberVo);
 		

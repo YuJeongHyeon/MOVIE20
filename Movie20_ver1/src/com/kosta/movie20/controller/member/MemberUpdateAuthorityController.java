@@ -7,20 +7,23 @@ import javax.servlet.http.HttpSession;
 import com.kosta.movie20.controller.common.Controller;
 import com.kosta.movie20.model.dao.MasterDAO;
 
-
-public class DeleteMemberController implements Controller {
+public class MemberUpdateAuthorityController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
+		
+		
 		HttpSession session = request.getSession(false);
-		System.out.println("session : serchmember " );
+		System.out.println("UpdateAuthorityController세션체크 전 내용");
 		if(session==null||session.getAttribute("membervo")==null){
 			return "redirect:index.jsp";
 		}
-		String deleteId = request.getParameter("id");
-		MasterDAO.getInstance().deleteMemberById(deleteId);
-		System.out.println("삭제 완료");
+		System.out.println("UpdateAuthorityController 세션체크 이후 내용");
+		String updateId = request.getParameter("id");
+		String authority = request.getParameter("authority");
+		System.out.println("id : "+updateId +" authority: "+authority );
+		MasterDAO.getInstance().updateMemberAuthorityById(updateId, authority);
+	
 		return "redirect:index.jsp";
 	}
 

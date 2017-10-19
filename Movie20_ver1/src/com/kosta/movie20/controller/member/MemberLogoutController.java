@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import com.kosta.movie20.controller.common.Controller;
 
-public class LogoutController implements Controller {
+public class MemberLogoutController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

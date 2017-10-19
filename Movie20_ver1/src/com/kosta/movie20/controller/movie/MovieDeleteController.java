@@ -18,7 +18,7 @@ public class MovieDeleteController implements Controller {
 		}
 		
 		String mNo=request.getParameter("mNo");
-		MasterDAO.getInstance().movieDelete(mNo);
+		MasterDAO.getInstance().deleteMovie(mNo);
 
 		return "redirect:DispatcherServlet?command=cmdMainList";
 		

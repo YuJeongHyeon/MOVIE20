@@ -24,7 +24,7 @@ public class MeetingRegisterController implements Controller {
 		String meetingDate = request.getParameter("meetingDate");
 		String location = request.getParameter("location");
 		
-		SeatDAO.getInstance().meetingRegister(meetingDate, Integer.parseInt(mNo), location);
+		SeatDAO.getInstance().registerMeeting(meetingDate, Integer.parseInt(mNo), location);
 		
 		
 		return "redirect:index.jsp";

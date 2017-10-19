@@ -10,9 +10,9 @@ public class MeetingVO {
 		private String runtime;
 		private String location;
 		private String picture;
-		private ArrayList<SeatNumVO> seatNumList = new ArrayList<SeatNumVO>();
+		private ArrayList<SeatVO> seatNumList = new ArrayList<SeatVO>();
 		public MeetingVO(String meetingDate, String mNo, String title, String runtime, String location, String picture,
-				ArrayList<SeatNumVO> seatNumList) {
+				ArrayList<SeatVO> seatNumList) {
 			super();
 			this.meetingDate = meetingDate;
 			this.mNo = mNo;
@@ -67,10 +67,10 @@ public class MeetingVO {
 		public void setPicture(String picture) {
 			this.picture = picture;
 		}
-		public ArrayList<SeatNumVO> getSeatNumList() {
+		public ArrayList<SeatVO> getSeatNumList() {
 			return seatNumList;
 		}
-		public void setSeatNumList(ArrayList<SeatNumVO> seatNumList) {
+		public void setSeatNumList(ArrayList<SeatVO> seatNumList) {
 			this.seatNumList = seatNumList;
 		}
 		

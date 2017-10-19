@@ -17,7 +17,7 @@ public class NoticeDeleteController implements Controller {
 			path = "redirect:index.jsp";
 		}
 		String nNo = request.getParameter("nNo");
-		MasterDAO.getInstance().noticeDelete(nNo);
+		MasterDAO.getInstance().deleteNotice(nNo);
 		path = "redirect:DispatcherServlet?command=cmdNoticeList";
 		
 		return path;

@@ -17,7 +17,7 @@ public class NoticeUpdateFormController implements Controller {
 			return "redirect:index.jsp";
 		}
 		String nNo = request.getParameter("nNo");
-		NoticeVO nvo = MasterDAO.getInstance().noticeDetail(nNo);
+		NoticeVO nvo = MasterDAO.getInstance().getNoticeDetail(nNo);
 		request.setAttribute("nvo", nvo);
 	//	System.out.println(nvo.getImportant());
 		request.setAttribute("url", "../notice/noticeUpdate.jsp");

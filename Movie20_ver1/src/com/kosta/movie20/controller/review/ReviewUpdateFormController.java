@@ -19,7 +19,7 @@ public class ReviewUpdateFormController implements Controller {
 		String rNo=request.getParameter("rno");
 		
 		
-		ReviewVO rvo=MovieDAO.getInstance().movieReviewDetail(rNo);		
+		ReviewVO rvo=MovieDAO.getInstance().getMovieReviewDetail(rNo);		
 		request.setAttribute("rvo", rvo);
 		
 		String url = "../movie/reviewupdateform.jsp";

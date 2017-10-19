@@ -24,10 +24,10 @@ public class MovieDetailController implements Controller {
 		
 		HttpSession session = request.getSession(false);
 		if(session!=null) {
-			MovieDAO.getInstance().movieHitsup(movieNo);
+			MovieDAO.getInstance().addMovieHit(movieNo);
 		}
 		
-		MovieVO movievo =MovieDAO.getInstance().movieDetail(movieNo);
+		MovieVO movievo =MovieDAO.getInstance().getMovieDetail(movieNo);
 		
 		///// 광태 추가  카트 코드 
 		if(session!=null&&session.getAttribute("membervo")!=null) {
@@ -62,11 +62,11 @@ public class MovieDetailController implements Controller {
 			String id = membervo.getId();
 			//	String movieNo = request.getParameter("movieNo");
 			int mNo = Integer.parseInt(movieNo);
-			ScoreVO svo = ScoreDAO.getInstance().checkScore(mNo, id);
+			ScoreVO svo = ScoreDAO.getInstance().getCheckScore(mNo, id);
 			System.out.println("처음 체킹 "+svo.getScore());
 			if(svo.getScore()==0) {
 				ScoreDAO.getInstance().registerScroreTable(svo);
-				ScoreVO svo2 = ScoreDAO.getInstance().checkScore(mNo,id);
+				ScoreVO svo2 = ScoreDAO.getInstance().getCheckScore(mNo,id);
 				svo = svo2;
 				System.out.println("new register 후 체킹 "+svo.getScore());	
 			}
@@ -87,7 +87,7 @@ public class MovieDetailController implements Controller {
 		}
 
 		
-		ArrayList<ReviewVO> rlist =MovieDAO.getInstance().movieReviewList(movieNo,pb);
+		ArrayList<ReviewVO> rlist =MovieDAO.getInstance().getMovieReviewList(movieNo,pb);
 		ReviewListVO listVO=new ReviewListVO(rlist,pb);
 		request.setAttribute("listVO", listVO);//보여줄 리뷰리스트		
 		request.setAttribute("movievo", movievo);//영화정보

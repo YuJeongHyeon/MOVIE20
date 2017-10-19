@@ -1,18 +1,18 @@
 package com.kosta.movie20.second.seatmodel;
 
-public class SeatNumVO {
+public class SeatVO {
 	private String seatNum;
 	private String id;
 	@Override
 	public String toString() {
 		return "SeatNumVO [seatNum=" + seatNum + ", id=" + id + "]";
 	}
-	public SeatNumVO(String seatNum, String id) {
+	public SeatVO(String seatNum, String id) {
 		super();
 		this.seatNum = seatNum;
 		this.id = id;
 	}
-	public SeatNumVO() {
+	public SeatVO() {
 		super();
 	}
 	public String getSeatNum() {

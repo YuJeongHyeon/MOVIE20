@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import javax.sql.DataSource;
 
 import com.kosta.movie20.model.common.DataSourceManager;
-import com.kosta.movie20.model.common.NoticePagingBean;
+import com.kosta.movie20.model.common.PagingBeanNotice;
 import com.kosta.movie20.model.dao.MasterDAO;
 import com.kosta.movie20.model.vo.MemberVO;
 import com.kosta.movie20.model.vo.MovieVO;
@@ -45,7 +45,7 @@ public class SeatDAO {
 	}// closeAll
 
 /////////////////////////////////////////////////////////////////////////////////////////////////2차 코드 작성////////////////////	
-	public void meetingRegister(String meetingDate, int mNo, String location) throws SQLException {
+	public void registerMeeting(String meetingDate, int mNo, String location) throws SQLException {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -98,7 +98,7 @@ public class SeatDAO {
 		}
 		return list;
 	}//meetingRegister
-	public MeetingVO meetingInfoByDate(String meetingDate) throws SQLException {
+	public MeetingVO getMeetingInfoByDate(String meetingDate) throws SQLException {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -126,7 +126,7 @@ public class SeatDAO {
 		}
 		return mvo;
 	}//meetingInfoByDate
-	public void seatReservationById(String meetingDate,String seatNum, String id) throws SQLException {
+	public void reserveSeat(String meetingDate,String seatNum, String id) throws SQLException {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -149,7 +149,7 @@ public class SeatDAO {
 		}
 
 	}//seatReservationById
-	public void updateSeatReservationById(String id, String seatNum, String meetingDate) throws SQLException {
+	public void updateReservedSeat(String id, String seatNum, String meetingDate) throws SQLException {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -172,7 +172,7 @@ public class SeatDAO {
 		}
 
 	}//updateSeatReservationById
-	public String getSeatNumById(String id, String meetingDate) throws SQLException {
+	public String getSeatNum(String id, String meetingDate) throws SQLException {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -199,7 +199,7 @@ public class SeatDAO {
 		return seatNum;
 	}//updateSeatReservationById
 	
-	public void deleteSeatReservation(String id, String seatNum, String meetingDate) throws SQLException {
+	public void deleteReservedSeat(String id, String seatNum, String meetingDate) throws SQLException {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -223,7 +223,7 @@ public class SeatDAO {
 
 	}//updateSeatReservationById
 
-	public ArrayList<String> getAllSeat() throws SQLException {
+	public ArrayList<String> getAllSeatList() throws SQLException {
 		ArrayList<String> seatList = new ArrayList<String>();
 		Connection con = null;
 		PreparedStatement pstmt = null;

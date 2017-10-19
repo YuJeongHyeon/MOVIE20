@@ -24,7 +24,7 @@ public class SeatReservationController implements Controller {
 		String seatNum = request.getParameter("seatNum"); //좌석번호
 		MemberVO mvo = (MemberVO)session.getAttribute("membervo");
 		System.out.println("seatNum : "+ seatNum);
-		SeatDAO.getInstance().seatReservationById(meetingDate,seatNum,mvo.getId());
+		SeatDAO.getInstance().reserveSeat(meetingDate,seatNum,mvo.getId());
 		
 		//request.setAttribute("url", "/second/seetReservationForm.jsp");
 		return "redirect:index.jsp";

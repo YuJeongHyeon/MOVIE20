@@ -10,7 +10,7 @@ import com.kosta.movie20.controller.common.Controller;
 import com.kosta.movie20.model.dao.MemberDAO;
 import com.kosta.movie20.model.vo.MemberVO;
 
-public class LoginController implements Controller {
+public class MemberLoginController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

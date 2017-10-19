@@ -24,8 +24,8 @@ public class ReviewUpdateController implements Controller {
 			ReviewVO rvo=new ReviewVO( title, content, rno);
 			
 			
-			MovieDAO.getInstance().reviewUpdate(rvo);
-			ReviewVO rivo=MovieDAO.getInstance().movieReviewDetail(rno);
+			MovieDAO.getInstance().updateReview(rvo);
+			ReviewVO rivo=MovieDAO.getInstance().getMovieReviewDetail(rno);
 			
 			String url = "redirect:DispatcherServlet?command=MovieDetail&movieNo="+rivo.getMno();
 			//request.setAttribute("url", url);

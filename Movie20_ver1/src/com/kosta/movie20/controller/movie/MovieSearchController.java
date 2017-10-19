@@ -9,7 +9,7 @@ import com.kosta.movie20.controller.common.Controller;
 import com.kosta.movie20.model.common.PagingBeanSearch;
 import com.kosta.movie20.model.dao.MovieDAO;
 import com.kosta.movie20.model.vo.MovieVO;
-import com.kosta.movie20.model.vo.SeachListVO;
+import com.kosta.movie20.model.vo.SeacrhListVO;
 
 public class MovieSearchController implements Controller {
 
@@ -17,7 +17,7 @@ public class MovieSearchController implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		String strSearchWord = request.getParameter("searchWord");
-		int totalCount = MovieDAO.getInstance().getTotalSearchMovieCount(strSearchWord);
+		int totalCount = MovieDAO.getInstance().getSearchMovieTotalCount(strSearchWord);
 		System.out.println("r검색 totalCount : "+ totalCount);
 		String pno = request.getParameter("pageNo");
 		PagingBeanSearch pb = null;
@@ -28,10 +28,10 @@ public class MovieSearchController implements Controller {
 		}
 		
 		ArrayList<MovieVO> list = 
-				MovieDAO.getInstance().searchMovieByName(strSearchWord,pb);
+				MovieDAO.getInstance().getSearchMovieListByName(strSearchWord,pb);
 		System.out.println("list size:"+ list.size());
 		
-		SeachListVO listVO = new SeachListVO(list, pb);
+		SeacrhListVO listVO = new SeacrhListVO(list, pb);
 		
 		
 		if( list.isEmpty()) {

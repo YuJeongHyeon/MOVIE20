@@ -1,31 +1,31 @@
 package com.kosta.movie20.controller.handler;
 
 import com.kosta.movie20.controller.common.Controller;
-import com.kosta.movie20.controller.member.DeleteMemberController;
-import com.kosta.movie20.controller.member.LoginController;
-import com.kosta.movie20.controller.member.LogoutController;
-import com.kosta.movie20.controller.member.CheckDuplicateIdController;
-import com.kosta.movie20.controller.member.CheckIdController;
-import com.kosta.movie20.controller.member.DeleteMemberController;
-import com.kosta.movie20.controller.member.LoginController;
-import com.kosta.movie20.controller.member.LogoutController;
+import com.kosta.movie20.controller.member.MemberDeleteController;
+import com.kosta.movie20.controller.member.MemberLoginController;
+import com.kosta.movie20.controller.member.MemberLogoutController;
+import com.kosta.movie20.controller.member.MemberDuplicateIdController;
+import com.kosta.movie20.controller.member.MemberCheckIdController;
+import com.kosta.movie20.controller.member.MemberDeleteController;
+import com.kosta.movie20.controller.member.MemberLoginController;
+import com.kosta.movie20.controller.member.MemberLogoutController;
 import com.kosta.movie20.controller.member.MemberRegisterController;
 import com.kosta.movie20.controller.member.MemberRegisterViewController;
 import com.kosta.movie20.controller.member.MemberSearchController;
 import com.kosta.movie20.controller.member.MemberSearchFormController;
 import com.kosta.movie20.controller.member.MemberUpdateController;
 import com.kosta.movie20.controller.member.MemberUpdateFormController;
-import com.kosta.movie20.controller.member.UpdateAuthorityController;
-import com.kosta.movie20.controller.movie.GenreController;
-import com.kosta.movie20.controller.movie.HitDaHitController;
-import com.kosta.movie20.controller.movie.MainMovieListController;
+import com.kosta.movie20.controller.member.MemberUpdateAuthorityController;
+import com.kosta.movie20.controller.movie.MovieGenreController;
+import com.kosta.movie20.controller.movie.MovieHitDaHitController;
+import com.kosta.movie20.controller.movie.MovieMainListController;
 import com.kosta.movie20.controller.movie.MovieDeleteController;
 import com.kosta.movie20.controller.movie.MovieDetailController;
 import com.kosta.movie20.controller.movie.MovieRegisterViewController;
 import com.kosta.movie20.controller.movie.MovieSearchController;
 import com.kosta.movie20.controller.movie.MovieUpdateController;
 import com.kosta.movie20.controller.movie.MovieUpdateFormController;
-import com.kosta.movie20.controller.movie.UploadController;
+import com.kosta.movie20.controller.movie.MovieUploadController;
 import com.kosta.movie20.controller.notice.NoticeDeleteController;
 import com.kosta.movie20.controller.notice.NoticeDetailController;
 import com.kosta.movie20.controller.notice.NoticeListController;
@@ -39,16 +39,16 @@ import com.kosta.movie20.controller.review.ReviewUpdateController;
 import com.kosta.movie20.controller.review.ReviewUpdateFormController;
 import com.kosta.movie20.controller.review.ReviewWriteRegisterController;
 import com.kosta.movie20.second.commentcontroller.CommentWriteController;
-import com.kosta.movie20.second.commentcontroller.DeleteCommentController;
-import com.kosta.movie20.second.commentcontroller.UpdateCommentController;
+import com.kosta.movie20.second.commentcontroller.CommentDeleteController;
+
 import com.kosta.movie20.second.score.controller.RegisterScoreController;
-import com.kosta.movie20.second.seatcontroller.DeleteSeatReservationController;
+import com.kosta.movie20.second.seatcontroller.SeatDeleteReservationController;
 import com.kosta.movie20.second.seatcontroller.MeetingListInfoController;
 import com.kosta.movie20.second.seatcontroller.MeetingRegisterController;
 import com.kosta.movie20.second.seatcontroller.MeetingRegisterFormController;
 import com.kosta.movie20.second.seatcontroller.SeatReservationController;
 import com.kosta.movie20.second.seatcontroller.SeatReservationFormController;
-import com.kosta.movie20.second.seatcontroller.UpdateSeatReservationController;
+import com.kosta.movie20.second.seatcontroller.SeatUpdateReservationController;
 
 public class HandlerMapping {
 	private static HandlerMapping instance=new HandlerMapping();
@@ -60,13 +60,13 @@ public class HandlerMapping {
 		Controller controller = null;
 		
 		if(command.equals("cmdMainList")){
-			controller = new MainMovieListController();
+			controller = new MovieMainListController();
 		}else if( command.equals("cmdMovieSearch")) {
 			controller = new MovieSearchController();
 		}else if(command.equals("login")){
-			controller = new LoginController();
+			controller = new MemberLoginController();
 		}else if(command.equals("hitdahit")){
-			controller = new HitDaHitController();
+			controller = new MovieHitDaHitController();
 		}else if(command.equals("MovieDetail")) {
 			controller = new MovieDetailController();
 		}else if(command.equals("reviewDetail")) {
@@ -80,7 +80,7 @@ public class HandlerMapping {
 		}else if(command.equals("deleteReview")) {
 			controller = new ReviewDeleteController();
 		}else if(command.equals("logout")) {
-			controller = new LogoutController();
+			controller = new MemberLogoutController();
 		}else if(command.equals("cmdNoticeList")) {
 			controller = new NoticeListController();
 		}else if(command.equals("cmdNoticeDetail")) {
@@ -100,11 +100,11 @@ public class HandlerMapping {
 		}else if(command.equals("cmdMemberSearch")) {
 			controller = new MemberSearchController();
 		}else if(command.equals("cmdDeleteMember")) {
-			controller = new DeleteMemberController();
+			controller = new MemberDeleteController();
 		}else if(command.equals("cmdUpdateAuthority")) {
-			controller = new UpdateAuthorityController();
+			controller = new MemberUpdateAuthorityController();
 		}else if(command.equals("idCheck")) {			
-			controller = new CheckDuplicateIdController();
+			controller = new MemberDuplicateIdController();
 		}else if(command.equals("register")){
 			controller = new MemberRegisterController();
 		}else if(command.equals("memberRegisterView")) {
@@ -114,9 +114,9 @@ public class HandlerMapping {
 		}else if(command.equals("cmdMemberUpdate")) {
 			controller = new MemberUpdateController();
 		}else if(command.equals("cmdCheckId")) {
-			controller = new CheckIdController();
+			controller = new MemberCheckIdController();
 		}else if(command.equals("upload")) {
-			controller =  new UploadController();
+			controller =  new MovieUploadController();
 		}else if(command.equals("movieRegisterView")) {
 			controller = new MovieRegisterViewController();
 		}else if(command.equals("movieUpdateForm")) {
@@ -126,7 +126,7 @@ public class HandlerMapping {
 		}else if(command.equals("movieUpdate")) {
 			controller = new MovieUpdateController();
 		}else if(command.equals("genre")) {
-			controller = new GenreController();
+			controller = new MovieGenreController();
 		}
 		/////////////////////////2 차////////////////////////////////
 		else if(command.equals("cmdMeetingRegisterForm")) {
@@ -135,10 +135,8 @@ public class HandlerMapping {
 			controller = new MeetingRegisterController();
 		}else if(command.equals("cmdMeetingListInfo")) {
 			controller = new MeetingListInfoController();
-		}else if(command.equals("cmdupdateComment")) {
-			controller = new UpdateCommentController();
 		}else if(command.equals("cmddeleteComment")) {
-			controller = new DeleteCommentController();
+			controller = new CommentDeleteController();
 		}else if(command.equals("cmdCommentWrite")) {
 			controller = new CommentWriteController();
 		}else if(command.equals("cmdSeatReservationForm")) {
@@ -150,9 +148,9 @@ public class HandlerMapping {
 		else if(command.equals("cmdRegisterScore")) {
 			controller = new RegisterScoreController();
 		}else if( command.equals("cmdUpdateSeatReservation")) {
-			controller = new UpdateSeatReservationController();
+			controller = new SeatUpdateReservationController();
 		}else if( command.equals("cmdDeleteSeatReservation")) {
-			controller = new DeleteSeatReservationController();
+			controller = new SeatDeleteReservationController();
 		}
 		
 		return controller;

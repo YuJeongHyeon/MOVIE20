@@ -31,13 +31,13 @@ public class SeatReservationFormController implements Controller {
 		String meetingDate = request.getParameter("meetingDate");
 		
 		MeetingVO mvo = 
-				SeatDAO.getInstance().meetingInfoByDate(meetingDate);
+				SeatDAO.getInstance().getMeetingInfoByDate(meetingDate);
 
 
 		MemberVO mvo2 = (MemberVO)session.getAttribute("membervo");
-		String seatNum = SeatDAO.getInstance().getSeatNumById(mvo2.getId(), meetingDate);
+		String seatNum = SeatDAO.getInstance().getSeatNum(mvo2.getId(), meetingDate);
 
-		ArrayList<String> seatList = SeatDAO.getInstance().getAllSeat();
+		ArrayList<String> seatList = SeatDAO.getInstance().getAllSeatList();
 		request.setAttribute("seatList", seatList);
 		
 		if(mvo!=null) {

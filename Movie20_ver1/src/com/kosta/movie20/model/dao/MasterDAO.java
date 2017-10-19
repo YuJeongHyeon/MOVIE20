@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import javax.sql.DataSource;
 
 import com.kosta.movie20.model.common.DataSourceManager;
-import com.kosta.movie20.model.common.NoticePagingBean;
+import com.kosta.movie20.model.common.PagingBeanNotice;
 import com.kosta.movie20.model.vo.MemberVO;
 import com.kosta.movie20.model.vo.MovieVO;
 import com.kosta.movie20.model.vo.NoticeVO;
@@ -62,7 +62,7 @@ public class MasterDAO {
 		return tpc;
 	}
 	// 후에 셀렉 컬럼 중 important 제거 
-		public ArrayList<NoticeVO> ImportNoticeList() throws SQLException {
+		public ArrayList<NoticeVO> updateNoticeImportance() throws SQLException {
 			ArrayList<NoticeVO> nList = new ArrayList<NoticeVO>();
 			Connection con = null;
 			PreparedStatement pstmt = null;
@@ -94,7 +94,7 @@ public class MasterDAO {
 		}
 		// 후에 셀렉 컬럼 중 important 제거 
 		@SuppressWarnings("null")
-		public ArrayList<NoticeVO> noticeList(NoticePagingBean npb) throws SQLException {
+		public ArrayList<NoticeVO> getNoticeList(PagingBeanNotice npb) throws SQLException {
 			ArrayList<NoticeVO> nList = new ArrayList<NoticeVO>();
 			Connection con = null;
 			PreparedStatement pstmt = null;
@@ -126,7 +126,7 @@ public class MasterDAO {
 			return nList;
 		}// noticeList
 
-	public void movieRegister(MovieVO movievo) throws SQLException {
+	public void registerMovie(MovieVO movievo) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
@@ -158,7 +158,7 @@ public class MasterDAO {
 		}
 	}// movieRegister
 
-	public void movieDelete(String mNo) throws SQLException {
+	public void deleteMovie(String mNo) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -176,7 +176,7 @@ public class MasterDAO {
 		}
 	}// movieDelete
 
-	public void movieUpdate(MovieVO movievo) throws SQLException {
+	public void updateMovie(MovieVO movievo) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -205,7 +205,7 @@ public class MasterDAO {
 		}
 	}// movieUpdate
 	
-	public NoticeVO noticeDetail(String nNo) throws SQLException {
+	public NoticeVO getNoticeDetail(String nNo) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -235,7 +235,7 @@ public class MasterDAO {
 		}
 		return nvo;
 	}//noticeDetail
-	public void updateHit(String nNo) throws SQLException{
+	public void updateHitdaHit(String nNo) throws SQLException{
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		try{
@@ -248,19 +248,8 @@ public class MasterDAO {
 			closeAll(pstmt,con);
 		}
 	}//updateHit
-	public void movieUpdate(String mNo) throws SQLException {
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
 
-		try {
-
-		} finally {
-			closeAll(rs, pstmt, con);
-		}
-	}// movieUpdate
-
-	public NoticeVO noticeWrite(NoticeVO nvo) throws SQLException {
+	public NoticeVO writeNotice(NoticeVO nvo) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -300,7 +289,7 @@ public class MasterDAO {
 		return nvo;
 	}// noticeWrite
 
-	public void noticeDelete(String nNo) throws SQLException {
+	public void deleteNotice(String nNo) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -316,7 +305,7 @@ public class MasterDAO {
 		}
 	}// noticeDelete
 
-	public void noticeUpdate(NoticeVO nvo) throws SQLException {
+	public void updateNotice(NoticeVO nvo) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -413,7 +402,7 @@ public class MasterDAO {
 		}
 	}//deleteMemberById
 	
-	public int checkMemberByIdAjax(String id) throws SQLException {
+	public int checkMemberIdByAjax(String id) throws SQLException {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;

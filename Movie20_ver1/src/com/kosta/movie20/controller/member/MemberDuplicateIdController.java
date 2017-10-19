@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.kosta.movie20.controller.common.Controller;
 import com.kosta.movie20.model.dao.MemberDAO;
 
-public class CheckDuplicateIdController implements Controller {
+public class MemberDuplicateIdController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

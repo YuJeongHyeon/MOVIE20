@@ -2,14 +2,14 @@ package com.kosta.movie20.model.vo;
 
 import java.util.ArrayList;
 
-import com.kosta.movie20.model.common.MoviePagingBean;
+import com.kosta.movie20.model.common.PagingBeanMovie;
 import com.kosta.movie20.model.common.PagingBean;
 
 
 public class MainListVO<T> {
 	private ArrayList<T> list = new ArrayList<T>();
 	private PagingBean pb;
-	private MoviePagingBean mpb;
+	private PagingBeanMovie mpb;
 	public MainListVO() {
 		super();
 	}
@@ -20,13 +20,13 @@ public class MainListVO<T> {
 		this.pb = pb;
 	}
 
-	public MainListVO(ArrayList<T> list, MoviePagingBean mpb) {
+	public MainListVO(ArrayList<T> list, PagingBeanMovie mpb) {
 		super();
 		this.list = list;
 		this.mpb = mpb;
 	}
 
-	public MainListVO(ArrayList<T> list, PagingBean pb, MoviePagingBean mpb) {
+	public MainListVO(ArrayList<T> list, PagingBean pb, PagingBeanMovie mpb) {
 		super();
 		this.list = list;
 		this.pb = pb;
@@ -44,10 +44,10 @@ public class MainListVO<T> {
 	public void setPb(PagingBean pb) {
 		this.pb = pb;
 	}
-	public MoviePagingBean getMpb() {
+	public PagingBeanMovie getMpb() {
 		return mpb;
 	}
-	public void setMpb(MoviePagingBean mpb) {
+	public void setMpb(PagingBeanMovie mpb) {
 		this.mpb = mpb;
 	}
 	@Override

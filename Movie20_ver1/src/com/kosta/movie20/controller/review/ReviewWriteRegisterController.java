@@ -22,7 +22,7 @@ public class ReviewWriteRegisterController implements Controller {
 		String movieno=request.getParameter("movieno");
 		ReviewVO rvo=new ReviewVO( title, content, movieno, id);
 		
-		MovieDAO.getInstance().reviewWrite(rvo);		
+		MovieDAO.getInstance().writeReview(rvo);		
 
 		request.setAttribute("movieNo", movieno);
 		String url = "redirect:DispatcherServlet?command=MovieDetail&movieNo="+movieno;

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import javax.sql.DataSource;
 
 import com.kosta.movie20.model.common.DataSourceManager;
-import com.kosta.movie20.model.common.MoviePagingBean;
+import com.kosta.movie20.model.common.PagingBeanMovie;
 import com.kosta.movie20.model.common.PagingBean;
 import com.kosta.movie20.model.common.PagingBeanSearch;
 import com.kosta.movie20.model.vo.MovieVO;
@@ -40,7 +40,7 @@ public class MovieDAO {
 			rs.close();
 		closeAll(pstmt,con);
 	}	
-	public ArrayList<MovieVO> movieList(MoviePagingBean mpb) throws SQLException{
+	public ArrayList<MovieVO> getMovieList(PagingBeanMovie mpb) throws SQLException{
 		ArrayList<MovieVO> mList = new ArrayList<MovieVO>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -62,7 +62,7 @@ public class MovieDAO {
 				mvo.setmNo(rs.getString(1));
 				mvo.setPicture(rs.getString(2));
 				// 영화 전체 평점 평균값 세팅
-				mvo.setAverageScore(ScoreDAO.getInstance().averageScore(rs.getString(1)));
+				mvo.setAverageScore(ScoreDAO.getInstance().getAverageScore(rs.getString(1)));
 				mList.add(mvo);
 			}		
 		}finally {
@@ -70,7 +70,7 @@ public class MovieDAO {
 		}
 		return mList;
 	}
-	public MovieVO movieDetail(String mNo) throws SQLException {
+	public MovieVO getMovieDetail(String mNo) throws SQLException {
 		MovieVO mvo = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -103,7 +103,7 @@ public class MovieDAO {
 				mvo.setGrade(rs.getInt(11));	
 				mvo.setPicture(rs.getString(12));
 				// 영화 전체 평점 평균값 세팅
-				mvo.setAverageScore(ScoreDAO.getInstance().averageScore(rs.getString(1)));
+				mvo.setAverageScore(ScoreDAO.getInstance().getAverageScore(rs.getString(1)));
 			}			
 		}finally {
 			closeAll(rs, pstmt, con);
@@ -132,7 +132,7 @@ public class MovieDAO {
 		}
 		return num;
 	}
-	public ArrayList<ReviewVO> movieReviewList(String mNo, PagingBean pb) throws SQLException{
+	public ArrayList<ReviewVO> getMovieReviewList(String mNo, PagingBean pb) throws SQLException{
 		ArrayList<ReviewVO> rList = new ArrayList<ReviewVO>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -175,7 +175,7 @@ public class MovieDAO {
 		return rList;
 	}
 	@SuppressWarnings("null")
-	public ReviewVO movieReviewDetail(String rNo) throws SQLException {
+	public ReviewVO getMovieReviewDetail(String rNo) throws SQLException {
 		ReviewVO rvo = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -209,7 +209,7 @@ public class MovieDAO {
 		
 		return rvo;
 	}
-	public ArrayList<MovieVO> genreList(String genre,MoviePagingBean mpb) throws SQLException{
+	public ArrayList<MovieVO> getMovieListByGenre(String genre,PagingBeanMovie mpb) throws SQLException{
 		ArrayList<MovieVO> mList = new ArrayList<MovieVO>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -234,7 +234,7 @@ public class MovieDAO {
 				mvo.setGenre(rs.getString(3));
 				mvo.setHits(rs.getInt(4));
 				// 영화 전체 평점 평균값 세팅
-				mvo.setAverageScore(ScoreDAO.getInstance().averageScore(rs.getString(1)));
+				mvo.setAverageScore(ScoreDAO.getInstance().getAverageScore(rs.getString(1)));
 				mList.add(mvo);
 			}		
 		}finally {
@@ -261,7 +261,7 @@ public class MovieDAO {
 		}
 		return tpc;
 	}
-	public void reviewWrite(ReviewVO rvo) throws SQLException {
+	public void writeReview(ReviewVO rvo) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -284,7 +284,7 @@ public class MovieDAO {
 		}
 		
 	}
-	public void reviewDelete(String rNo) throws SQLException {
+	public void deleteReview(String rNo) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		PreparedStatement pstmt2 = null;
@@ -311,7 +311,7 @@ public class MovieDAO {
 			closeAll(rs, pstmt, con);
 		}
 	}
-	public void reviewUpdate(ReviewVO rvo) throws SQLException {
+	public void updateReview(ReviewVO rvo) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -333,7 +333,7 @@ public class MovieDAO {
 			closeAll(rs, pstmt, con);
 		}
 	}
-	public ArrayList<MovieVO> searchMovieByName(String name, PagingBeanSearch pb) throws SQLException{
+	public ArrayList<MovieVO> getSearchMovieListByName(String name, PagingBeanSearch pb) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -384,7 +384,7 @@ public class MovieDAO {
 		return movieList;
 
 	}
-	public int getTotalSearchMovieCount(String name) throws SQLException {
+	public int getSearchMovieTotalCount(String name) throws SQLException {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -403,7 +403,7 @@ public class MovieDAO {
 		}
 		return count;
 	}
-	public ArrayList<MovieVO> hitDaHit(MoviePagingBean moviePagingBean) throws SQLException{
+	public ArrayList<MovieVO> getHitDaHitList(PagingBeanMovie moviePagingBean) throws SQLException{
 		ArrayList<MovieVO> mList = new ArrayList<MovieVO>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -436,25 +436,9 @@ public class MovieDAO {
 		return mList;
 	}
 	
-	public ArrayList<MovieVO> addClickList(String mNo) throws SQLException{
-		ArrayList<MovieVO> mList = new ArrayList<MovieVO>();
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
-			
-			
-		}finally {
-			closeAll(rs, pstmt, con);
-		}
-		
-		return mList;
-	}
-	
-	
 	
 	/////////////////////////////////////////////////////////////////////////////////////////
-	public int getTotalPostCount() throws SQLException {
+	public int getTotalMovieCount() throws SQLException {
 		int tpc = 0;
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -472,7 +456,7 @@ public class MovieDAO {
 		}
 		return tpc;
 	}
-	public void movieHitsup(String mNo) throws SQLException {
+	public void addMovieHit(String mNo) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -492,7 +476,7 @@ public class MovieDAO {
 		}
 		
 	}
-	public void reviewHitsup(String rNo) throws SQLException {
+	public void addReviewHit(String rNo) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

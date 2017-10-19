@@ -28,7 +28,7 @@ public class MemberUpdateController implements Controller {
 		
 		MemberVO membervo= new MemberVO(id,name,password,nick,address,tel,favoriteGenre);
 		
-		MemberDAO.getInstance().memberUpdate(membervo);
+		MemberDAO.getInstance().updateMember(membervo);
 		
 		
 		String url = "redirect:DispatcherServlet?command=cmdMainList";

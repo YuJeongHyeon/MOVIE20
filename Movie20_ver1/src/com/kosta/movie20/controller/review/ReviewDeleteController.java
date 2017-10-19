@@ -17,7 +17,7 @@ public class ReviewDeleteController implements Controller {
 			return "redirect:index.jsp";
 		}
 		String rNo=request.getParameter("rno");
-		MovieDAO.getInstance().reviewDelete(rNo);
+		MovieDAO.getInstance().deleteReview(rNo);
 		
 		CommentDAO.getInstance().commentDelete(rNo);
 		

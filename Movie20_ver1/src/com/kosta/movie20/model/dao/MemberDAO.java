@@ -110,30 +110,9 @@ public class MemberDAO {
 		}
 		return check;
 	}
-	public void memberDelete(String id) throws SQLException {
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		
-		try {	
-			
-		}finally{
-			closeAll(pstmt, con);
-		}
-		
-		
-	}
-	public void memberUpdate(String id) throws SQLException {
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		try {	
-			
-		}finally{
-			closeAll(pstmt, con);
-		}
-		
-		
-	}
-	public MemberVO memberSearch(String id) throws SQLException {
+	
+
+	public MemberVO searchMember(String id) throws SQLException {
 		MemberVO vo = null;
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -168,7 +147,7 @@ public class MemberDAO {
 		return vo;		
 		
 	}
-	public void memberUpdate(MemberVO membervo) throws SQLException {
+	public void updateMember(MemberVO membervo) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

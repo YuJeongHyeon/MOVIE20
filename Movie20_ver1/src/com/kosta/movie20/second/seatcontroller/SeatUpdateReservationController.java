@@ -8,7 +8,7 @@ import com.kosta.movie20.controller.common.Controller;
 import com.kosta.movie20.model.vo.MemberVO;
 import com.kosta.movie20.second.seatmodel.SeatDAO;
 
-public class DeleteSeatReservationController implements Controller {
+public class SeatUpdateReservationController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -23,9 +23,9 @@ public class DeleteSeatReservationController implements Controller {
 	//	String mNo = request.getParameter("mNo"); //영화번호
 		String seatNum = request.getParameter("seatNum"); //좌석번호
 		MemberVO mvo = (MemberVO)session.getAttribute("membervo");
-
-		SeatDAO.getInstance().deleteSeatReservation(mvo.getId(),seatNum,meetingDate);
-		System.out.println(" 예약 취소됨 : "+ seatNum);
+		System.out.println("seatNum : "+ seatNum);
+		SeatDAO.getInstance().updateReservedSeat(mvo.getId(),seatNum,meetingDate);
+		
 		//request.setAttribute("url", "/second/seetReservationForm.jsp");
 		return "redirect:index.jsp";
 	}

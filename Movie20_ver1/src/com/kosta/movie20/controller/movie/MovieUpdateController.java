@@ -28,7 +28,7 @@ public class MovieUpdateController implements Controller{
 		
 		
 		MovieVO movievo = new MovieVO(mNo, title, summary, character, director, genre, runtime, viewingcheck, playdate, grade);
-		MasterDAO.getInstance().movieUpdate(movievo);
+		MasterDAO.getInstance().updateMovie(movievo);
 		
 		return "index.jsp";
 	}

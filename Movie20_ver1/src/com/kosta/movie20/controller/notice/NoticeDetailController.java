@@ -14,11 +14,11 @@ public class NoticeDetailController implements Controller {
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session=request.getSession(false);
 		String nNo = request.getParameter("nNo");
-		NoticeVO nvo = MasterDAO.getInstance().noticeDetail(nNo);
+		NoticeVO nvo = MasterDAO.getInstance().getNoticeDetail(nNo);
 		if(session==null||session.getAttribute("membervo")==null) {
 			request.setAttribute("nvo", nvo);
 		}else {
-			MasterDAO.getInstance().updateHit(nNo);
+			MasterDAO.getInstance().updateHitdaHit(nNo);
 			request.setAttribute("nvo", nvo);
 		}
 		request.setAttribute("url", "../notice/noticeDetailList.jsp");

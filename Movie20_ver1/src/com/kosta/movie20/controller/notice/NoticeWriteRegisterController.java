@@ -26,7 +26,7 @@ public class NoticeWriteRegisterController implements Controller {
 			String content = request.getParameter("content");
 			String important = request.getParameter("important");
 			NoticeVO nvo = new NoticeVO(title,content,important,masterId);
-			nvo = MasterDAO.getInstance().noticeWrite(nvo);
+			nvo = MasterDAO.getInstance().writeNotice(nvo);
 			System.out.println(nvo);
 			path="redirect:DispatcherServlet?command=cmdNoticeDetail&nNo="+nvo.getnNo();
 			System.out.println(nvo.getnNo());

@@ -20,7 +20,7 @@ package com.kosta.movie20.model.common;
  * @author kosta
  *
  */
-public class NoticePagingBean {
+public class PagingBeanNotice {
 	/**
 	 * 현재 페이지
 	 */
@@ -38,13 +38,13 @@ public class NoticePagingBean {
 	 */
 	private int totalPostCount; 
 	
-	public NoticePagingBean() {
+	public PagingBeanNotice() {
 		
 	}
-	public NoticePagingBean(int totalPostCount) {
+	public PagingBeanNotice(int totalPostCount) {
 		this.totalPostCount=totalPostCount;
 	}
-	public NoticePagingBean(int totalPostCount, int nowPage) {
+	public PagingBeanNotice(int totalPostCount, int nowPage) {
 		super();
 		this.nowPage = nowPage;
 		this.totalPostCount = totalPostCount;

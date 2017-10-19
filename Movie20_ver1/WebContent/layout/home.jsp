@@ -14,8 +14,8 @@
   
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/home.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/searchMovie.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/Yeonghun.css">  
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/Jeonghyeon.css">  
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/notice.css">  
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/review.css">  
   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/right.css"> 
   
 </head>

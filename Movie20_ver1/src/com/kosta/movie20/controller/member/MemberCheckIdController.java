@@ -8,14 +8,14 @@ import org.json.JSONObject;
 import com.kosta.movie20.controller.common.Controller;
 import com.kosta.movie20.model.dao.MasterDAO;
 
-public class CheckIdController implements Controller {
+public class MemberCheckIdController implements Controller {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		String checkId =request.getParameter("id");
 		int checkFlag = 
-				MasterDAO.getInstance().checkMemberByIdAjax(checkId);
+				MasterDAO.getInstance().checkMemberIdByAjax(checkId);
 		JSONObject json = new JSONObject();
 		if(checkFlag>=1) {
 			json.put("flag", 1);

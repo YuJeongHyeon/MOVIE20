@@ -39,7 +39,7 @@ public class ScoreDAO {
 	}// closeAll
 	
 	 @SuppressWarnings("null")
-	public ScoreVO checkScore(int mNo ,String id) throws SQLException {
+	public ScoreVO getCheckScore(int mNo ,String id) throws SQLException {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -106,7 +106,7 @@ public class ScoreDAO {
 		}
 	//	return svo;
 	 }
-	 public int averageScore(String mNo) throws SQLException {
+	 public int getAverageScore(String mNo) throws SQLException {
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs = null;
