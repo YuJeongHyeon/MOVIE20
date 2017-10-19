@@ -4,8 +4,7 @@
       margin-bottom: 0;
       border-radius: 0;
     }
-
-    
+	 
     #myScrollspy{
       padding-top: 20px;
       background-color: #f1f1f1;
@@ -14,9 +13,12 @@
     #RightScrollspy{
   	  padding-top: 20px;
     }
-    
+    .header{
+    	padding: 20px;
+    }
     .main{
-		height: 1500px;
+    	padding: 40px;
+		height: auto;
 	}
 	
 	.left{

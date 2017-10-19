@@ -4,10 +4,7 @@
 
 
 <script type="text/javascript">
-	function searchMovie() {
 
-		//alert("111");
-	}
 </script>
 
 	<c:choose>

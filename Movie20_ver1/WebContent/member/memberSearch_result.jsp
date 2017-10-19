@@ -12,8 +12,8 @@
 </script>
  
  <c:set value="${sessionScope.searchMember}" var="m"></c:set>
-	<table>
-		<thead>
+	<table class="table table-inverse table-bordered">
+		<thead class="">
 		<tr>
 		<th>id</th><th>name</th><th>nick</th><th>address</th>
 		<th>birth</th><th>tel</th><th>favoriteGenre</th><th>authority</th>
@@ -36,12 +36,12 @@
                      <option>일반</option>
                      <option>관리자</option>
                 </select>
-			<input type="submit" value="권한 수정">
+			<input id="btnReviseMember" type="submit" class="btn btn-primary btn-block" value="권한 수정">
 		</form>
 		<hr>
 		<form action="DispatcherServlet" onsubmit="return checkDelete()">
 			<input type="hidden" name="command" value="cmdDeleteMember">
 			<input type="hidden" name="id" value="${m.id}">
-			<input type="submit" value="회원 삭제">
+			<input id="btnDeleteMember" type="submit" class="btn btn-primary btn-block" value="회원 삭제">
 		</form>
 		
